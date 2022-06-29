@@ -1,2 +1,2 @@
-# Left-leaning-red-black-Tree
+# Splay-Tree
 CSC 212 final project 
