@@ -21,12 +21,17 @@ Node* SplayTree::insert(int data, Node* root) {
     if (!root_){
         return new Node(data);
     }
-    // If the root node is not empty, recursively search left for a valid node location
-    if (data < root->value_) {
-        root->left_ = insert(data, root->left_);
+    // Case when value already exists in the tree
+    if (data == root->value_){
+        root->counter_++;
+        return root;
     }
-    // Recursively search right for a valid node location
-    else{
+
+    if (data < root->value_) {
+        // Recursively search left for a valid node location
+        root->left_ = insert(data, root->left_);
+    } else {
+        // Recursively search right for a valid node location
         root->right_ = insert(data, root->right_);
     }
     return root;
@@ -56,8 +61,8 @@ Node* SplayTree::search(int data, Node* root) {
         return nullptr;
     }
     // Edge case when the target node is the root
-    if (root->value_ == data) {
-        return root;
+    if (root_->value_ == data) {
+        return root_;
     }
     if (root->value_ > data){
         // Traverse left
@@ -156,7 +161,7 @@ void SplayTree::post_order(Node *root) {
 }
 
 void SplayTree::destroy(Node *root) {
-    if (!root){
+    if (!root_){
         return;
     }
     destroy(root->left_);
@@ -164,17 +169,17 @@ void SplayTree::destroy(Node *root) {
     delete root->left_;
     delete root->right_;
 }
-
-Node* SplayTree::delete_node(int data, Node *root) {
-
-    if (!root) {
-        return nullptr;
-    }
-    else {
-        root = search(data, root);
-    }
-
-}
+//
+//Node* SplayTree::delete_node(int data, Node *root) {
+//
+//    if (!root) {
+//        return nullptr;
+//    }
+//    else {
+//        root = search(data, root);
+//    }
+//
+//}
 
 // --------------- PRIVATE METHODS -----------------
 
@@ -207,6 +212,5 @@ void SplayTree::post_order() {
 }
 
 SplayTree::~SplayTree() {
-    
     this->destroy(this->root_);
 }

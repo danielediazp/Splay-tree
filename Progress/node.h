@@ -6,6 +6,7 @@ class Node{
 private:
     int value_;
     Node *left_, *right_;
+    int counter_;
 
 public:
     Node(int data): value_(data), left_(nullptr), right_(nullptr){}

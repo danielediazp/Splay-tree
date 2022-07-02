@@ -6,9 +6,8 @@
 //fix height
 
 int main() {
-
-//        SplayTree *T = new SplayTree(100);
-//        T->insert(50);
+        SplayTree *T = new SplayTree(100);
+        T->insert(50);
 //        T->insert(30);
 //        T->insert(20);
 //        T->insert(500);
@@ -39,8 +38,8 @@ int main() {
 //    H->insert(60);
 //    H->insert(80);
 //    H->insert(75);
-
-
+//
+//
 //   SplayTree* test1 = new SplayTree(100);
 //   test1->insert(50);
 //   test1->insert(200);
