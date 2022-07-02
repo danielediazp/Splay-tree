@@ -5,7 +5,7 @@
 
 //       Steps:
 //         #Add a new data member to the node class 
-//         #Add a conditional to the insert method. If the node exist already, update it counter by one. 
+//         #Add a conditional to the insert method. If the node exist already, update the counter by one. 
 
 // 2. Implement deletion. Difficulty -> Hard 
 
