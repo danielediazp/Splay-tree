@@ -3,37 +3,37 @@
 #include "node.h"
 
 
-//constructoradadadad
+// Default constructor
 SplayTree::SplayTree() {
     this->root_ = nullptr;
 }
 
+// Overloaded constructor, accepts data to create root node
 SplayTree::SplayTree(int root) {
     this->root_ = new Node(root);
 }
 
+// --------------- PRIVATE METHODS -----------------
 
-//private methods
 Node* SplayTree::insert(int data, Node* root) {
-
-    //case where root is empty
+    // Case when the root node does not exist
+    // Creates a new node with inputted dats
     if (!root){
         return new Node(data);
     }
-
-    //otherwise, search for the spot to insert
-    //branch left
+    // If the root node is not empty, search left for a valid node location
     if (data < root->value_) {
         root->left_ = insert(data, root->left_);
     }
-    //branch right
+    // Search right for a valid node location
     else{
         root->right_ = insert(data, root->right_);
     }
-
     return root;
 }
 
+// Method for rebalancing tree
+// Addresses case when child node is the left child of a node, and the node is a left child of another node
 Node* SplayTree::left_rotate(Node *root) {
     Node* curr = root->right_;
     root->right_ = curr->left_;
@@ -41,6 +41,8 @@ Node* SplayTree::left_rotate(Node *root) {
     return curr;
 }
 
+// Method for rebalancing tree
+// Addresses case when child node is the right child of a node, and the node is a right child of another node
 Node* SplayTree::right_rotate(Node *root) {
     Node* curr = root->left_;
     root->left_ = curr->right_;
@@ -49,8 +51,7 @@ Node* SplayTree::right_rotate(Node *root) {
 }
 
 Node* SplayTree::search(int data, Node* root) {
-
-    //case the node is the root
+    // Edge case when the target node is the root
     if (root->value_ == data || !root) {
         return root;
     }
@@ -164,7 +165,8 @@ void SplayTree::destroy(Node *root) {
 }
 
 
-//public methods
+// --------------- PRIVATE METHODS -----------------
+
 void SplayTree::insert(int key){
     this->root_ = this->insert(key, this->root_);
 }
