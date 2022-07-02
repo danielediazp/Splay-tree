@@ -3,7 +3,7 @@
 #include "node.h"
 
 
-//constructor
+//constructoradadadad
 SplayTree::SplayTree() {
     this->root_ = nullptr;
 }
