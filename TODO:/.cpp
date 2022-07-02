@@ -1,8 +1,7 @@
 //TODO:
 
 
-// 1. Implement duplicaates. Difficulty -> eassy 
-
+// 1. Implement duplicates. Difficulty -> eassy
 //       Steps:
 //         #Add a new data member to the node class 
 //         #Add a conditional to the insert method. If the node exist already, update the counter by one. 
