@@ -207,5 +207,6 @@ void SplayTree::post_order() {
 }
 
 SplayTree::~SplayTree() {
+    
     this->destroy(this->root_);
 }
