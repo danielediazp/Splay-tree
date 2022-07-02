@@ -21,11 +21,11 @@ Node* SplayTree::insert(int data, Node* root) {
     if (!root){
         return new Node(data);
     }
-    // If the root node is not empty, search left for a valid node location
+    // If the root node is not empty, recursively search left for a valid node location
     if (data < root->value_) {
         root->left_ = insert(data, root->left_);
     }
-    // Search right for a valid node location
+    // Recursively search right for a valid node location
     else{
         root->right_ = insert(data, root->right_);
     }
@@ -33,7 +33,7 @@ Node* SplayTree::insert(int data, Node* root) {
 }
 
 // Method for rebalancing tree
-// Addresses case when child node is the left child of a node, and the node is a left child of another node
+// Addresses case when child node is the left child of a node
 Node* SplayTree::left_rotate(Node *root) {
     Node* curr = root->right_;
     root->right_ = curr->left_;
@@ -42,7 +42,7 @@ Node* SplayTree::left_rotate(Node *root) {
 }
 
 // Method for rebalancing tree
-// Addresses case when child node is the right child of a node, and the node is a right child of another node
+// Addresses case when child node is the right child of a node
 Node* SplayTree::right_rotate(Node *root) {
     Node* curr = root->left_;
     root->left_ = curr->right_;
@@ -51,37 +51,39 @@ Node* SplayTree::right_rotate(Node *root) {
 }
 
 Node* SplayTree::search(int data, Node* root) {
-    // Edge case when the target node is the root
-    if (root->value_ == data || !root) {
+    // Edge case when the root node does not exist
+    if (!root){
         return root;
     }
-    //branch left
+    // Edge case when the target node is the root
+    if (root->value_ == data) {
+        return root;
+    }
+    // Traverse left
     if (root->value_ > data){
-
         //check for existens
         if (!root->left_){
             return root;
         }
-        //zig-zig: check for the node to be a left child of a left child
-        //keep searching left
+        // "Zig-zig" step: If the node is a left child of a node that is also a left child
+        // Traverse left
         if (root->left_->value_ > data){
-            //go as deep as possible on the left branch
+            // Traverse as deep as possible on the left branch
             root->left_->left_ = search(data, root->left_->left_);
-            //perform the zig step
+            // Perform the "zig" step
             root = right_rotate(root);
         }
-
-        //else perform the zig-zag step the node is a right child of a left child
+        // "Zig-zag" step: If the node is a right child of a node that is a left child
+        // Traverse right
         else if (root->left_->value_ < data){
+            // Traverse as deep as possible on the right branch
             root->left_->right_ = search(data, root->left_->right_);
 
             if (root->left_->right_){
                 root->left_ = left_rotate(root->left_);
             }
         }
-
-        return ( (!root)? root: right_rotate(root) );
-
+        return ((!root) ? root : right_rotate(root));
     }
         //otherwise we have to branch right
     else{
