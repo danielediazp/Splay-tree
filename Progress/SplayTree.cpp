@@ -164,6 +164,16 @@ void SplayTree::destroy(Node *root) {
     delete root->right_;
 }
 
+Node* SplayTree::delete_node(int data, Node *root) {
+
+    if (!root) {
+        return nullptr;
+    }
+    else {
+        root = search(data, root);
+    }
+
+}
 
 // --------------- PRIVATE METHODS -----------------
 
