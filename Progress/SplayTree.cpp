@@ -18,7 +18,7 @@ SplayTree::SplayTree(int root) {
 Node* SplayTree::insert(int data, Node* root) {
     // Case when the root node does not exist
     // Creates a new node with inputted data
-    if (!root){
+    if (!root_){
         return new Node(data);
     }
     // If the root node is not empty, recursively search left for a valid node location
@@ -52,7 +52,7 @@ Node* SplayTree::right_rotate(Node *root) {
 
 Node* SplayTree::search(int data, Node* root) {
     // Edge case when the root node does not exist
-    if (!root){
+    if (!root_){
         return nullptr;
     }
     // Edge case when the target node is the root
@@ -107,48 +107,52 @@ Node* SplayTree::search(int data, Node* root) {
             root->right_->right_ = search(data, root->right_->right_);
             root = left_rotate(root);
         }
-      return ( (!root->right_)? root: left_rotate(root) ) ;
+      return ((!root->right_) ? root : left_rotate(root)) ;
     }
 }
 
 int SplayTree::height(Node *root) {
-
-    //nullptr case
-    if(!root){
+    // Edge case when the tree is empty
+    if (!root_){
         return -1;
     }
 
-    //else branch the tree
+    // Recursively traverse the tree and keep track of current height
     int left = height(root->left_);
     int right = height(root->right_);
 
-    //the depest depth is the height
-    return ( left > right ? left+1 : right+1 );
+    // Deepest depth between the left and right branches of the tree is the height
+    return ((left > right) ? left+1 : right+1);
 }
 
+// Output values in the tree using inorder ordering
 void SplayTree::inorder(Node *root) {
-
-    if (root) {
-        inorder(root->left_);
-        std::cout << root->value_ << " ";
-        inorder(root->right_);
+    if (!root_){
+        return;
     }
+    inorder(root->left_);
+    std::cout << root->value_ << " ";
+    inorder(root->right_);
 }
 
+// Output values in the tree using preorder ordering
 void SplayTree::pre_order(Node* root) {
-    if (root){
-        std::cout << root->value_ << " ";
-        pre_order(root->left_);
-        pre_order(root->right_);
+    if (!root_){
+        return;
     }
+    std::cout << root->value_ << " ";
+    pre_order(root->left_);
+    pre_order(root->right_);
 }
 
+// Output values in the tree using postorder ordering
 void SplayTree::post_order(Node *root) {
-    if (root){
-        post_order(root->left_);
-        post_order(root->right_);
-        std::cout << root->value_ << " ";
+    if (!root_){
+        return;
     }
+    post_order(root->left_);
+    post_order(root->right_);
+    std::cout << root->value_ << " ";
 }
 
 void SplayTree::destroy(Node *root) {
