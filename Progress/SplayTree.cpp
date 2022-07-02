@@ -17,7 +17,7 @@ SplayTree::SplayTree(int root) {
 
 Node* SplayTree::insert(int data, Node* root) {
     // Case when the root node does not exist
-    // Creates a new node with inputted dats
+    // Creates a new node with inputted data
     if (!root){
         return new Node(data);
     }
@@ -53,15 +53,16 @@ Node* SplayTree::right_rotate(Node *root) {
 Node* SplayTree::search(int data, Node* root) {
     // Edge case when the root node does not exist
     if (!root){
-        return root;
+        return nullptr;
     }
     // Edge case when the target node is the root
     if (root->value_ == data) {
         return root;
     }
-    // Traverse left
     if (root->value_ > data){
-        //check for existens
+        // Traverse left
+
+        // Check if the target node exists
         if (!root->left_){
             return root;
         }
@@ -84,36 +85,30 @@ Node* SplayTree::search(int data, Node* root) {
             }
         }
         return ((!root) ? root : right_rotate(root));
-    }
-        //otherwise we have to branch right
-    else{
+    } else {
+        // Otherwise, branch right
 
+        // Check if the target node exists
         if (!root->right_){
             return root;
         }
-
-        //zag-zig the node is part of a right child that is a left child
+        // "Zag-zig" step: If the node is a right child of a node that is a left child
+        // Traverse left
         if (root->right_->value_ > data){
-
+            // Traverse as deep as possible on the left branch
             root->right_->left_ = search(data, root->right_->left_);
 
-            //if the root exist rotate
+            // If the root exists, rotate
             if (root->right_->left_){
                 root->right_ = right_rotate(root->right_);
             }
-        }
-
-        //the node is a right child of a right child
-        else if(root->right_->value_ < data){
-
+        } else if(root->right_->value_ < data){
+            // Traverse as deep as possible on the right branch
             root->right_->right_ = search(data, root->right_->right_);
             root = left_rotate(root);
         }
-
       return ( (!root->right_)? root: left_rotate(root) ) ;
     }
-
-
 }
 
 int SplayTree::height(Node *root) {
