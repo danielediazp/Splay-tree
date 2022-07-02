@@ -18,7 +18,7 @@ SplayTree::SplayTree(int root) {
 Node* SplayTree::insert(int data, Node* root) {
     // Case when the root node does not exist
     // Creates a new node with inputted data
-    if (!root_){
+    if (!root){
         return new Node(data);
     }
     // Case when value already exists in the tree
@@ -57,12 +57,12 @@ Node* SplayTree::right_rotate(Node *root) {
 
 Node* SplayTree::search(int data, Node* root) {
     // Edge case when the root node does not exist
-    if (!root_){
+    if (!root){
         return nullptr;
     }
     // Edge case when the target node is the root
-    if (root_->value_ == data) {
-        return root_;
+    if (root->value_ == data) {
+        return root;
     }
     if (root->value_ > data){
         // Traverse left
@@ -118,7 +118,7 @@ Node* SplayTree::search(int data, Node* root) {
 
 int SplayTree::height(Node *root) {
     // Edge case when the tree is empty
-    if (!root_){
+    if (!root){
         return -1;
     }
 
@@ -132,7 +132,7 @@ int SplayTree::height(Node *root) {
 
 // Output values in the tree using inorder ordering
 void SplayTree::inorder(Node *root) {
-    if (!root_){
+    if (!root){
         return;
     }
     inorder(root->left_);
@@ -142,7 +142,7 @@ void SplayTree::inorder(Node *root) {
 
 // Output values in the tree using preorder ordering
 void SplayTree::pre_order(Node* root) {
-    if (!root_){
+    if (!root){
         return;
     }
     std::cout << root->value_ << " ";
@@ -152,7 +152,7 @@ void SplayTree::pre_order(Node* root) {
 
 // Output values in the tree using postorder ordering
 void SplayTree::post_order(Node *root) {
-    if (!root_){
+    if (!root){
         return;
     }
     post_order(root->left_);
@@ -161,7 +161,7 @@ void SplayTree::post_order(Node *root) {
 }
 
 void SplayTree::destroy(Node *root) {
-    if (!root_){
+    if (!root){
         return;
     }
     destroy(root->left_);
