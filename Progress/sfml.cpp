@@ -1,5 +1,4 @@
 #include "SFML.h"
-#include "SplayTree.h"
 
 Game::Game() {
     this->initWindow();
@@ -34,7 +33,6 @@ void Game::update(){
 }
 
 void Game::render(){
-
     this->window->display();
 }
 
@@ -42,11 +40,12 @@ sf::CircleShape Game::createNode(Node *root){
     sf::CircleShape node;
     node.setRadius(20);
     node.setFillColor(sf::Color::White);
-    if (root == nullptr){
-        node.setPosition(400, 50);
-    } else if (root->value_ < root->left_->value_){
+    node.setPosition(400, 50);
+    // if (root == nullptr){
+       
+    // } else if (root->value_ < root->left_->value_){
         
-    }
+    // }
     
 
     return node;

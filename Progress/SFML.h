@@ -2,6 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <iostream>
+#include "SplayTree.h"
+#include "Node.h"
 
 class Game {
 private:
