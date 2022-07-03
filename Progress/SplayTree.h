@@ -11,7 +11,7 @@ private:
 
     Node* insert(int data, Node* root);
     Node* splay_tree(int data, Node* root);
-    bool search(int data, Node *root);
+    Node* delete_node(int data, Node *root);
     Node* left_rotate(Node* root);
     Node* right_rotate(Node* root);
     void destroy(Node* root);
@@ -28,7 +28,7 @@ public:
 
     void insert(int key);
     void splay_tree(int key);
-    bool search(int key);
+    void delete_node(int key);
 
     int height();
     int get_root();
