@@ -10,7 +10,8 @@ private:
     Node* root_;
 
     Node* insert(int data, Node* root);
-    Node* search(int data, Node* root);
+    Node* splay_tree(int data, Node* root);
+    bool search(int data, Node *root);
     Node* left_rotate(Node* root);
     Node* right_rotate(Node* root);
     void destroy(Node* root);
@@ -26,6 +27,7 @@ public:
     ~SplayTree();
 
     void insert(int key);
+    void splay_tree(int key);
     void search(int key);
 
     int height();

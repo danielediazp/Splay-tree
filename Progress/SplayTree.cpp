@@ -2,7 +2,6 @@
 #include "SplayTree.h"
 #include "node.h"
 
-
 // Default constructor
 SplayTree::SplayTree() {
     this->root_ = nullptr;
@@ -55,12 +54,24 @@ Node* SplayTree::right_rotate(Node *root) {
     return curr;
 }
 
-Node* SplayTree::search(int data, Node* root) {
+bool SplayTree::search(int key, Node *root) {
+    if (!root) {
+        return false;
+    } else if (root->value_ == key) {
+        return true;
+    } else {
+        search(key, root->left_);
+        search(key, root->right_);
+    }
+
+}
+
+Node* SplayTree::splay_tree(int data, Node* root) {
     // Edge case when the root node does not exist
     if (!root){
         return nullptr;
     }
-    // Edge case when the target node is the root
+    // When value is found in the tree, return the node
     if (root->value_ == data) {
         return root;
     }
@@ -169,19 +180,20 @@ void SplayTree::destroy(Node *root) {
     delete root->left_;
     delete root->right_;
 }
-//
-//Node* SplayTree::delete_node(int data, Node *root) {
-//
-//    if (!root) {
-//        return nullptr;
-//    }
-//    else {
-//        root = search(data, root);
-//    }
-//
-//}
 
-// --------------- PRIVATE METHODS -----------------
+Node* SplayTree::delete_node(int data, Node *root) {
+
+    if (!root) {
+        return nullptr;
+    }
+    else {
+        root = splay_tree(data, root);
+
+    }
+
+}
+
+// --------------- PUBLIC METHODS -----------------
 
 void SplayTree::insert(int key){
     this->root_ = this->insert(key, this->root_);
@@ -209,6 +221,10 @@ void SplayTree::pre_order() {
 
 void SplayTree::post_order() {
     this->post_order(this->root_);
+}
+
+void SplayTree::search(int key) {
+    this->root_ = this->search(key, this->root_);
 }
 
 SplayTree::~SplayTree() {
