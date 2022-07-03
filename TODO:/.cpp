@@ -12,6 +12,7 @@
 //   #check to see if node has childs. If it is a leaf node, cut the node from the tree.
 //   #otherwise, some rotation will be needed. 
 //   #If Node is the root, find the predecessor or succesor. "Recomender DFS approach" 
+//   #UPDATE!!!! DELETION IS IMPLEMENTED, ONLY EDGE CASE IS DELETING THE ROOT
   
   
 // 3. If you have any library in mind for graphcis rendering make a post on discord. 
