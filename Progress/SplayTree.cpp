@@ -21,6 +21,7 @@ Node* SplayTree::insert(int data, Node* root) {
         return new Node(data);
     }
     // Case when value already exists in the tree
+    ////Double check here
     if (data == root->value_){
         root->counter_++;
         return root;
@@ -69,9 +70,6 @@ bool SplayTree::search(int key, Node *root) {
 
 Node* SplayTree::splay_tree(int data, Node* root) {
     // Edge case when the root node does not exist
-    if (!search(data, root)) {
-        return -1;
-    }
     if (root->value_ > data){
         // Traverse left
 
@@ -187,7 +185,7 @@ void SplayTree::destroy(Node *root) {
 //        root = splay_tree(data, root);
 //
 //    }
-
+//
 //}
 
 // --------------- PUBLIC METHODS -----------------
@@ -201,7 +199,11 @@ void SplayTree::inorder() {
 }
 
 void SplayTree::splay_tree(int key) {
-  this->root_= this->splay_tree(key, this->root_);
+    if (this->search(key, this->root_)){
+        this->root_= this->splay_tree(key, this->root_);
+    } else {
+        return;
+    }
 }
 
 int SplayTree::height() {
@@ -213,6 +215,7 @@ int SplayTree::get_root(){
 }
 
 void SplayTree::pre_order() {
+    std::cout << "Executing preorder" << std::endl;
     this->pre_order(this->root_);
 }
 

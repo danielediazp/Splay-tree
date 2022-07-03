@@ -38,8 +38,12 @@ int main() {
     H->insert(60);
     H->insert(80);
     H->insert(75);
+    H->insert(14);
     H->pre_order();
-    std::cout << H->search(1441245) << std::endl;
+
+//    std::cout << std::endl;
+//    H->splay_tree(40);
+//    H->pre_order();
 
 
 //    SplayTree* test1 = new SplayTree(100);
