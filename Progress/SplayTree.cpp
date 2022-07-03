@@ -1,4 +1,3 @@
-#include <iostream>
 #include "SplayTree.h"
 #include "node.h"
 
@@ -208,6 +207,15 @@ Node* SplayTree::delete_node(int data, Node *root) {
         }
     }
 }
+
+// void SplayTree::handleInput(const std::string& filename){
+//     std::ifstream input(filename);
+//     std::string value;
+//     std::vector<int> input;
+//     int num;
+//     while ({
+//     }
+// }
 
 // --------------- PUBLIC METHODS -----------------
 

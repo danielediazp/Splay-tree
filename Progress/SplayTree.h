@@ -1,4 +1,8 @@
 #include "node.h"
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <vector>
 
 #ifndef SPLAY_TREE_SPLAYTREE_H
 #define SPLAY_TREE_SPLAYTREE_H
@@ -21,6 +25,8 @@ private:
     void post_order(Node* root);
     int height(Node* root);
 
+    void handleInput(const std::string& filename);
+
 public:
     SplayTree();
     SplayTree(int root);
@@ -37,6 +43,7 @@ public:
     void post_order();
     void inorder();
 
+    friend class Game;
 };
 
 

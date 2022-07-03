@@ -5,9 +5,13 @@
 
 class Game {
 private:
-    sf::RenderWindow window;
+    sf::RenderWindow *window;
+    sf::CircleShape createNode(Node * root);
 public:
     Game();
     void initWindow();
-    void gameLoop();
+    void run();
+    void update();
+    void render();
+
 };

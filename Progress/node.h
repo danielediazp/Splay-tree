@@ -2,7 +2,6 @@
 #define SPLAY_TREE_NODE_H
 
 class Node{
-
 private:
     int value_;
     Node *left_, *right_;
@@ -10,11 +9,10 @@ private:
 
 public:
     Node(int data): value_(data), left_(nullptr), right_(nullptr){}
-    ~Node(){
-
-    }
+    ~Node(){}
 
     friend class SplayTree;
+    friend class Game;
 };
 
 #endif //SPLAY_TREE_NODE_H
