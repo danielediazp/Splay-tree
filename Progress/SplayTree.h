@@ -28,7 +28,7 @@ public:
 
     void insert(int key);
     void splay_tree(int key);
-    void search(int key);
+    bool search(int key);
 
     int height();
     int get_root();

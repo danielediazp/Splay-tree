@@ -59,21 +59,18 @@ bool SplayTree::search(int key, Node *root) {
         return false;
     } else if (root->value_ == key) {
         return true;
-    } else {
-        search(key, root->left_);
-        search(key, root->right_);
     }
-
+    if (root->value_ > key){
+        return search(key, root->left_);
+    } else {
+        return search(key, root->right_);
+    }
 }
 
 Node* SplayTree::splay_tree(int data, Node* root) {
     // Edge case when the root node does not exist
-    if (!root){
-        return nullptr;
-    }
-    // When value is found in the tree, return the node
-    if (root->value_ == data) {
-        return root;
+    if (!search(data, root)) {
+        return -1;
     }
     if (root->value_ > data){
         // Traverse left
@@ -86,7 +83,7 @@ Node* SplayTree::splay_tree(int data, Node* root) {
         // Traverse left
         if (root->left_->value_ > data){
             // Traverse as deep as possible on the left branch
-            root->left_->left_ = search(data, root->left_->left_);
+            root->left_->left_ = splay_tree(data, root->left_->left_);
             // Perform the "zig" step
             root = right_rotate(root);
         }
@@ -94,7 +91,7 @@ Node* SplayTree::splay_tree(int data, Node* root) {
         // Traverse right
         else if (root->left_->value_ < data){
             // Traverse as deep as possible on the right branch
-            root->left_->right_ = search(data, root->left_->right_);
+            root->left_->right_ = splay_tree(data, root->left_->right_);
 
             if (root->left_->right_){
                 root->left_ = left_rotate(root->left_);
@@ -112,7 +109,7 @@ Node* SplayTree::splay_tree(int data, Node* root) {
         // Traverse left
         if (root->right_->value_ > data){
             // Traverse as deep as possible on the left branch
-            root->right_->left_ = search(data, root->right_->left_);
+            root->right_->left_ = splay_tree(data, root->right_->left_);
 
             // If the root exists, rotate
             if (root->right_->left_){
@@ -120,7 +117,7 @@ Node* SplayTree::splay_tree(int data, Node* root) {
             }
         } else if(root->right_->value_ < data){
             // Traverse as deep as possible on the right branch
-            root->right_->right_ = search(data, root->right_->right_);
+            root->right_->right_ = splay_tree(data, root->right_->right_);
             root = left_rotate(root);
         }
       return ((!root->right_) ? root : left_rotate(root)) ;
@@ -181,17 +178,17 @@ void SplayTree::destroy(Node *root) {
     delete root->right_;
 }
 
-Node* SplayTree::delete_node(int data, Node *root) {
+//Node* SplayTree::delete_node(int data, Node *root) {
+//
+//    if (!root) {
+//        return nullptr;
+//    }
+//    else {
+//        root = splay_tree(data, root);
+//
+//    }
 
-    if (!root) {
-        return nullptr;
-    }
-    else {
-        root = splay_tree(data, root);
-
-    }
-
-}
+//}
 
 // --------------- PUBLIC METHODS -----------------
 
@@ -203,8 +200,8 @@ void SplayTree::inorder() {
     this->inorder(this->root_);
 }
 
-void SplayTree::search(int key) {
-  this->root_= this->search(key, this->root_);
+void SplayTree::splay_tree(int key) {
+  this->root_= this->splay_tree(key, this->root_);
 }
 
 int SplayTree::height() {
@@ -223,8 +220,9 @@ void SplayTree::post_order() {
     this->post_order(this->root_);
 }
 
-void SplayTree::search(int key) {
-    this->root_ = this->search(key, this->root_);
+bool SplayTree::search(int key) {
+    bool found = search(key, this->root_);
+    return found;
 }
 
 SplayTree::~SplayTree() {
