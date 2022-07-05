@@ -62,10 +62,10 @@ sf::CircleShape Game::createNode(){
     // BELOW IS AN ATTEMPT AT ANIMATING NODES FOR NO REASON
     // This code is super buggy and very laggy
     sf::Clock clock1;
-    while (clock1.getElapsedTime() < sf::seconds(5)){
-        node.setRadius(clock1.getElapsedTime().asSeconds() * 2);
+    while (clock1.getElapsedTime() < sf::seconds(5.f)){
+        node.setRadius(floor(clock1.getElapsedTime().asSeconds() * 2));
+        std::cout << clock1.getElapsedTime().asSeconds() << '\n';
     }
-    std::cout << clock1.getElapsedTime().asSeconds() << '\n';
     clock1.restart();
     node.setFillColor(sf::Color::White);
     node.setPosition(400, 50);

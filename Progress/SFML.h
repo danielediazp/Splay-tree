@@ -3,12 +3,14 @@
 #include <SFML/Window.hpp>
 #include <iostream>
 #include <string>
+#include <cmath>
+#include <mutex>
 #include "SplayTree.h"
 
 class Game {
 private:
     sf::RenderWindow *window;
-    sf::CircleShape createNode();
+    static sf::CircleShape createNode();
     SplayTree *tree;
     bool deleteMode;
 public:
