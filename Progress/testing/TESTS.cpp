@@ -1,10 +1,6 @@
 #include <iostream>
 #include "SplayTree.h"
 
-//TODO:
-//implement delete
-//fix height
-
 int main() {
 //    SplayTree *T = new SplayTree(100);
 //    T->insert(50);
