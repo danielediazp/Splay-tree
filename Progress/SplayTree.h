@@ -33,7 +33,7 @@ private:
 public:
     SplayTree();
     SplayTree(int root);
-    SplayTree(std::string &file_name);
+    SplayTree(std::string file_name);
     ~SplayTree();
 
     void insert(int key);

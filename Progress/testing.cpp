@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "SplayTree.h"
 
 int main() {
@@ -24,18 +25,21 @@ int main() {
 //    std::cout<< std::endl;
 //    T->pre_order();
 
-    SplayTree* H = new SplayTree(50);
-    H->insert(30);
-    H->insert(20);
-    H->insert(40);
-    H->insert(15);
-    H->insert(14);
-    H->insert(70);
-    H->insert(60);
-    H->insert(80);
-    H->insert(75);
-    H->insert(14);
-    H->pre_order();
+//    SplayTree* H = new SplayTree(50);
+//    H->insert(30);
+//    H->insert(20);
+//    H->insert(40);
+//    H->insert(15);
+//    H->insert(14);
+//    H->insert(70);
+//    H->insert(60);
+//    H->insert(80);
+//    H->insert(75);
+//    H->insert(14);
+//    H->pre_order();
+    std::string file = "test.txt";
+    SplayTree *test = new SplayTree(file);
+    test->inorder();
 
 //    std::cout << std::endl;
 //    H->splay_tree(40);
