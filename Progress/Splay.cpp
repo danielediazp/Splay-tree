@@ -30,7 +30,6 @@ void Splay::run(std::vector<Node *> splayed_tree) {
         sf::Event event;
         while (this->window->pollEvent(event)) {
             splayed_tree.clear();
-            this->counter = 1;
             if (event.type == sf::Event::Closed ||
                 (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
                 std::cout << "----------------------------" << '\n';
@@ -51,9 +50,10 @@ void Splay::run(std::vector<Node *> splayed_tree) {
                         std::cout << "Delete Mode Toggled: OFF" << '\n';
                     }
                 }
-            } else if (event.type == sf::Event::KeyReleased) {
+            }
+            if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::J && !this->deleteMode) {
-                    this->window->clear(sf::Color::Black);
+                    this->window->clear();
                     tree->BFS(splayed_tree);
                     for (int i = 0; i < splayed_tree.size(); i++) {
                         if (i == 0) {
@@ -65,14 +65,11 @@ void Splay::run(std::vector<Node *> splayed_tree) {
                         if (is_right_child(i, splayed_tree)) {
                             create_node(splayed_tree, 'r');
                         }
-                        std::cout << "LOOP DONE" << '\n';
                         counter++;
                     }
-
+                    this->window->display();
                 }
             }
-
-            this->window->display();
         }
     }
 }
@@ -81,7 +78,7 @@ void Splay::update(){
 }
 
 void Splay::render(){
-    this->window->clear();
+//    this->window->clear(sf::Color::Black);
     this->update();
     this->window->display();
 }

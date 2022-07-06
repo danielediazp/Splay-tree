@@ -95,16 +95,16 @@ Node* SplayTree::splay_tree(int data, Node* root) {
     if (!root || root->value_ == data) {
         return root;
     }
-    if (root->value_ > data){
+    if (root->value_ > data) {
         // Traverse left
 
         // Check if the target node exists
-        if (!root->left_){
+        if (!root->left_) {
             return root;
         }
         // "Zig-zig" step: If the node is a left child of a node that is also a left child
         // Traverse left
-        if (root->left_->value_ > data){
+        if (root->left_->value_ > data) {
             // Traverse as deep as possible on the left branch
             root->left_->left_ = splay_tree(data, root->left_->left_);
             // Perform the "zig" step
@@ -112,11 +112,11 @@ Node* SplayTree::splay_tree(int data, Node* root) {
         }
             // "Zig-zag" step: If the node is a right child of a node that is a left child
             // Traverse right
-        else if (root->left_->value_ < data){
+        else if (root->left_->value_ < data) {
             // Traverse as deep as possible on the right branch
             root->left_->right_ = splay_tree(data, root->left_->right_);
 
-            if (root->left_->right_){
+            if (root->left_->right_) {
                 root->left_ = left_rotate(root->left_);
             }
         }
@@ -125,25 +125,25 @@ Node* SplayTree::splay_tree(int data, Node* root) {
         // Otherwise, branch right
 
         // Check if the target node exists
-        if (!root->right_){
+        if (!root->right_) {
             return root;
         }
         // "Zag-zig" step: If the node is a right child of a node that is a left child
         // Traverse left
-        if (root->right_->value_ > data){
+        if (root->right_->value_ > data) {
             // Traverse as deep as possible on the left branch
             root->right_->left_ = splay_tree(data, root->right_->left_);
 
             // If the root exists, rotate
-            if (root->right_->left_){
+            if (root->right_->left_) {
                 root->right_ = right_rotate(root->right_);
             }
-        } else if(root->right_->value_ < data){
+        } else if (root->right_->value_ < data) {
             // Traverse as deep as possible on the right branch
             root->right_->right_ = splay_tree(data, root->right_->right_);
             root = left_rotate(root);
         }
-        return ((!root->right_) ? root : left_rotate(root)) ;
+        return ((!root->right_) ? root : left_rotate(root));
     }
 }
 
