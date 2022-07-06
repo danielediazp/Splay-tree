@@ -190,7 +190,7 @@ void SplayTree::BFS(Node *root, std::vector<int> &target_vector){
 
 void SplayTree::level_order(Node *root, int l, std::vector<int> &target_vector){
     if (root == nullptr){
-        target_vector.push_back(-696969);
+        target_vector.push_back(NULL);
         return;
     }
     if (l == 0){
