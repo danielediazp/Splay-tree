@@ -3,7 +3,6 @@
 #include <SFML/Window.hpp>
 #include <iostream>
 #include <cmath>
-#include <mutex>
 #include "SplayTree.h"
 
 #ifndef SPLAY_H
@@ -15,12 +14,13 @@ private:
     static sf::CircleShape createNode();
     SplayTree *tree;
     bool deleteMode;
+
 public:
     Splay();
-    void run();
+
+    void run(std::vector<int> splayed_tree);
     void update();
     void render();
-
 };
 
 #endif

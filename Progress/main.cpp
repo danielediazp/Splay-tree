@@ -1,8 +1,8 @@
-// #include "SplayTree.h"
 #include "Splay.h"
 
 int main() {
-    Splay game;
-    game.run();
+    Splay splay;
+    std::vector<int> splay_tree;
+    splay.run(splay_tree);
     return 0;
 }

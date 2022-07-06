@@ -3,6 +3,7 @@
 #include <sstream>
 #include <fstream>
 #include <vector>
+#include <queue>
 
 #ifndef SPLAY_TREE_SPLAYTREE_H
 #define SPLAY_TREE_SPLAYTREE_H
@@ -24,6 +25,7 @@ private:
     void pre_order(Node* root);
     void post_order(Node* root);
     int height(Node* root);
+    void BFS(Node *root, std::vector<int> &target_vector);
 
     void handleInput(const std::string& filename);
 
@@ -42,6 +44,8 @@ public:
     void pre_order();
     void post_order();
     void inorder();
+    void BFS(std::vector<int> &target_vector);
+
 
     friend class Game;
 };

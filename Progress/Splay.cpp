@@ -18,11 +18,21 @@ Splay::Splay() {
     this->deleteMode = false;
 }
 
-void Splay::run(){
+void Splay::run(std::vector<int> splayed_tree){
+    this->tree->insert(30);
+    this->tree->insert(20);
+    this->tree->insert(40);
+    this->tree->insert(10);
+    this->tree->insert(15);
+    tree->BFS(splayed_tree);
+    for (std::vector<int>::const_iterator i = splayed_tree.begin(); i != splayed_tree.end(); i++){
+        std::cout << *i << " ";
+    }
+    std::cout << std::endl;
     while (this->window->isOpen()){
         sf::Event event;
         sf::Vector2i localPos = sf::Mouse::getPosition(*this->window);
-        std::cout << "X: " << localPos.x << " Y: " << localPos.y << "\n";
+//        std::cout << "X: " << localPos.x << " Y: " << localPos.y << "\n";
         while (this->window->pollEvent(event)){
             if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)){
                 std::cout << "----------------------------" << '\n';
@@ -42,6 +52,11 @@ void Splay::run(){
                         // CHANGE LOGIC SO THAT ONLY INSERTION IS ALLOWED
                         std::cout << "Delete Mode Toggled: OFF" << '\n';
                     }
+                }
+            }
+            else if (event.type == sf::Event::KeyPressed){
+                if (event.key.code == sf::Keyboard::Space){
+
                 }
             }
         }
