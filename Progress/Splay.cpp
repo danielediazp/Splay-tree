@@ -34,6 +34,7 @@ void Splay::run(std::vector<int> splayed_tree){
         sf::Vector2i localPos = sf::Mouse::getPosition(*this->window);
 //        std::cout << "X: " << localPos.x << " Y: " << localPos.y << "\n";
         while (this->window->pollEvent(event)){
+
             if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)){
                 std::cout << "----------------------------" << '\n';
                 std::cout << "Application closed via input" << '\n';

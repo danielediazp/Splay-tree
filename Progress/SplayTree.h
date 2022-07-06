@@ -19,6 +19,7 @@ private:
     Node* delete_node(int data, Node *root);
     Node* left_rotate(Node* root);
     Node* right_rotate(Node* root);
+    void level_order(Node *root, int l, std::vector<int> &target_vector);
     void destroy(Node* root);
 
     void inorder(Node* root);
