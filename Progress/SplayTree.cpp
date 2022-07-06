@@ -1,5 +1,5 @@
 #include "SplayTree.h"
-#include "node.h"
+#include "Node.h"
 
 // Default constructor
 SplayTree::SplayTree() {
@@ -181,20 +181,20 @@ void SplayTree::destroy(Node *root) {
     delete root->right_;
 }
 
-void SplayTree::BFS(Node *root, std::vector<int> &target_vector){
+void SplayTree::BFS(Node *root, std::vector<Node *> &target_vector){
     int h = this->height();
     for (int l = 0; l <= h; l++){
         level_order(root, l, target_vector);
     }
 }
 
-void SplayTree::level_order(Node *root, int l, std::vector<int> &target_vector){
+void SplayTree::level_order(Node *root, int l, std::vector<Node *> &target_vector){
     if (root == nullptr){
-        target_vector.push_back(NULL);
+        target_vector.push_back(nullptr);
         return;
     }
     if (l == 0){
-        target_vector.push_back(root->value_);
+        target_vector.push_back(root);
     } else if (l > 0){
         level_order(root->left_, l - 1, target_vector);
         level_order(root->right_, l - 1, target_vector);
@@ -277,6 +277,6 @@ SplayTree::~SplayTree() {
     this->destroy(this->root_);
 }
 
-void SplayTree::BFS(std::vector<int> &target_vector){
+void SplayTree::BFS(std::vector<Node *> &target_vector){
     this->BFS(this->root_, target_vector);
 }

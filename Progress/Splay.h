@@ -19,10 +19,11 @@ private:
 public:
     Splay();
 
-    bool is_right_child(int i, std::vector<int> &tree);
-    bool is_left_child(int i, std::vector<int> &tree);
-    bool is_parent(int i, std::vector<int> &target_tree);
-    void run(std::vector<int> splayed_tree);
+    bool is_right_child(int i, std::vector<Node *> &tree);
+    bool is_left_child(int i, std::vector<Node *> &tree);
+    void create_node(std::vector<Node *> &target_tree, const char type);
+    bool is_parent(int i, std::vector<Node *> &target_tree);
+    void run(std::vector<Node *> splayed_tree);
     void update();
     void render();
 };
