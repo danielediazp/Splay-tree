@@ -16,23 +16,20 @@ Splay::Splay() {
     this->window->setFramerateLimit(144);
     this->tree = new SplayTree();
     this->deleteMode = false;
-    this->counter = 1;
 }
 
 void Splay::run(std::vector<Node *> splayed_tree) {
     this->tree->insert(60);
     this->tree->insert(40);
     this->tree->insert(50);
+    this->tree->insert(47);
     this->tree->insert(55);
     this->tree->insert(45);
-    this->tree->insert(52);
-    this->tree->insert(43);
-    tree->pre_order();
-    std::cout << std::endl;
+//    tree->pre_order();
+//    std::cout << std::endl;
     while (this->window->isOpen()) {
         sf::Event event;
         while (this->window->pollEvent(event)) {
-            splayed_tree.clear();
             if (event.type == sf::Event::Closed ||
                 (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
                 std::cout << "//----------------------------//" << '\n';
@@ -56,6 +53,7 @@ void Splay::run(std::vector<Node *> splayed_tree) {
             }
             if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::J && !this->deleteMode) {
+                    splayed_tree.clear();
                     this->window->clear();
                     tree->BFS(splayed_tree);
                     for (int i = 0; i < splayed_tree.size(); i ++){
@@ -69,23 +67,24 @@ void Splay::run(std::vector<Node *> splayed_tree) {
                     sf::CircleShape node;
                     for (int i = 0; i < splayed_tree.size(); i++) {
                         if (i == 0) {
-                            node = create_node(385, 50, splayed_tree, 't');
+                            papa = create_node(385, 50, splayed_tree, 't');
                             std::cout << "Drew node: " << splayed_tree[i]->get_value() << " My coordinates are -> " << node.getPosition().x << " " << node.getPosition().y << '\n';
-                            i++;
-                        }
+                        } 
                         if (is_left_child(i, splayed_tree)) {
-                            node = create_node(node.getPosition().x, node.getPosition().y, splayed_tree, 'l');
                             if (splayed_tree[i] == nullptr){
                                 continue;
                             }
-                            std::cout << "Drew node: " << splayed_tree[i]->get_value() << " I am a left child of coordinates -> " << node.getPosition().x << " " << node.getPosition().y << '\n';
+                            std::cout << node.getPosition().x << " " << node.getPosition().y << '\n';
+                            node = create_node(papa.getPosition().x, papa.getPosition().y, splayed_tree, 'l');
+                            std::cout << "Drew node: " << splayed_tree[i*2 + 1]->get_value() << " I am a left child of coordinates -> " << node.getPosition().x << " " << node.getPosition().y << '\n';
                         }
                         if (is_right_child(i, splayed_tree)) {
-                            node = create_node(node.getPosition().x, node.getPosition().y, splayed_tree, 'r');
                             if (splayed_tree[i] == nullptr){
                                 continue;
                             }
-                            std::cout << "Drew node: " << splayed_tree[i]->get_value() << " I am a right child of coordinates -> " << node.getPosition().x << " " << node.getPosition().y << '\n';
+                            std::cout << node.getPosition().x << " " << node.getPosition().y << '\n';
+                            node = create_node(papa.getPosition().x, papa.getPosition().y, splayed_tree, 'r');
+                            std::cout << "Drew node: " << splayed_tree[i*2 + 2]->get_value() << " I am a right child of coordinates -> " << node.getPosition().x << " " << node.getPosition().y << '\n';
                         }
                         counter++;
                     }
@@ -138,14 +137,18 @@ sf::CircleShape Splay::create_node(int prior_node_x, int prior_node_y, std::vect
     std::pair<int, int> temp_offset;
     switch(type){
         case 'l':
-            temp_offset = std::make_pair(-50 * this->counter, 50 * this->counter);
+            // Left child node
+            temp_offset = std::make_pair(-50 * this->level, 50 * this->level);
             node.setPosition(prior_node_x + temp_offset.first, prior_node_y + temp_offset.second);
+            std::cout << "I am at coordinates: " << prior_node_x + temp_offset.first << ", " << prior_node_y + temp_offset.second << "\n";
             break;
         case 'r':
-            temp_offset = std::make_pair(50 * this->counter, 50 * this->counter);
+            // Right child node
+            temp_offset = std::make_pair(50 * this->level, 50 * this->level);
             node.setPosition(prior_node_x + temp_offset.first, prior_node_y + temp_offset.second);
             break;
         case 't':
+            // Root node
             node.setPosition(prior_node_x, prior_node_y);
             break;
         default:
