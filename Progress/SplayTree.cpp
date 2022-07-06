@@ -11,6 +11,26 @@ SplayTree::SplayTree(int root) {
     this->root_ = new Node(root);
 }
 
+//Overloaded constructor, accepts a file name and constructor a tree
+SplayTree::SplayTree(std::string file_name) {
+    int root_catcher = 0;
+    std::ifstream inFile(file_name);
+    std::string line;
+    while(std::getline(inFile, line)){
+        std::istringstream stream(line);
+        char data;
+        while(stream >> data){
+            if (root_catcher == 0){
+                this->root_ = new Node(data);
+                root_catcher = 1;
+            }else{
+               root_ =  insert(data, root_);
+            }
+        }
+    }
+}
+
+
 // --------------- PRIVATE METHODS -----------------
 
 Node* SplayTree::insert(int data, Node* root) {
@@ -147,7 +167,7 @@ void SplayTree::inorder(Node *root) {
         return;
     }
     inorder(root->left_);
-    std::cout << root->value_ << " ";
+    std::cout << root->value_ << ":" << root->counter_ << " ";
     inorder(root->right_);
 }
 
@@ -156,7 +176,7 @@ void SplayTree::pre_order(Node* root) {
     if (!root){
         return;
     }
-    std::cout << root->value_ << " ";
+    std::cout << root->value_ << ":" << root->counter_ << " ";
     pre_order(root->left_);
     pre_order(root->right_);
 }
@@ -168,7 +188,7 @@ void SplayTree::post_order(Node *root) {
     }
     post_order(root->left_);
     post_order(root->right_);
-    std::cout << root->value_ << " ";
+    std::cout << root->value_ << ":" <<" ";
 }
 
 void SplayTree::destroy(Node *root) {
@@ -228,14 +248,6 @@ Node* SplayTree::delete_node(int data, Node *root) {
     }
 }
 
-// void SplayTree::handleInput(const std::string& filename){
-//     std::ifstream input(filename);
-//     std::string value;
-//     std::vector<int> input;
-//     int num;
-//     while ({
-//     }
-// }
 
 // --------------- PUBLIC METHODS -----------------
 

@@ -10,6 +10,7 @@
 #define SPLAY_TREE_SPLAYTREE_H
 
 
+
 class SplayTree {
 
 private:
@@ -33,7 +34,7 @@ private:
 public:
     SplayTree();
     SplayTree(int root);
-    SplayTree(std::string &file_name);
+    SplayTree(std::string file_name);
     ~SplayTree();
 
     void insert(int key);
