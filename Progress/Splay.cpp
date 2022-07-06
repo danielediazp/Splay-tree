@@ -1,4 +1,5 @@
-#include "SFML.h"
+#include "Splay.h"
+
 /*
 TODO: Accept user input in the form of a text file (EASY)
 TODO: Render nodes correctly in terms of ancestry and position (i.e., right children should be to the right of a node, etc.) (HARD)
@@ -18,14 +19,10 @@ Splay::Splay() {
 }
 
 void Splay::run(){
-    sf::Font font;
-    font.loadFromFile("Vogue.ttf");
-    sf::String Text;
-
     while (this->window->isOpen()){
         sf::Event event;
         sf::Vector2i localPos = sf::Mouse::getPosition(*this->window);
-        // std::cout << "X: " << localPos.x << " Y: " << localPos.y << "\n";
+        std::cout << "X: " << localPos.x << " Y: " << localPos.y << "\n";
         while (this->window->pollEvent(event)){
             if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)){
                 std::cout << "----------------------------" << '\n';
@@ -54,6 +51,20 @@ void Splay::run(){
 
 void Splay::update(){
     sf::CircleShape circle = createNode();
+    sf::RectangleShape xAxis;
+    xAxis.setOrigin(0.0f, 0.0f);
+    xAxis.setPosition(0, 395);
+    sf::Vector2f recSize(800, 1);
+    xAxis.setSize(recSize);
+    xAxis.setFillColor(sf::Color::White);
+    sf::RectangleShape yAxis;
+    yAxis.setOrigin(0.0f, 0.0f);
+    yAxis.setPosition(400, 0);
+    yAxis.setSize(recSize);
+    yAxis.rotate(90);
+    yAxis.setFillColor(sf::Color::White);
+    this->window->draw(yAxis);
+    this->window->draw(xAxis);
     this->window->draw(circle);
 }
 
@@ -67,7 +78,8 @@ sf::CircleShape Splay::createNode(){
     sf::CircleShape node;
     node.setRadius(20.f);
     node.setFillColor(sf::Color::White);
-    node.setPosition(400, 50);
+    node.setOrigin(0.0f, 0.0f);
+    node.setPosition(385, 50);
     return node;
 }
 //https://en.sfml-dev.org/forums/index.php?topic=26818.0

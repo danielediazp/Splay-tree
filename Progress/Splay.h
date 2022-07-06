@@ -6,6 +6,9 @@
 #include <mutex>
 #include "SplayTree.h"
 
+#ifndef SPLAY_H
+#define SPLAY_H
+
 class Splay {
 private:
     sf::RenderWindow *window;
@@ -19,3 +22,5 @@ public:
     void render();
 
 };
+
+#endif

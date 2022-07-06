@@ -1,5 +1,5 @@
 // #include "SplayTree.h"
-#include "SFML.h"
+#include "Splay.h"
 
 int main() {
     Splay game;
