@@ -1,5 +1,5 @@
 #include "SplayTree.h"
-#include "Node.h"
+#include "node.h"
 
 // Default constructor
 SplayTree::SplayTree() {
@@ -100,7 +100,7 @@ Node* SplayTree::splay_tree(int data, Node* root) {
                 root->left_ = left_rotate(root->left_);
             }
         }
-        return ((!root) ? root : right_rotate(root));
+        return ((!root->left_) ? root : right_rotate(root));
     } else {
         // Otherwise, branch right
 
@@ -186,7 +186,7 @@ void SplayTree::BFS(Node *root, std::vector<int> &target_vector){
     for (int l = 0; l <= h; l++){
         level_order(root, l, target_vector);
     }
-};
+}
 
 void SplayTree::level_order(Node *root, int l, std::vector<int> &target_vector){
     if (root == nullptr){
