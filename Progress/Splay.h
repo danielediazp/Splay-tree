@@ -13,7 +13,8 @@ private:
     sf::RenderWindow *window;
     SplayTree *tree;
     bool deleteMode;
-    int counter;
+    int level = 1;
+    int counter = 0;
 
 public:
     Splay();

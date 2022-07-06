@@ -65,7 +65,13 @@ void Splay::run(std::vector<Node *> splayed_tree) {
                     }
                     std::cout << std::endl;
                     sf::CircleShape node;
+                    sf::CircleShape papa;
                     for (int i = 0; i < splayed_tree.size(); i++) {
+                        if (this->counter == this->level) {
+                            this->level *= 2;
+                            this->counter = 0;
+                        }
+
                         if (i == 0) {
                             papa = create_node(385, 50, splayed_tree, 't');
                             std::cout << "Drew node: " << splayed_tree[i]->get_value() << " My coordinates are -> " << node.getPosition().x << " " << node.getPosition().y << '\n';
@@ -106,7 +112,7 @@ void Splay::render(){
 
 bool Splay::is_left_child(int i, std::vector<Node *> &target_tree){
     if (target_tree[(i*2) + 1] != nullptr){
-        if (i * 2 + 1 < target_tree.size()){
+        if ((i * 2) + 1 < target_tree.size()){
             return true;
         }
     }
@@ -115,15 +121,15 @@ bool Splay::is_left_child(int i, std::vector<Node *> &target_tree){
 
 bool Splay::is_right_child(int i, std::vector<Node *> &target_tree){
     if (target_tree[(i*2) + 2] != nullptr){
-        if (i * 2 + 2 < target_tree.size()){
+        if ((i * 2) + 2 < target_tree.size()){
             return true;
         }
     }
     return false;
 }
 
-bool Splay::is_parent(int i, std::vector<int> &target_tree){
-    if (target_tree[floor((i)/2)] != 0){
+bool Splay::is_parent(int i, std::vector<Node *> &target_tree){
+    if (target_tree[floor(i/2)] != nullptr){
         return true;
     }
     return false;
@@ -146,6 +152,8 @@ sf::CircleShape Splay::create_node(int prior_node_x, int prior_node_y, std::vect
             // Right child node
             temp_offset = std::make_pair(50 * this->level, 50 * this->level);
             node.setPosition(prior_node_x + temp_offset.first, prior_node_y + temp_offset.second);
+            std::cout << "I am at coordinates: " << prior_node_x + temp_offset.first << ", " << prior_node_y + temp_offset.second << "\n";
+
             break;
         case 't':
             // Root node
