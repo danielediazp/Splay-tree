@@ -1,9 +1,10 @@
-#include "Node.h"
+#include "node.h"
 #include <iostream>
 #include <sstream>
 #include <fstream>
 #include <vector>
 #include <queue>
+#include <string>
 
 #ifndef SPLAY_TREE_SPLAYTREE_H
 #define SPLAY_TREE_SPLAYTREE_H
@@ -28,11 +29,11 @@ private:
     int height(Node* root);
     void BFS(Node *root, std::vector<int> &target_vector);
 
-    void handleInput(const std::string& filename);
 
 public:
     SplayTree();
     SplayTree(int root);
+    SplayTree(std::string &file_name);
     ~SplayTree();
 
     void insert(int key);
