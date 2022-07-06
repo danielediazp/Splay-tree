@@ -5,3 +5,17 @@ q w e r t y u i o p a s d f g
 h j k l z x c v b n m a q w e
 r t y u i o p z s d f m k l w
 e a s d f g h j k l q w e r t
+a b c d e q w e r t y u i o p
+a s d d f g y u m e r t y u o
+a s g h t y u m a q w s r t y
+q w e r t y u i o p a s d f g
+h j k l z x c v b n m a q w e
+r t y u i o p z s d f m k l w
+e a s d f g h j k l q w e r t
+a b c d e q w e r t y u i o p
+a s d d f g y u m e r t y u o
+a s g h t y u m a q w s r t y
+q w e r t y u i o p a s d f g
+h j k l z x c v b n m a q w e
+r t y u i o p z s d f m k l w
+e a s d f g h j k l q w e r t
