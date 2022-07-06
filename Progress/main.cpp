@@ -2,7 +2,7 @@
 #include "SFML.h"
 
 int main() {
-    Game game;
+    Splay game;
     game.run();
     return 0;
 }
