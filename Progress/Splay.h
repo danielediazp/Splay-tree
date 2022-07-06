@@ -4,6 +4,8 @@
 #include <iostream>
 #include <cmath>
 #include "SplayTree.h"
+#include "Node.h"
+
 
 #ifndef SPLAY_H
 #define SPLAY_H
