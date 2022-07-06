@@ -77,18 +77,18 @@ void Splay::run(std::vector<Node *> splayed_tree) {
                             std::cout << "Drew node: " << splayed_tree[i]->get_value() << " My coordinates are -> " << node.getPosition().x << " " << node.getPosition().y << '\n';
                         } 
                         if (is_left_child(i, splayed_tree)) {
-                            if (splayed_tree[i] == nullptr){
+                            if (splayed_tree[i * 2 + 1] == nullptr){
                                 continue;
                             }
-                            std::cout << node.getPosition().x << " " << node.getPosition().y << '\n';
+//                            std::cout << node.getPosition().x << " " << node.getPosition().y << '\n';
                             node = create_node(papa.getPosition().x, papa.getPosition().y, splayed_tree, 'l');
                             std::cout << "Drew node: " << splayed_tree[i*2 + 1]->get_value() << " I am a left child of coordinates -> " << node.getPosition().x << " " << node.getPosition().y << '\n';
                         }
                         if (is_right_child(i, splayed_tree)) {
-                            if (splayed_tree[i] == nullptr){
+                            if (splayed_tree[i * 2 + 2] == nullptr){
                                 continue;
                             }
-                            std::cout << node.getPosition().x << " " << node.getPosition().y << '\n';
+//                            std::cout << node.getPosition().x << " " << node.getPosition().y << '\n';
                             node = create_node(papa.getPosition().x, papa.getPosition().y, splayed_tree, 'r');
                             std::cout << "Drew node: " << splayed_tree[i*2 + 2]->get_value() << " I am a right child of coordinates -> " << node.getPosition().x << " " << node.getPosition().y << '\n';
                         }
@@ -153,7 +153,6 @@ sf::CircleShape Splay::create_node(int prior_node_x, int prior_node_y, std::vect
             temp_offset = std::make_pair(50 * this->level, 50 * this->level);
             node.setPosition(prior_node_x + temp_offset.first, prior_node_y + temp_offset.second);
             std::cout << "I am at coordinates: " << prior_node_x + temp_offset.first << ", " << prior_node_y + temp_offset.second << "\n";
-
             break;
         case 't':
             // Root node
@@ -164,4 +163,15 @@ sf::CircleShape Splay::create_node(int prior_node_x, int prior_node_y, std::vect
     }
     this->window->draw(node);
     return node;
+}
+
+void Splay::PrintTree(std::vector<Node *> target_vector){
+    for (int i = 0; i < target_vector.size(); i ++){
+        if (target_vector[i] == nullptr){
+            std::cout << "null" << " ";
+            continue;
+        }
+        std::cout << target_vector[i]->get_value() << " ";
+    }
+    std::cout << std::endl;
 }

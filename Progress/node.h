@@ -2,7 +2,7 @@
 #define SPLAY_TREE_NODE_H
 
 class Node{
-private:
+protected:
     int value_;
     Node *left_, *right_;
     int counter_;
@@ -15,7 +15,6 @@ public:
     ~Node(){}
 
     friend class SplayTree;
-    friend class Game;
 };
 
 #endif //SPLAY_TREE_NODE_H
