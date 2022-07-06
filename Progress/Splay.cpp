@@ -23,9 +23,8 @@ void Splay::run(std::vector<int> splayed_tree) {
     this->tree->insert(60);
     this->tree->insert(40);
     this->tree->insert(50);
-    this->tree->insert(45);
     this->tree->insert(55);
-    this->tree->insert(47);
+//    this->tree->insert(52);
     while (this->window->isOpen()) {
         sf::Event event;
         sf::Vector2i localPos = sf::Mouse::getPosition(*this->window);
@@ -63,30 +62,30 @@ void Splay::run(std::vector<int> splayed_tree) {
                     std::cout << std::endl;
                     for (int i = 0; i < splayed_tree.size(); i++) {
                         if (i == 0) {
-                            std::cout << "Drawing root" << '\n';
                             std::pair<int, int> root(0, 0);
                             sf::CircleShape newNode = this->createNode(root);
                             this->window->draw(newNode);
-                            continue;
+
                         }
+                        std::cout << "Drawing root:" << splayed_tree[i] << '\n';
                         if (is_left_child(i, splayed_tree)) {
                             std::cout << "Drawing left child: " <<  i << '\n';
-                            std::cout << "------------------" << '\n';
-                            std::cout << "Drawing value: " << splayed_tree[i] << '\n';
+                            std::cout << "Drawing value: " << splayed_tree[(i * 2) + 1] << '\n';
                             std::pair<int, int> temp_offset(-50 * this->counter, 50 * this->counter);
                             sf::CircleShape newNode = this->createNode(temp_offset);
                             this->window->draw(newNode);
-                            i++;
                         } if (is_right_child(i, splayed_tree)) {
                             std::cout << "Drawing right child: " << i << '\n';
+                            std::cout << "Drawing value: " << splayed_tree[(i * 2) + 2] << '\n';
                             std::cout << "------------------" << '\n';
-                            std::cout << "Drawing value: " << splayed_tree[i] << '\n';
                             std::pair<int, int> temp_offset(50 * this->counter, 50 * this->counter);
                             sf::CircleShape newNode = this->createNode(temp_offset);
                             this->window->draw(newNode);
                         }
+                        std::cout << "LOOP DONE" << '\n';
                         counter++;
                     }
+
                 }
             }
 
@@ -120,14 +119,14 @@ sf::CircleShape Splay::createNode(std::pair<int, int> offset){
 }
 
 bool Splay::is_left_child(int i, std::vector<int> &target_tree){
-    if (target_tree[(i * 2) + 1] != 0){
+    if (i * 2 + 1 < target_tree.size() && target_tree[(i * 2) + 1] != 0){
         return true;
     }
     return false;
 }
 
 bool Splay::is_right_child(int i, std::vector<int> &target_tree){
-    if (target_tree[(i * 2) + 2] != 0){
+    if (i * 2 + 2 < target_tree.size() && target_tree[(i * 2) + 2] != 0){
         return true;
     }
     return false;
