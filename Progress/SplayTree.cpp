@@ -30,6 +30,7 @@ SplayTree::SplayTree(std::string file_name) {
     }
 }
 
+
 // --------------- PRIVATE METHODS -----------------
 
 Node* SplayTree::insert(int data, Node* root) {
