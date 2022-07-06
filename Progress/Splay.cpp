@@ -25,7 +25,10 @@ void Splay::run(std::vector<Node *> splayed_tree) {
     this->tree->insert(50);
     this->tree->insert(55);
     this->tree->insert(45);
-    this->tree->pre_order();
+    this->tree->insert(52);
+    this->tree->insert(43);
+    tree->pre_order();
+    std::cout << std::endl;
     while (this->window->isOpen()) {
         sf::Event event;
         while (this->window->pollEvent(event)) {
@@ -55,15 +58,34 @@ void Splay::run(std::vector<Node *> splayed_tree) {
                 if (event.key.code == sf::Keyboard::J && !this->deleteMode) {
                     this->window->clear();
                     tree->BFS(splayed_tree);
+                    for (int i = 0; i < splayed_tree.size(); i ++){
+                        if (splayed_tree[i] == nullptr){
+                            std::cout << "null" << " ";
+                            continue;
+                        }
+                        std::cout << splayed_tree[i]->get_value() << " ";
+                    }
+                    std::cout << std::endl;
+                    sf::CircleShape node;
                     for (int i = 0; i < splayed_tree.size(); i++) {
                         if (i == 0) {
-                            create_node(splayed_tree, 't');
+                            node = create_node(385, 50, splayed_tree, 't');
+                            std::cout << "Drew node: " << splayed_tree[i]->get_value() << '\n';
+                            continue;
                         }
                         if (is_left_child(i, splayed_tree)) {
-                            create_node(splayed_tree, 'l');
+                            node = create_node(node.getPosition().x, node.getPosition().y, splayed_tree, 'l');
+                            if (splayed_tree[i] == nullptr){
+                                continue;
+                            }
+                            std::cout << "Drew node: " << splayed_tree[i]->get_value() << '\n';
                         }
                         if (is_right_child(i, splayed_tree)) {
-                            create_node(splayed_tree, 'r');
+                            node = create_node(node.getPosition().x, node.getPosition().y, splayed_tree, 'r');
+                            if (splayed_tree[i] == nullptr){
+                                continue;
+                            }
+                            std::cout << "Drew node: " << splayed_tree[i]->get_value() << '\n';
                         }
                         counter++;
                     }
@@ -108,23 +130,27 @@ bool Splay::is_parent(int i, std::vector<int> &target_tree){
     return false;
 }
 
-void Splay::create_node(std::vector<Node *> &target_tree, const char type){
+sf::CircleShape Splay::create_node(int prior_node_x, int prior_node_y, std::vector<Node *> &target_tree, const char type){
     sf::CircleShape node;
     node.setRadius(20.f);
     node.setFillColor(sf::Color::White);
     node.setOrigin(0.0f, 0.0f);
     std::pair<int, int> temp_offset;
-    if (type == 'l'){
-        // Left child node
-        temp_offset = std::make_pair(-50 * this->counter, 50 * this->counter);
-        node.setPosition(385 + temp_offset.first, 50 + temp_offset.second);
-    } else if (type == 'r'){
-        // Right child node
-        temp_offset = std::make_pair(50 * this->counter, 50 * this->counter);
-        node.setPosition(385 + temp_offset.first, 50 + temp_offset.second);
-    } else if (type == 't'){
-        // Root node
-        node.setPosition(385, 50);
+    switch(type){
+        case 'l':
+            temp_offset = std::make_pair(-10 * this->counter, 10 * this->counter);
+            node.setPosition(prior_node_x + temp_offset.first, prior_node_y + temp_offset.second);
+            break;
+        case 'r':
+            temp_offset = std::make_pair(10 * this->counter, 10 * this->counter);
+            node.setPosition(prior_node_x + temp_offset.first, prior_node_y + temp_offset.second);
+            break;
+        case 't':
+            node.setPosition(prior_node_x, prior_node_y);
+            break;
+        default:
+            break;
     }
     this->window->draw(node);
+    return node;
 }

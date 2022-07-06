@@ -11,7 +11,6 @@
 class Splay {
 private:
     sf::RenderWindow *window;
-    sf::CircleShape createNode(std::pair<int, int> offset);
     SplayTree *tree;
     bool deleteMode;
     int counter;
@@ -21,7 +20,7 @@ public:
 
     bool is_right_child(int i, std::vector<Node *> &tree);
     bool is_left_child(int i, std::vector<Node *> &tree);
-    void create_node(std::vector<Node *> &target_tree, const char type);
+    sf::CircleShape create_node(int prior_node_x, int prior_node_y, std::vector<Node *> &target_tree, char type);
     bool is_parent(int i, std::vector<Node *> &target_tree);
     void run(std::vector<Node *> splayed_tree);
     void update();

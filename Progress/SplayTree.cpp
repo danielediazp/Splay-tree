@@ -11,7 +11,7 @@ SplayTree::SplayTree(int root) {
     this->root_ = new Node(root);
 }
 
-//Overloaded constructor, accepts a file name and constructor a tree
+//Overloaded constructor, accepts a file name and creates a tree
 SplayTree::SplayTree(std::string file_name) {
     int root_catcher = 0;
     std::ifstream inFile(file_name);
