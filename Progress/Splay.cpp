@@ -35,7 +35,7 @@ void Splay::run(std::vector<Node *> splayed_tree) {
             splayed_tree.clear();
             if (event.type == sf::Event::Closed ||
                 (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
-                std::cout << "----------------------------" << '\n';
+                std::cout << "//----------------------------//" << '\n';
                 std::cout << "Application closed via input" << '\n';
                 this->window->close();
             }
@@ -70,22 +70,22 @@ void Splay::run(std::vector<Node *> splayed_tree) {
                     for (int i = 0; i < splayed_tree.size(); i++) {
                         if (i == 0) {
                             node = create_node(385, 50, splayed_tree, 't');
-                            std::cout << "Drew node: " << splayed_tree[i]->get_value() << '\n';
-                            continue;
+                            std::cout << "Drew node: " << splayed_tree[i]->get_value() << " My coordinates are -> " << node.getPosition().x << " " << node.getPosition().y << '\n';
+                            i++;
                         }
                         if (is_left_child(i, splayed_tree)) {
                             node = create_node(node.getPosition().x, node.getPosition().y, splayed_tree, 'l');
                             if (splayed_tree[i] == nullptr){
                                 continue;
                             }
-                            std::cout << "Drew node: " << splayed_tree[i]->get_value() << '\n';
+                            std::cout << "Drew node: " << splayed_tree[i]->get_value() << " I am a left child of coordinates -> " << node.getPosition().x << " " << node.getPosition().y << '\n';
                         }
                         if (is_right_child(i, splayed_tree)) {
                             node = create_node(node.getPosition().x, node.getPosition().y, splayed_tree, 'r');
                             if (splayed_tree[i] == nullptr){
                                 continue;
                             }
-                            std::cout << "Drew node: " << splayed_tree[i]->get_value() << '\n';
+                            std::cout << "Drew node: " << splayed_tree[i]->get_value() << " I am a right child of coordinates -> " << node.getPosition().x << " " << node.getPosition().y << '\n';
                         }
                         counter++;
                     }
@@ -138,11 +138,11 @@ sf::CircleShape Splay::create_node(int prior_node_x, int prior_node_y, std::vect
     std::pair<int, int> temp_offset;
     switch(type){
         case 'l':
-            temp_offset = std::make_pair(-10 * this->counter, 10 * this->counter);
+            temp_offset = std::make_pair(-50 * this->counter, 50 * this->counter);
             node.setPosition(prior_node_x + temp_offset.first, prior_node_y + temp_offset.second);
             break;
         case 'r':
-            temp_offset = std::make_pair(10 * this->counter, 10 * this->counter);
+            temp_offset = std::make_pair(50 * this->counter, 50 * this->counter);
             node.setPosition(prior_node_x + temp_offset.first, prior_node_y + temp_offset.second);
             break;
         case 't':
