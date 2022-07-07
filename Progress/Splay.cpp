@@ -15,7 +15,7 @@ TODO: Come up with some form of animation for deleting and inserting nodes (via 
  */
 
 Splay::Splay() {
-    this->scale = 2;
+    this->scale = 1;
     this->window = new sf::RenderWindow(sf::VideoMode(800 * scale, 800 * scale), "Splay Tree", sf::Style::Close | sf::Style::Titlebar);
     this->window->setFramerateLimit(144);
     this->tree = new SplayTree();
@@ -85,7 +85,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                         if (i == 0) {
                             string_value = std::to_string(splayed_tree[i]->get_value());
                             papa = create_node(385, 50, splayed_tree, 't');
-                            positional_nodes[i].coordinates = std::make_pair(385 * scale, 50 * scale);
+                            positional_nodes[i].coordinates = std::make_pair(385, 50);
                             value.setString(string_value);
                             value.setPosition(positional_nodes[i].coordinates.first, positional_nodes[i].coordinates.second);
                             this->window->draw(value);
@@ -112,7 +112,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                             }
 //                            std::cout << node.getPosition().x << " " << node.getPosition().y << '\n';
                             node = create_node(papa.getPosition().x, papa.getPosition().y, splayed_tree, 'r');
-                            positional_nodes[i * 2 + 2].coordinates = std::make_pair(node.getPosition().x * scale, node.getPosition().y * scale);
+                            positional_nodes[i * 2 + 2].coordinates = std::make_pair(node.getPosition().x, node.getPosition().y);
                             string_value = std::to_string(splayed_tree[i *2 + 2]->get_value());
                             value.setString(string_value);
                             value.setPosition(positional_nodes[i * 2 + 2].coordinates.first, positional_nodes[i * 2 + 2].coordinates.second);
