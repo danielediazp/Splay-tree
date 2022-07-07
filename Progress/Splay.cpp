@@ -29,19 +29,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
     value.setCharacterSize(30);
     value.setFont(this->global_font);
     value.setFillColor(sf::Color::Red);
-    this->tree->insert(40);
-    this->tree->insert(50);
-    this->tree->insert(43);
-    this->tree->insert(45);
-    this->tree->insert(44);
-    this->tree->insert(47);
-    this->tree->insert(46);
-    this->tree->insert(30);
-    this->tree->insert(35);
-    this->tree->insert(41);
-    this->tree->insert(39);
-    this->tree->delete_node(39);
-    this->tree->delete_node(43);
 
 //    tree->pre_order();
 //    std::cout << std::endl;
@@ -76,6 +63,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     this->counter = 0;
                     this->level = 1;
                     tree->pre_order_vector(splayed_tree, this->window, this->scale);
+                    this->window->display();
 //                    PrintTree(splayed_tree);
 //                    tree->BFS(splayed_tree);
 //                    for (int i = 0; i < splayed_tree.size(); i ++) {
@@ -90,6 +78,40 @@ void Splay::run(std::vector<Node*> splayed_tree) {
 //                    std::string string_value;
                     this->window->display();
                 }
+            }
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::I && !this->deleteMode) {
+                    int temp = NULL;
+                    std::cout << "Input an integer to be inserted: ";
+                    std::cin >> temp;
+                    std::cout << "\n";
+                    this->tree->insert(temp);
+                    std::cout << "Success! " << temp << " has been inserted!" << "\n";
+                    splayed_tree.clear();
+                    this->window->clear();
+                    this->counter = 0;
+                    this->level = 1;
+                    tree->pre_order_vector(splayed_tree, this->window, this->scale);
+                    this->window->display();
+                }
+
+            }
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::D && !this->deleteMode) {
+                    int temp = NULL;
+                    std::cout << "Input an integer to be deleted: ";
+                    std::cin >> temp;
+                    std::cout << "\n";
+                    this->tree->delete_node(temp);
+                    std::cout << "Success! " << temp << " has been deleted!" << "\n";
+                    splayed_tree.clear();
+                    this->window->clear();
+                    this->counter = 0;
+                    this->level = 1;
+                    tree->pre_order_vector(splayed_tree, this->window, this->scale);
+                    this->window->display();
+                }
+
             }
         }
     }

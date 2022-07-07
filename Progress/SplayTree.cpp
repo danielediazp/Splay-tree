@@ -279,12 +279,11 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
     value.setString(string_value);
     value.setPosition(x - size/2, y - size/2);
 
-//    if (type == 'm') {
 
-        window->draw(left_p);
-        window->draw(right_p);
-        window->draw(node);
-        window->draw(value);
+    window->draw(left_p);
+    window->draw(right_p);
+    window->draw(node);
+    window->draw(value);
 
 
     pre_order_vector(root->left_, target_vector, x - 50 - scale, y + 50 + scale/3, window, 'l', scale/2);
