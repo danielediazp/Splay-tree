@@ -27,10 +27,10 @@ void Splay::run(std::vector<Node*> splayed_tree) {
     std::vector <positionalNode> positional_nodes;
     this->tree->insert(60);
     this->tree->insert(40);
-    this->tree->insert(50);
-    this->tree->insert(47);
-    this->tree->insert(55);
+    this->tree->insert(70);
     this->tree->insert(45);
+    this->tree->insert(57);
+//    this->tree->insert(42);
 //    tree->pre_order();
 //    std::cout << std::endl;
     while (this->window->isOpen()) {
@@ -61,6 +61,8 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                 if (event.key.code == sf::Keyboard::J && !this->deleteMode) {
                     splayed_tree.clear();
                     this->window->clear();
+                    this->counter = 0;
+                    this->level = 1;
                     tree->BFS(splayed_tree);
                     for (int i = 0; i < splayed_tree.size(); i ++) {
                         positionalNode temp;
@@ -75,7 +77,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                             this->level *= 2;
                             this->counter = 0;
                         }
-
                         if (i == 0) {
                             papa = create_node(385, 50, splayed_tree, 't');
                             positional_nodes[i].coordinates = std::make_pair(385, 50);
@@ -153,15 +154,17 @@ sf::CircleShape Splay::create_node(int prior_node_x, int prior_node_y, std::vect
     switch(type){
         case 'l':
             // Left child node
-            temp_offset = std::make_pair(-50 * this->level, 50 * this->level);
-            node.setPosition(prior_node_x + temp_offset.first, prior_node_y + temp_offset.second);
-            std::cout << "I am at coordinates: " << prior_node_x + temp_offset.first << ", " << prior_node_y + temp_offset.second << "\n";
+//            temp_offset = std::make_pair(-50 * this->level, 50 * this->level);
+//            node.setPosition(prior_node_x + temp_offset.first, prior_node_y + temp_offset.second);
+            node.setPosition(prior_node_x - 50, prior_node_y + 50);
             break;
         case 'r':
             // Right child node
-            temp_offset = std::make_pair(50 * this->level, 50 * this->level);
-            node.setPosition(prior_node_x + temp_offset.first, prior_node_y + temp_offset.second);
-            std::cout << "I am at coordinates: " << prior_node_x + temp_offset.first << ", " << prior_node_y + temp_offset.second << "\n";
+//            temp_offset = std::make_pair(50 * this->level, 50 * this->level);
+//            node.setPosition(prior_node_x + temp_offset.first, prior_node_y + temp_offset.second);
+            node.setPosition(prior_node_x + 50, prior_node_y + 50);
+
+//            std::cout << "I am at coordinates: " << prior_node_x + temp_offset.first << ", " << prior_node_y + temp_offset.second << "\n";
             break;
         case 't':
             // Root node
