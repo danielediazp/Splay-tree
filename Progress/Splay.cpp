@@ -36,6 +36,10 @@ void Splay::run(std::vector<Node*> splayed_tree) {
     this->tree->insert(44);
     this->tree->insert(47);
     this->tree->insert(46);
+    this->tree->insert(30);
+    this->tree->insert(35);
+    this->tree->insert(41);
+    this->tree->insert(39);
 //    tree->pre_order();
 //    std::cout << std::endl;
     while (this->window->isOpen()) {
@@ -69,18 +73,18 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     this->counter = 0;
                     this->level = 1;
                     tree->pre_order_vector(splayed_tree, this->window);
-                    PrintTree(splayed_tree);
+//                    PrintTree(splayed_tree);
 //                    tree->BFS(splayed_tree);
-                    for (int i = 0; i < splayed_tree.size(); i ++) {
-                        positionalNode temp;
+//                    for (int i = 0; i < splayed_tree.size(); i ++) {
+//                        positionalNode temp;
+//
+//                        temp.value_ = splayed_tree[i];
+//                        positional_nodes.push_back(temp);
+//                    }
 
-                        temp.value_ = splayed_tree[i];
-                        positional_nodes.push_back(temp);
-                    }
-
-                    sf::CircleShape node;
-                    sf::CircleShape papa;
-                    std::string string_value;
+//                    sf::CircleShape node;
+//                    sf::CircleShape papa;
+//                    std::string string_value;
 
                     ////TODO:
                     /////insert here
