@@ -256,16 +256,17 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
     sf::Font global_font;
     sf::Text value;
     global_font.loadFromFile("../Butler_Regular.otf");
-    value.setCharacterSize(30);
+    int size = 30;
+    value.setCharacterSize(size);
     value.setFont(global_font);
     value.setFillColor(sf::Color::Red);
+    sf::VertexArray left_p(sf::LinesStrip, 2);
+    left_p[0].position = sf::Vector2f(x, y);
+    left_p[1].position = sf::Vector2f(x - 50 - scale, y + 50 + scale/3);
 
-    sf::RectangleShape left_p(sf::Vector2f(50 + scale, 5));
-    sf::RectangleShape right_p(sf::Vector2f(50 + scale, 5));
-    left_p.setFillColor(sf::Color::White);
-    left_p.rotate(0);
-    right_p.setFillColor(sf::Color::White);
-    right_p.rotate(0);
+    sf::VertexArray right_p(sf::LinesStrip, 2);
+    right_p[0].position = sf::Vector2f(x,y);
+    right_p[1].position = sf::Vector2f(x + 50 + scale, y + 50 + scale/3);
 
     if (!root){
         target_vector.push_back(nullptr);
@@ -273,17 +274,14 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
     }
 
     target_vector.push_back(root);
-    node.setPosition(x, y);
+    node.setPosition(x - size/2, y - size/2);
     std::string string_value = std::to_string(root->value_);
     value.setString(string_value);
-    value.setPosition(x, y);
+    value.setPosition(x - size/2, y - size/2);
 
 //    if (type == 'm') {
-        left_p.setPosition(x + 21, y + 20);
-        left_p.rotate(45 - scale/7);
+
         window->draw(left_p);
-        right_p.setPosition(x + 21, y + 20);
-        right_p.rotate(135 + scale/7);
         window->draw(right_p);
         window->draw(node);
         window->draw(value);
@@ -339,5 +337,5 @@ void SplayTree::BFS(std::vector<Node *> &target_vector){
 }
 
 void SplayTree::pre_order_vector(std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale) {
-    this->pre_order_vector(this->root_, target_vector, 385 + 1.5 * scale, 50, window, 'm', scale);
+    this->pre_order_vector(this->root_, target_vector, (800 + (4 * scale))/2, 50, window, 'm', scale);
 }

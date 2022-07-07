@@ -15,8 +15,8 @@ TODO: Come up with some form of animation for deleting and inserting nodes (via 
  */
 
 Splay::Splay() {
-    this->scale = 150;
-    this->window = new sf::RenderWindow(sf::VideoMode(800 + 3 * scale, 800 + 2 * scale), "Splay Tree", sf::Style::Close | sf::Style::Titlebar);
+    this->scale = 500;
+    this->window = new sf::RenderWindow(sf::VideoMode(800 + (4 * scale), 800 + (2 * scale)), "Splay Tree", sf::Style::Close | sf::Style::Titlebar);
     this->window->setFramerateLimit(144);
     this->tree = new SplayTree();
     this->deleteMode = false;
