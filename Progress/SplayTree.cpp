@@ -282,6 +282,7 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
         window->draw(line);
         window->draw(node);
         window->draw(value);
+
 //    }
 //    else if (type == 'l') {
 //        line.setPosition(x + 25, y + 22);
