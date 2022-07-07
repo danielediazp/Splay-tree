@@ -40,6 +40,8 @@ void Splay::run(std::vector<Node*> splayed_tree) {
     this->tree->insert(35);
     this->tree->insert(41);
     this->tree->insert(39);
+    this->tree->delete_node(39);
+    this->tree->delete_node(43);
 
 //    tree->pre_order();
 //    std::cout << std::endl;

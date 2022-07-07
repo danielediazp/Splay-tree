@@ -248,7 +248,7 @@ Node* SplayTree::delete_node(int data, Node *root) {
     }
 }
 
-void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, int x, int y, sf::RenderWindow *window, char type) {
+void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, int x, int y, sf::RenderWindow *window, char type, int scale) {
     sf::CircleShape node;
     node.setRadius(20.f);
     node.setFillColor(sf::Color::White);
@@ -259,9 +259,13 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
     value.setCharacterSize(30);
     value.setFont(global_font);
     value.setFillColor(sf::Color::Red);
-    sf::RectangleShape line(sf::Vector2f(50, 5));
-    line.setFillColor(sf::Color::White);
-    line.rotate(0);
+
+    sf::RectangleShape left_p(sf::Vector2f(50 + scale, 5));
+    sf::RectangleShape right_p(sf::Vector2f(50 + scale, 5));
+    left_p.setFillColor(sf::Color::White);
+    left_p.rotate(0);
+    right_p.setFillColor(sf::Color::White);
+    right_p.rotate(0);
 
     if (!root){
         target_vector.push_back(nullptr);
@@ -275,33 +279,19 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
     value.setPosition(x, y);
 
 //    if (type == 'm') {
-        line.setPosition(x + 21, y + 20);
-        line.rotate(45);
-        window->draw(line);
-        line.rotate(90);
-        window->draw(line);
+        left_p.setPosition(x + 21, y + 20);
+        left_p.rotate(45 - scale/6);
+        window->draw(left_p);
+        right_p.setPosition(x + 21, y + 20);
+        right_p.rotate(135 + scale/6);
+        window->draw(right_p);
         window->draw(node);
         window->draw(value);
 
-//    }
-//    else if (type == 'l') {
-//        line.setPosition(x + 25, y + 22);
-//        line.rotate(135);
-//        window->draw(line);
-//        window->draw(node);
-//        window->draw(value);
-//    } else if (type == 'r') {
-//        line.setPosition(x + 25, y + 22);
-//        line.rotate(45);
-//        window->draw(line);
-//        window->draw(node);
-//        window->draw(value);
-//    }
 
+    pre_order_vector(root->left_, target_vector, x - 50 - scale, y + 50 + scale/3, window, 'l', scale/2);
 
-    pre_order_vector(root->left_, target_vector, x - 50, y + 50, window, 'l');
-
-    pre_order_vector(root->right_, target_vector, x + 50, y + 50, window, 'r');
+    pre_order_vector(root->right_, target_vector, x + 50 + scale, y + 50 + scale/3, window, 'r', scale/2);
 }
 
 // --------------- PUBLIC METHODS -----------------
@@ -349,5 +339,6 @@ void SplayTree::BFS(std::vector<Node *> &target_vector){
 }
 
 void SplayTree::pre_order_vector(std::vector<Node *> &target_vector, sf::RenderWindow *window) {
-    this->pre_order_vector(this->root_, target_vector, 385, 50, window, 'm');
+    int scale = 90;
+    this->pre_order_vector(this->root_, target_vector, 385, 50, window, 'm', scale);
 }

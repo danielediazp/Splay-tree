@@ -23,7 +23,7 @@ private:
     Node* left_rotate(Node* root);
     Node* right_rotate(Node* root);
     void level_order(Node *root, int l, std::vector<Node *> &target_vector);
-    void pre_order_vector(Node* root, std::vector<Node*> &target_vector, int x, int y, sf::RenderWindow *window, char type);
+    void pre_order_vector(Node* root, std::vector<Node*> &target_vector, int x, int y, sf::RenderWindow *window, char type, int scale);
     void destroy(Node* root);
 
     void inorder(Node* root);
