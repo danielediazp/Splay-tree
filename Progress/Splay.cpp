@@ -56,9 +56,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                         std::cout << "Delete Mode Toggled: OFF" << '\n';
                     }
                 }
-            }
-            if (event.type == sf::Event::KeyPressed) {
-                if (event.key.code == sf::Keyboard::J && !this->deleteMode) {
+                else if (event.key.code == sf::Keyboard::J && !this->deleteMode) {
                     splayed_tree.clear();
                     this->window->clear();
                     this->counter = 0;
@@ -79,9 +77,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
 //                    std::string string_value;
                     this->window->display();
                 }
-            }
-            if (event.type == sf::Event::KeyPressed) {
-                if (event.key.code == sf::Keyboard::I && !this->deleteMode) {
+            else if (event.key.code == sf::Keyboard::I && !this->deleteMode) {
                     bool boolean = true;
                     while (boolean) {
                         int temp = NULL;
@@ -104,17 +100,13 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                             cont[i] = std::tolower(cont[i]);
                         }
 
-                        if (cont == "no") {
+                        if (cont != "yes" || cont != "y" || cont != "Yes" || cont != "YES") {
                             std::cout << "Exiting insertion!" << "\n";
                             boolean = false;
                         }
                     }
-
                 }
-
-            }
-            if (event.type == sf::Event::KeyPressed) {
-                if (event.key.code == sf::Keyboard::D && !this->deleteMode) {
+                 else if (event.key.code == sf::Keyboard::D && !this->deleteMode) {
                     bool boolean = true;
                     while (boolean) {
                         int temp = NULL;
@@ -147,11 +139,8 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                                 boolean = false;
                             }
                         }
-
                     }
-
                 }
-
             }
         }
     }
