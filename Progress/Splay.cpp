@@ -29,11 +29,12 @@ void Splay::run(std::vector<Node*> splayed_tree) {
     value.setCharacterSize(30);
     value.setFont(this->global_font);
     value.setFillColor(sf::Color::Red);
-
+    std::cout << "Click 'I' to insert or 'D' to delete!" << '\n';
 //    tree->pre_order();
 //    std::cout << std::endl;
     while (this->window->isOpen()) {
         sf::Event event;
+
         while (this->window->pollEvent(event)) {
             if (event.type == sf::Event::Closed ||
                 (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
@@ -81,35 +82,74 @@ void Splay::run(std::vector<Node*> splayed_tree) {
             }
             if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::I && !this->deleteMode) {
-                    int temp = NULL;
-                    std::cout << "Input an integer to be inserted: ";
-                    std::cin >> temp;
-                    std::cout << "\n";
-                    this->tree->insert(temp);
-                    std::cout << "Success! " << temp << " has been inserted!" << "\n";
-                    splayed_tree.clear();
-                    this->window->clear();
-                    this->counter = 0;
-                    this->level = 1;
-                    tree->pre_order_vector(splayed_tree, this->window, this->scale);
-                    this->window->display();
+                    bool boolean = true;
+                    while (boolean) {
+                        int temp = NULL;
+                        std::cout << "Input an integer to be inserted: ";
+                        std::cin >> temp;
+                        std::cout << "\n";
+                        this->tree->insert(temp);
+                        std::cout << "Success! " << temp << " has been inserted!" << "\n";
+                        splayed_tree.clear();
+                        this->window->clear();
+                        this->counter = 0;
+                        this->level = 1;
+                        tree->pre_order_vector(splayed_tree, this->window, this->scale);
+                        this->window->display();
+                        std::cout << "Would you like to continue Insertion? ";
+                        std::string cont = "";
+                        std::cin >> cont;
+
+                        for (int i = 0; i < cont.size(); ++i) {
+                            cont[i] = std::tolower(cont[i]);
+                        }
+
+                        if (cont == "no") {
+                            std::cout << "Exiting insertion!" << "\n";
+                            boolean = false;
+                        }
+                    }
+
                 }
 
             }
             if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::D && !this->deleteMode) {
-                    int temp = NULL;
-                    std::cout << "Input an integer to be deleted: ";
-                    std::cin >> temp;
-                    std::cout << "\n";
-                    this->tree->delete_node(temp);
-                    std::cout << "Success! " << temp << " has been deleted!" << "\n";
-                    splayed_tree.clear();
-                    this->window->clear();
-                    this->counter = 0;
-                    this->level = 1;
-                    tree->pre_order_vector(splayed_tree, this->window, this->scale);
-                    this->window->display();
+                    bool boolean = true;
+                    while (boolean) {
+                        int temp = NULL;
+                        std::cout << "Input an integer to be deleted: ";
+                        std::cin >> temp;
+                        std::cout << "\n";
+                        ////TODO: Deletion of empty tree == segfault
+                        this->tree->delete_node(temp);
+                        if (this->tree->get_root() != temp) {
+                            std::cout << "Failure :( " << "Integer not in tree" << "\n";
+                        }
+                        else {
+                            std::cout << "Success! " << temp << " has been deleted!" << "\n";
+                            splayed_tree.clear();
+                            this->window->clear();
+                            this->counter = 0;
+                            this->level = 1;
+                            tree->pre_order_vector(splayed_tree, this->window, this->scale);
+                            this->window->display();
+
+                            std::cout << "Would you like to continue deletion?";
+                            std::string cont = "";
+                            std::cin >> cont;
+
+                            for (int i = 0; i < cont.size(); ++i) {
+                                cont[i] = std::tolower(cont[i]);
+                            }
+                            if (cont == "no") {
+                                std::cout << "Exiting deletion";
+                                boolean = false;
+                            }
+                        }
+
+                    }
+
                 }
 
             }
