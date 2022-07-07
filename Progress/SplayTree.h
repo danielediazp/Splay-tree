@@ -5,6 +5,7 @@
 #include <vector>
 #include <queue>
 #include <string>
+#include <SFML/Graphics.hpp>
 
 #ifndef SPLAY_TREE_SPLAYTREE_H
 #define SPLAY_TREE_SPLAYTREE_H
@@ -22,6 +23,7 @@ private:
     Node* left_rotate(Node* root);
     Node* right_rotate(Node* root);
     void level_order(Node *root, int l, std::vector<Node *> &target_vector);
+    void pre_order_vector(Node* root, std::vector<Node*> &target_vector, int x, int y, sf::RenderWindow *window);
     void destroy(Node* root);
 
     void inorder(Node* root);
@@ -48,6 +50,7 @@ public:
     void post_order();
     void inorder();
     void BFS(std::vector<Node *> &target_vector);
+    void pre_order_vector(std::vector<Node *> &target_vector, sf::RenderWindow *window);
 
 
     friend class Game;

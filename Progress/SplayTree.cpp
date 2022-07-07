@@ -1,6 +1,6 @@
 #include "SplayTree.h"
 #include "Node.h"
-
+#include "Splay.h"
 // Default constructor
 SplayTree::SplayTree() {
     this->root_ = nullptr;
@@ -176,7 +176,7 @@ void SplayTree::pre_order(Node* root) {
     if (!root){
         return;
     }
-    std::cout << root->value_ << ":" << root->counter_ << " ";
+//    std::cout << root->value_ << ":" << root->counter_ << " ";
     pre_order(root->left_);
     pre_order(root->right_);
 }
@@ -248,6 +248,34 @@ Node* SplayTree::delete_node(int data, Node *root) {
     }
 }
 
+void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, int x, int y, sf::RenderWindow *window) {
+    sf::CircleShape node;
+    node.setRadius(20.f);
+    node.setFillColor(sf::Color::White);
+    node.setOrigin(0.0f, 0.0f);
+    sf::Font global_font;
+    sf::Text value;
+    global_font.loadFromFile("../Butler_Regular.otf");
+    value.setCharacterSize(30);
+    value.setFont(global_font);
+    value.setFillColor(sf::Color::Red);
+
+    if (!root){
+        target_vector.push_back(nullptr);
+        return;
+    }
+    target_vector.push_back(root);
+    node.setPosition(x, y);
+    std::string string_value = std::to_string(root->value_);
+    value.setString(string_value);
+    value.setPosition(x, y);
+    window->draw(node);
+    window->draw(value);
+
+    pre_order_vector(root->left_, target_vector, x - 50, y + 50, window);
+
+    pre_order_vector(root->right_, target_vector, x + 50, y + 50, window);
+}
 
 // --------------- PUBLIC METHODS -----------------
 
@@ -291,4 +319,8 @@ SplayTree::~SplayTree() {
 
 void SplayTree::BFS(std::vector<Node *> &target_vector){
     this->BFS(this->root_, target_vector);
+}
+
+void SplayTree::pre_order_vector(std::vector<Node *> &target_vector, sf::RenderWindow *window) {
+    this->pre_order_vector(this->root_, target_vector, 385, 50, window);
 }

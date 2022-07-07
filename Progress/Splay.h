@@ -20,10 +20,11 @@ private:
     int counter = 0;
     sf::Font global_font;
     float scale;
+    //void drawTree(Node * root, int x, int y);
 
 public:
     Splay();
-
+//    void drawTree(Node * root);
     void PrintTree(std::vector<Node *> target_vector);
     bool is_right_child(int i, std::vector<Node *> &tree);
     bool is_left_child(int i, std::vector<Node *> &tree);

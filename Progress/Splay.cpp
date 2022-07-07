@@ -29,12 +29,13 @@ void Splay::run(std::vector<Node*> splayed_tree) {
     value.setCharacterSize(30);
     value.setFont(this->global_font);
     value.setFillColor(sf::Color::Red);
-    this->tree->insert(60);
     this->tree->insert(40);
-    this->tree->insert(70);
+    this->tree->insert(50);
+    this->tree->insert(43);
     this->tree->insert(45);
-    this->tree->insert(57);
-//    this->tree->insert(42);
+    this->tree->insert(44);
+    this->tree->insert(47);
+    this->tree->insert(46);
 //    tree->pre_order();
 //    std::cout << std::endl;
     while (this->window->isOpen()) {
@@ -67,61 +68,22 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     this->window->clear();
                     this->counter = 0;
                     this->level = 1;
-                    tree->BFS(splayed_tree);
+                    tree->pre_order_vector(splayed_tree, this->window);
+                    PrintTree(splayed_tree);
+//                    tree->BFS(splayed_tree);
                     for (int i = 0; i < splayed_tree.size(); i ++) {
                         positionalNode temp;
+
                         temp.value_ = splayed_tree[i];
                         positional_nodes.push_back(temp);
                     }
-                    PrintTree(splayed_tree);
+
                     sf::CircleShape node;
                     sf::CircleShape papa;
                     std::string string_value;
-                    for (int i = 0; i < splayed_tree.size(); i++) {
-                        if (this->counter == this->level) {
-                            this->level *= 2;
-                            this->counter = 0;
-                        }
-                        if (i == 0) {
-                            string_value = std::to_string(splayed_tree[i]->get_value());
-                            papa = create_node(385, 50, splayed_tree, 't');
-                            positional_nodes[i].coordinates = std::make_pair(385, 50);
-                            value.setString(string_value);
-                            value.setPosition(positional_nodes[i].coordinates.first, positional_nodes[i].coordinates.second);
-                            this->window->draw(value);
-                            std::cout << "Drew node: " << splayed_tree[i]->get_value() << " My coordinates are -> " << papa.getPosition().x << " " << papa.getPosition().y << '\n';
-                        } else {
-                            papa.setPosition(positional_nodes[i].coordinates.first, positional_nodes[i].coordinates.second);
-                        }
-                        if (is_left_child(i, splayed_tree)) {
-                            if (splayed_tree[i * 2 + 1] == nullptr){
-                                continue;
-                            }
-//                            std::cout << node.getPosition().x << " " << node.getPosition().y << '\n';
-                            node = create_node(papa.getPosition().x, papa.getPosition().y, splayed_tree, 'l');
-                            positional_nodes[i * 2 + 1].coordinates = std::make_pair(node.getPosition().x * scale, node.getPosition().y * scale);
-                            string_value = std::to_string(splayed_tree[i]->get_value());
-                            value.setString(string_value);
-                            value.setPosition(positional_nodes[i * 2 + 1].coordinates.first, positional_nodes[i * 2 + 1].coordinates.second);
-                            this->window->draw(value);
-                            std::cout << "Drew node: " << splayed_tree[i * 2 + 1]->get_value() << " I am a left child of " << splayed_tree[i]->get_value() << " coordinates -> " << papa.getPosition().x << " " << papa.getPosition().y << '\n';
-                        }
-                        if (is_right_child(i, splayed_tree)) {
-                            if (splayed_tree[i * 2 + 2] == nullptr){
-                                continue;
-                            }
-//                            std::cout << node.getPosition().x << " " << node.getPosition().y << '\n';
-                            node = create_node(papa.getPosition().x, papa.getPosition().y, splayed_tree, 'r');
-                            positional_nodes[i * 2 + 2].coordinates = std::make_pair(node.getPosition().x, node.getPosition().y);
-                            string_value = std::to_string(splayed_tree[i *2 + 2]->get_value());
-                            value.setString(string_value);
-                            value.setPosition(positional_nodes[i * 2 + 2].coordinates.first, positional_nodes[i * 2 + 2].coordinates.second);
-                            this->window->draw(value);
 
-                            std::cout << "Drew node: " << splayed_tree[i*2 + 2]->get_value() << " I am a right child of " << splayed_tree[i]->get_value() << "  coordinates -> " << papa.getPosition().x << " " << papa.getPosition().y << '\n';
-                        }
-                        counter++;
-                    }
+                    ////TODO:
+                    /////insert here
                     this->window->display();
                 }
             }
@@ -198,3 +160,52 @@ void Splay::PrintTree(std::vector<Node *> target_vector){
     }
     std::cout << std::endl;
 }
+
+//for (int i = 0; i < splayed_tree.size(); i++) {
+//                        if (splayed_tree[i] == nullptr) {
+//                            continue;
+//                        }
+//                        if (this->counter == this->level) {
+//                            this->level *= 2;
+//                            this->counter = 0;
+//                        }
+//                        if (i == 0) {
+//                            string_value = std::to_string(splayed_tree[i]->get_value());
+//                            papa = create_node(385, 50, splayed_tree, 't');
+//                            positional_nodes[i].coordinates = std::make_pair(385, 50);
+//                            value.setString(string_value);
+//                            value.setPosition(positional_nodes[i].coordinates.first, positional_nodes[i].coordinates.second);
+//                            this->window->draw(value);
+//                            std::cout << "Drew node: " << splayed_tree[i]->get_value() << " My coordinates are -> " << papa.getPosition().x << " " << papa.getPosition().y << '\n';
+//                        } else {
+//                            papa.setPosition(positional_nodes[i].coordinates.first, positional_nodes[i].coordinates.second);
+//                        }
+//                        if (is_left_child(i, splayed_tree)) {
+//                            if (splayed_tree[i * 2 + 1] == nullptr){
+//                                continue;
+//                            }
+////                            std::cout << node.getPosition().x << " " << node.getPosition().y << '\n';
+//                            node = create_node(papa.getPosition().x, papa.getPosition().y, splayed_tree, 'l');
+//                            positional_nodes[i * 2 + 1].coordinates = std::make_pair(node.getPosition().x , node.getPosition().y );
+//                            string_value = std::to_string(splayed_tree[i * 2 + 1]->get_value());
+//                            value.setString(string_value);
+//                            value.setPosition(positional_nodes[i * 2 + 1].coordinates.first, positional_nodes[i * 2 + 1].coordinates.second);
+//                            this->window->draw(value);
+//                            std::cout << "Drew node: " << splayed_tree[i * 2 + 1]->get_value() << " I am a left child of " << splayed_tree[i]->get_value() << " coordinates -> " << papa.getPosition().x << " " << papa.getPosition().y << '\n';
+//                        }
+//                        if (is_right_child(i, splayed_tree)) {
+//                            if (splayed_tree[i * 2 + 2] == nullptr){
+//                                continue;
+//                            }
+////                            std::cout << node.getPosition().x << " " << node.getPosition().y << '\n';
+//                            node = create_node(papa.getPosition().x, papa.getPosition().y, splayed_tree, 'r');
+//                            positional_nodes[i * 2 + 2].coordinates = std::make_pair(node.getPosition().x, node.getPosition().y);
+//                            string_value = std::to_string(splayed_tree[i *2 + 2]->get_value());
+//                            value.setString(string_value);
+//                            value.setPosition(positional_nodes[i * 2 + 2].coordinates.first, positional_nodes[i * 2 + 2].coordinates.second);
+//                            this->window->draw(value);
+//
+//                            std::cout << "Drew node: " << splayed_tree[i*2 + 2]->get_value() << " I am a right child of " << splayed_tree[i]->get_value() << "  coordinates -> " << papa.getPosition().x << " " << papa.getPosition().y << '\n';
+//                        }
+//                        counter++;
+//                    }
