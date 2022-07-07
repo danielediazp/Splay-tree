@@ -15,8 +15,8 @@ TODO: Come up with some form of animation for deleting and inserting nodes (via 
  */
 
 Splay::Splay() {
-    this->scale = 1;
-    this->window = new sf::RenderWindow(sf::VideoMode(800 * scale, 800 * scale), "Splay Tree", sf::Style::Close | sf::Style::Titlebar);
+    this->scale = 150;
+    this->window = new sf::RenderWindow(sf::VideoMode(800 + 3 * scale, 800 + 2 * scale), "Splay Tree", sf::Style::Close | sf::Style::Titlebar);
     this->window->setFramerateLimit(144);
     this->tree = new SplayTree();
     this->deleteMode = false;
@@ -75,7 +75,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     this->window->clear();
                     this->counter = 0;
                     this->level = 1;
-                    tree->pre_order_vector(splayed_tree, this->window);
+                    tree->pre_order_vector(splayed_tree, this->window, this->scale);
 //                    PrintTree(splayed_tree);
 //                    tree->BFS(splayed_tree);
 //                    for (int i = 0; i < splayed_tree.size(); i ++) {
@@ -88,9 +88,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
 //                    sf::CircleShape node;
 //                    sf::CircleShape papa;
 //                    std::string string_value;
-
-                    ////TODO:
-                    /////insert here
                     this->window->display();
                 }
             }
@@ -107,66 +104,66 @@ void Splay::render(){
     this->window->display();
 }
 
-bool Splay::is_left_child(int i, std::vector<Node*> &target_tree){
-    if (target_tree[(i*2) + 1] != nullptr){
-        if ((i * 2) + 1 < target_tree.size()){
-            return true;
-        }
-    }
-    return false;
-}
+//bool Splay::is_left_child(int i, std::vector<Node*> &target_tree){
+//    if (target_tree[(i*2) + 1] != nullptr){
+//        if ((i * 2) + 1 < target_tree.size()){
+//            return true;
+//        }
+//    }
+//    return false;
+//}
+//
+//bool Splay::is_right_child(int i, std::vector<Node*> &target_tree){
+//    if (target_tree[(i*2) + 2] != nullptr){
+//        if ((i * 2) + 2 < target_tree.size()){
+//            return true;
+//        }
+//    }
+//    return false;
+//}
+//
+//bool Splay::is_parent(int i, std::vector<Node*> &target_tree){
+//    if (target_tree[floor(i/2)] != nullptr){
+//        return true;
+//    }
+//    return false;
+//}
 
-bool Splay::is_right_child(int i, std::vector<Node*> &target_tree){
-    if (target_tree[(i*2) + 2] != nullptr){
-        if ((i * 2) + 2 < target_tree.size()){
-            return true;
-        }
-    }
-    return false;
-}
+//sf::CircleShape Splay::create_node(int prior_node_x, int prior_node_y, std::vector<Node*> &target_tree, const char type){
+//    sf::CircleShape node;
+//    node.setRadius(20.f * scale);
+//    node.setFillColor(sf::Color::White);
+//    node.setOrigin(0.0f, 0.0f);
+//    switch(type){
+//        case 'l':
+//            // Left child node
+//            node.setPosition(prior_node_x - 50, prior_node_y + 50);
+//            break;
+//        case 'r':
+//            // Right child node
+//            node.setPosition(prior_node_x + 50, prior_node_y + 50);
+//            break;
+//        case 't':
+//            // Root node
+//            node.setPosition(prior_node_x, prior_node_y);
+//            break;
+//        default:
+//            break;
+//    }
+//    this->window->draw(node);
+//    return node;
+//}
 
-bool Splay::is_parent(int i, std::vector<Node*> &target_tree){
-    if (target_tree[floor(i/2)] != nullptr){
-        return true;
-    }
-    return false;
-}
-
-sf::CircleShape Splay::create_node(int prior_node_x, int prior_node_y, std::vector<Node*> &target_tree, const char type){
-    sf::CircleShape node;
-    node.setRadius(20.f * scale);
-    node.setFillColor(sf::Color::White);
-    node.setOrigin(0.0f, 0.0f);
-    switch(type){
-        case 'l':
-            // Left child node
-            node.setPosition(prior_node_x - 50, prior_node_y + 50);
-            break;
-        case 'r':
-            // Right child node
-            node.setPosition(prior_node_x + 50, prior_node_y + 50);
-            break;
-        case 't':
-            // Root node
-            node.setPosition(prior_node_x, prior_node_y);
-            break;
-        default:
-            break;
-    }
-    this->window->draw(node);
-    return node;
-}
-
-void Splay::PrintTree(std::vector<Node *> target_vector){
-    for (int i = 0; i < target_vector.size(); i ++){
-        if (target_vector[i] == nullptr){
-            std::cout << "null" << " ";
-            continue;
-        }
-        std::cout << target_vector[i]->get_value() << " ";
-    }
-    std::cout << std::endl;
-}
+//void Splay::PrintTree(std::vector<Node *> target_vector){
+//    for (int i = 0; i < target_vector.size(); i ++){
+//        if (target_vector[i] == nullptr){
+//            std::cout << "null" << " ";
+//            continue;
+//        }
+//        std::cout << target_vector[i]->get_value() << " ";
+//    }
+//    std::cout << std::endl;
+//}
 
 //for (int i = 0; i < splayed_tree.size(); i++) {
 //                        if (splayed_tree[i] == nullptr) {

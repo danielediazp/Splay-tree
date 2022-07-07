@@ -23,7 +23,7 @@ private:
     Node* left_rotate(Node* root);
     Node* right_rotate(Node* root);
     void level_order(Node *root, int l, std::vector<Node *> &target_vector);
-    void pre_order_vector(Node* root, std::vector<Node*> &target_vector, int x, int y, sf::RenderWindow *window, char type, int scale);
+    void pre_order_vector(Node* root, std::vector<Node*> &target_vector, int x, int y, sf::RenderWindow *window, char type, float scale);
     void destroy(Node* root);
 
     void inorder(Node* root);
@@ -50,7 +50,7 @@ public:
     void post_order();
     void inorder();
     void BFS(std::vector<Node *> &target_vector);
-    void pre_order_vector(std::vector<Node *> &target_vector, sf::RenderWindow *window);
+    void pre_order_vector(std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale);
 
 
     friend class Game;
