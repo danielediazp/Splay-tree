@@ -264,6 +264,7 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
         target_vector.push_back(nullptr);
         return;
     }
+
     target_vector.push_back(root);
     node.setPosition(x, y);
     std::string string_value = std::to_string(root->value_);
