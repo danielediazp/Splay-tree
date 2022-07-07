@@ -3,6 +3,7 @@
 #include <SFML/Window.hpp>
 #include <iostream>
 #include <cmath>
+#include <string>
 #include "SplayTree.h"
 #include "Node.h"
 
