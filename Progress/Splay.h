@@ -17,7 +17,8 @@ private:
     bool deleteMode;
     int level = 1;
     int counter = 0;
-
+    sf::Font global_font;
+    float scale;
 
 public:
     Splay();
