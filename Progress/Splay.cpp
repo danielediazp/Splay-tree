@@ -91,7 +91,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
 //                            std::cout << node.getPosition().x << " " << node.getPosition().y << '\n';
                             node = create_node(papa.getPosition().x, papa.getPosition().y, splayed_tree, 'l');
                             positional_nodes[i * 2 + 1].coordinates = std::make_pair(node.getPosition().x, node.getPosition().y);
-                            std::cout << "Drew node: " << splayed_tree[i*2 + 1]->get_value() << " I am a left child of coordinates -> " << papa.getPosition().x << " " << papa.getPosition().y << '\n';
+                            std::cout << "Drew node: " << splayed_tree[i*2 + 1]->get_value() << " I am a left child of " << splayed_tree[i]->get_value() << " coordinates -> " << papa.getPosition().x << " " << papa.getPosition().y << '\n';
                         }
                         if (is_right_child(i, splayed_tree)) {
                             if (splayed_tree[i * 2 + 2] == nullptr){
@@ -100,7 +100,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
 //                            std::cout << node.getPosition().x << " " << node.getPosition().y << '\n';
                             node = create_node(papa.getPosition().x, papa.getPosition().y, splayed_tree, 'r');
                             positional_nodes[i * 2 + 2].coordinates = std::make_pair(node.getPosition().x, node.getPosition().y);
-                            std::cout << "Drew node: " << splayed_tree[i*2 + 2]->get_value() << " I am a right child of coordinates -> " << papa.getPosition().x << " " << papa.getPosition().y << '\n';
+                            std::cout << "Drew node: " << splayed_tree[i*2 + 2]->get_value() << " I am a right child of " << splayed_tree[i]->get_value() << "  coordinates -> " << papa.getPosition().x << " " << papa.getPosition().y << '\n';
                         }
                         counter++;
                     }
