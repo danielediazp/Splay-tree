@@ -274,28 +274,28 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
     value.setString(string_value);
     value.setPosition(x, y);
 
-    if (type == 'm') {
-        line.setPosition(x + 25, y + 22);
+//    if (type == 'm') {
+        line.setPosition(x + 21, y + 20);
         line.rotate(45);
         window->draw(line);
         line.rotate(90);
         window->draw(line);
         window->draw(node);
         window->draw(value);
-    }
-    else if (type == 'l') {
-        line.setPosition(x + 25, y + 22);
-        line.rotate(135);
-        window->draw(line);
-        window->draw(node);
-        window->draw(value);
-    } else if (type == 'r') {
-        line.setPosition(x + 25, y + 22);
-        line.rotate(45);
-        window->draw(line);
-        window->draw(node);
-        window->draw(value);
-    }
+//    }
+//    else if (type == 'l') {
+//        line.setPosition(x + 25, y + 22);
+//        line.rotate(135);
+//        window->draw(line);
+//        window->draw(node);
+//        window->draw(value);
+//    } else if (type == 'r') {
+//        line.setPosition(x + 25, y + 22);
+//        line.rotate(45);
+//        window->draw(line);
+//        window->draw(node);
+//        window->draw(value);
+//    }
 
 
     pre_order_vector(root->left_, target_vector, x - 50, y + 50, window, 'l');
