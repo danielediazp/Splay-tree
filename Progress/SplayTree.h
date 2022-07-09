@@ -10,7 +10,15 @@
 #ifndef SPLAY_TREE_SPLAYTREE_H
 #define SPLAY_TREE_SPLAYTREE_H
 
+struct positionalNode{
+    Node *value_ = nullptr;
+    std::pair<int, int> coordinates = std::make_pair(385, 50);
+    positionalNode(Node *value_, float x, float y) {
+        this->value_ = value_;
+        coordinates = std::make_pair(x, y);
+    }
 
+};
 
 class SplayTree {
 
@@ -23,7 +31,7 @@ private:
     Node* left_rotate(Node* root);
     Node* right_rotate(Node* root);
     void level_order(Node *root, int l, std::vector<Node *> &target_vector);
-    void pre_order_vector(Node* root, std::vector<Node*> &target_vector, int x, int y, sf::RenderWindow *window, char type, float scale);
+    void pre_order_vector(Node* root, std::vector<Node*> &target_vector, int x, int y, sf::RenderWindow *window, char type, float scale, std::vector<positionalNode> &positional_nodes);
     void destroy(Node* root);
 
     void inorder(Node* root);
@@ -50,7 +58,7 @@ public:
     void post_order();
     void inorder();
     void BFS(std::vector<Node *> &target_vector);
-    void pre_order_vector(std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale);
+    void pre_order_vector(std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale, std::vector<positionalNode> &positional_nodes);
 
 
     friend class Game;

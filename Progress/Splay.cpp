@@ -1,9 +1,5 @@
 #include "Splay.h"
 
-struct positionalNode{
-    Node *value_ = nullptr;
-    std::pair<int, int> coordinates = std::make_pair(385, 50);
-};
 
 /*
 TODO: Render nodes correctly in terms of ancestry and position (i.e., right children should be to the right of a node, etc.) (HARD)
@@ -31,18 +27,19 @@ void Splay::run(std::vector<Node*> splayed_tree) {
     value.setFillColor(sf::Color::Red);
     this->tree->insert(40);
     this->tree->insert(50);
-    this->tree->insert(43);
-    this->tree->insert(45);
-    this->tree->insert(44);
-    this->tree->insert(47);
-    this->tree->insert(46);
-    this->tree->insert(30);
-    this->tree->insert(35);
-    this->tree->insert(41);
-    this->tree->insert(39);
-    this->tree->delete_node(39);
-    this->tree->delete_node(43);
-    tree->pre_order_vector(splayed_tree, this->window, this->scale);
+//    this->tree->insert(43);
+//    this->tree->insert(45);
+//    this->tree->insert(44);
+//    this->tree->insert(47);
+//    this->tree->insert(46);
+//    this->tree->insert(30);
+//    this->tree->insert(35);
+//    this->tree->insert(41);
+//    this->tree->insert(39);
+//    this->tree->delete_node(39);
+//    this->tree->delete_node(43);
+//    this->tree->delete_node(41);
+    tree->pre_order_vector(splayed_tree, this->window, this->scale, positional_nodes);
     for (int i = 0; i < splayed_tree.size(); ++i) {
         if (splayed_tree[i] == nullptr) {
             continue;
@@ -82,7 +79,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     this->window->clear();
                     this->counter = 0;
                     this->level = 1;
-                    tree->pre_order_vector(splayed_tree, this->window, this->scale);
+                    tree->pre_order_vector(splayed_tree, this->window, this->scale, positional_nodes);
 
 
                     this->window->display();
