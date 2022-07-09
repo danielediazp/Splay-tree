@@ -29,12 +29,31 @@ void Splay::run(std::vector<Node*> splayed_tree) {
     value.setCharacterSize(30);
     value.setFont(this->global_font);
     value.setFillColor(sf::Color::Red);
-    std::cout << "Click 'I' to insert or 'D' to delete!" << '\n';
+    this->tree->insert(40);
+    this->tree->insert(50);
+    this->tree->insert(43);
+    this->tree->insert(45);
+    this->tree->insert(44);
+    this->tree->insert(47);
+    this->tree->insert(46);
+    this->tree->insert(30);
+    this->tree->insert(35);
+    this->tree->insert(41);
+    this->tree->insert(39);
+    this->tree->delete_node(39);
+    this->tree->delete_node(43);
+    tree->pre_order_vector(splayed_tree, this->window, this->scale);
+    for (int i = 0; i < splayed_tree.size(); ++i) {
+        if (splayed_tree[i] == nullptr) {
+            continue;
+        }
+        std::cout << splayed_tree[i]->get_value() << "\n";
+    }
+
 //    tree->pre_order();
 //    std::cout << std::endl;
     while (this->window->isOpen()) {
         sf::Event event;
-
         while (this->window->pollEvent(event)) {
             if (event.type == sf::Event::Closed ||
                 (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)) {
@@ -56,90 +75,17 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                         std::cout << "Delete Mode Toggled: OFF" << '\n';
                     }
                 }
-                else if (event.key.code == sf::Keyboard::J && !this->deleteMode) {
+            }
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::J && !this->deleteMode) {
                     splayed_tree.clear();
                     this->window->clear();
                     this->counter = 0;
                     this->level = 1;
                     tree->pre_order_vector(splayed_tree, this->window, this->scale);
+
+
                     this->window->display();
-//                    PrintTree(splayed_tree);
-//                    tree->BFS(splayed_tree);
-//                    for (int i = 0; i < splayed_tree.size(); i ++) {
-//                        positionalNode temp;
-//
-//                        temp.value_ = splayed_tree[i];
-//                        positional_nodes.push_back(temp);
-//                    }
-
-//                    sf::CircleShape node;
-//                    sf::CircleShape papa;
-//                    std::string string_value;
-                    this->window->display();
-                }
-            else if (event.key.code == sf::Keyboard::I && !this->deleteMode) {
-                    bool boolean = true;
-                    while (boolean) {
-                        int temp = NULL;
-                        std::cout << "Input an integer to be inserted: ";
-                        std::cin >> temp;
-                        std::cout << "\n";
-                        this->tree->insert(temp);
-                        std::cout << "Success! " << temp << " has been inserted!" << "\n";
-                        splayed_tree.clear();
-                        this->window->clear();
-                        this->counter = 0;
-                        this->level = 1;
-                        tree->pre_order_vector(splayed_tree, this->window, this->scale);
-                        this->window->display();
-                        std::cout << "Would you like to continue Insertion? ";
-                        std::string cont = "";
-                        std::cin >> cont;
-
-                        for (int i = 0; i < cont.size(); ++i) {
-                            cont[i] = std::tolower(cont[i]);
-                        }
-
-                        if (cont != "yes" || cont != "y" || cont != "Yes" || cont != "YES") {
-                            std::cout << "Exiting insertion!" << "\n";
-                            boolean = false;
-                        }
-                    }
-                }
-                 else if (event.key.code == sf::Keyboard::D && !this->deleteMode) {
-                    bool boolean = true;
-                    while (boolean) {
-                        int temp = NULL;
-                        std::cout << "Input an integer to be deleted: ";
-                        std::cin >> temp;
-                        std::cout << "\n";
-                        ////TODO: Deletion of empty tree == segfault
-                        this->tree->delete_node(temp);
-                        if (this->tree->get_root() != temp) {
-                            std::cout << "Failure :( " << "Integer not in tree" << "\n";
-                        }
-                        else {
-                            std::cout << "Success! " << temp << " has been deleted!" << "\n";
-                            splayed_tree.clear();
-                            this->window->clear();
-                            this->counter = 0;
-                            this->level = 1;
-                            tree->pre_order_vector(splayed_tree, this->window, this->scale);
-                            this->window->display();
-
-                            std::cout << "Would you like to continue deletion?";
-                            std::string cont = "";
-                            std::cin >> cont;
-
-                            for (int i = 0; i < cont.size(); ++i) {
-                                cont[i] = std::tolower(cont[i]);
-                            }
-                            if (cont == "no") {
-                                std::cout << "Exiting deletion";
-                                boolean = false;
-                            }
-                        }
-                    }
                 }
             }
         }
@@ -154,113 +100,3 @@ void Splay::render(){
     this->update();
     this->window->display();
 }
-
-//bool Splay::is_left_child(int i, std::vector<Node*> &target_tree){
-//    if (target_tree[(i*2) + 1] != nullptr){
-//        if ((i * 2) + 1 < target_tree.size()){
-//            return true;
-//        }
-//    }
-//    return false;
-//}
-//
-//bool Splay::is_right_child(int i, std::vector<Node*> &target_tree){
-//    if (target_tree[(i*2) + 2] != nullptr){
-//        if ((i * 2) + 2 < target_tree.size()){
-//            return true;
-//        }
-//    }
-//    return false;
-//}
-//
-//bool Splay::is_parent(int i, std::vector<Node*> &target_tree){
-//    if (target_tree[floor(i/2)] != nullptr){
-//        return true;
-//    }
-//    return false;
-//}
-
-//sf::CircleShape Splay::create_node(int prior_node_x, int prior_node_y, std::vector<Node*> &target_tree, const char type){
-//    sf::CircleShape node;
-//    node.setRadius(20.f * scale);
-//    node.setFillColor(sf::Color::White);
-//    node.setOrigin(0.0f, 0.0f);
-//    switch(type){
-//        case 'l':
-//            // Left child node
-//            node.setPosition(prior_node_x - 50, prior_node_y + 50);
-//            break;
-//        case 'r':
-//            // Right child node
-//            node.setPosition(prior_node_x + 50, prior_node_y + 50);
-//            break;
-//        case 't':
-//            // Root node
-//            node.setPosition(prior_node_x, prior_node_y);
-//            break;
-//        default:
-//            break;
-//    }
-//    this->window->draw(node);
-//    return node;
-//}
-
-//void Splay::PrintTree(std::vector<Node *> target_vector){
-//    for (int i = 0; i < target_vector.size(); i ++){
-//        if (target_vector[i] == nullptr){
-//            std::cout << "null" << " ";
-//            continue;
-//        }
-//        std::cout << target_vector[i]->get_value() << " ";
-//    }
-//    std::cout << std::endl;
-//}
-
-//for (int i = 0; i < splayed_tree.size(); i++) {
-//                        if (splayed_tree[i] == nullptr) {
-//                            continue;
-//                        }
-//                        if (this->counter == this->level) {
-//                            this->level *= 2;
-//                            this->counter = 0;
-//                        }
-//                        if (i == 0) {
-//                            string_value = std::to_string(splayed_tree[i]->get_value());
-//                            papa = create_node(385, 50, splayed_tree, 't');
-//                            positional_nodes[i].coordinates = std::make_pair(385, 50);
-//                            value.setString(string_value);
-//                            value.setPosition(positional_nodes[i].coordinates.first, positional_nodes[i].coordinates.second);
-//                            this->window->draw(value);
-//                            std::cout << "Drew node: " << splayed_tree[i]->get_value() << " My coordinates are -> " << papa.getPosition().x << " " << papa.getPosition().y << '\n';
-//                        } else {
-//                            papa.setPosition(positional_nodes[i].coordinates.first, positional_nodes[i].coordinates.second);
-//                        }
-//                        if (is_left_child(i, splayed_tree)) {
-//                            if (splayed_tree[i * 2 + 1] == nullptr){
-//                                continue;
-//                            }
-////                            std::cout << node.getPosition().x << " " << node.getPosition().y << '\n';
-//                            node = create_node(papa.getPosition().x, papa.getPosition().y, splayed_tree, 'l');
-//                            positional_nodes[i * 2 + 1].coordinates = std::make_pair(node.getPosition().x , node.getPosition().y );
-//                            string_value = std::to_string(splayed_tree[i * 2 + 1]->get_value());
-//                            value.setString(string_value);
-//                            value.setPosition(positional_nodes[i * 2 + 1].coordinates.first, positional_nodes[i * 2 + 1].coordinates.second);
-//                            this->window->draw(value);
-//                            std::cout << "Drew node: " << splayed_tree[i * 2 + 1]->get_value() << " I am a left child of " << splayed_tree[i]->get_value() << " coordinates -> " << papa.getPosition().x << " " << papa.getPosition().y << '\n';
-//                        }
-//                        if (is_right_child(i, splayed_tree)) {
-//                            if (splayed_tree[i * 2 + 2] == nullptr){
-//                                continue;
-//                            }
-////                            std::cout << node.getPosition().x << " " << node.getPosition().y << '\n';
-//                            node = create_node(papa.getPosition().x, papa.getPosition().y, splayed_tree, 'r');
-//                            positional_nodes[i * 2 + 2].coordinates = std::make_pair(node.getPosition().x, node.getPosition().y);
-//                            string_value = std::to_string(splayed_tree[i *2 + 2]->get_value());
-//                            value.setString(string_value);
-//                            value.setPosition(positional_nodes[i * 2 + 2].coordinates.first, positional_nodes[i * 2 + 2].coordinates.second);
-//                            this->window->draw(value);
-//
-//                            std::cout << "Drew node: " << splayed_tree[i*2 + 2]->get_value() << " I am a right child of " << splayed_tree[i]->get_value() << "  coordinates -> " << papa.getPosition().x << " " << papa.getPosition().y << '\n';
-//                        }
-//                        counter++;
-//                    }
