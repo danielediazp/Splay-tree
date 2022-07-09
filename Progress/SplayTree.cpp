@@ -251,33 +251,33 @@ Node* SplayTree::delete_node(int data, Node *root) {
 }
 
 void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, int x, int y, sf::RenderWindow *window, char type, float scale, std::vector<positionalNode> &positional_nodes) {
+    int size = 30;
     sf::CircleShape node;
-    node.setRadius(20.f);
+    node.setRadius(size);
     node.setFillColor(sf::Color::White);
     node.setOrigin(0.0f, 0.0f);
     sf::Font global_font;
     sf::Text value;
     global_font.loadFromFile("../Butler_Regular.otf");
-    int size = 30;
     value.setCharacterSize(size);
     value.setFont(global_font);
     value.setFillColor(sf::Color::Red);
 
     if (!root){
         target_vector.push_back(nullptr);
-        positionalNode temp = positionalNode(nullptr, x - size/2, y - size/2);
+        positionalNode temp = positionalNode(nullptr, x - 30, y - 30);
         positional_nodes.push_back(temp);
         return;
     }
 
     target_vector.push_back(root);
-    positionalNode temp = positionalNode(root, x - size/2, y - size/2);
+    positionalNode temp = positionalNode(root, x - 30, y - 30);
     positional_nodes.push_back(temp);
 
-    node.setPosition(x - size/2, y - size/2);
+    node.setPosition(x - 30, y - 30);
     std::string string_value = std::to_string(root->value_);
     value.setString(string_value);
-    value.setPosition(x - size/2, y - size/2);
+    value.setPosition(x - 17 , y - 20);
 
 
     if (root->left_ != nullptr) {
@@ -297,9 +297,9 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
     window->draw(value);
 
 
-    pre_order_vector(root->left_, target_vector, x - 50 - scale, y + 50 + scale/3, window, 'l', scale/2, positional_nodes);
+    pre_order_vector(root->left_, target_vector, x - 50 - scale, y + 50 + scale/3, window, 'l', scale/1.2, positional_nodes);
 
-    pre_order_vector(root->right_, target_vector, x + 50 + scale, y + 50 + scale/3, window, 'r', scale/2, positional_nodes);
+    pre_order_vector(root->right_, target_vector, x + 50 + scale, y + 50 + scale/3, window, 'r', scale/1.2, positional_nodes);
 }
 
 // --------------- PUBLIC METHODS -----------------
@@ -347,5 +347,5 @@ void SplayTree::BFS(std::vector<Node *> &target_vector){
 }
 
 void SplayTree::pre_order_vector(std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale, std::vector<positionalNode> &positional_nodes) {
-    this->pre_order_vector(this->root_, target_vector, (800 + (4 * scale))/2, 50, window, 'm', scale, positional_nodes);
+    this->pre_order_vector(this->root_, target_vector, (800 + (4 * scale))/2, 50, window, 'm', scale/3, positional_nodes);
 }
