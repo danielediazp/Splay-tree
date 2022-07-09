@@ -54,7 +54,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                 this->window->close();
             }
 
-
             if (event.mouseButton.button == sf::Mouse::Left && deleteMode == true) {
                 tree->pre_order_vector(splayed_tree, this->window, this->scale, positional_nodes);
                 std::pair<int, int> coord = std::make_pair(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
