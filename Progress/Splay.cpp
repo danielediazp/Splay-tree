@@ -136,6 +136,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                                 window->display();
                                 deleteMode = false;
                                 break;
+
                             }
                         }
                     }
