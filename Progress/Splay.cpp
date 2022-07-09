@@ -20,7 +20,7 @@ Splay::Splay() {
 }
 
 void Splay::run(std::vector<Node*> splayed_tree) {
-    std::vector <positionalNode> positional_nodes;
+    std::vector<positionalNode> positional_nodes;
     sf::Text value;
 
     ////TODO: Size universally
@@ -70,61 +70,108 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                 std::cout << "Application closed via input" << '\n';
                 this->window->close();
             }
-            if (event.mouseButton.button == sf::Mouse::Left) {
+//                for (int i = 0; i < positional_nodes.size(); ++i) {
+//                    if (sf::Mouse::getPosition().x > positional_nodes[i].coordinates.first + 30 &&
+//                            sf::Mouse::getPosition().x < positional_nodes[i].coordinates.first + 82) {
+//                        if (sf::Mouse::getPosition().y > positional_nodes[i].coordinates.second + 1860 &&
+//                                sf::Mouse::getPosition().y < positional_nodes[i].coordinates.second + 1910) {
+//                            if (positional_nodes[i].value_ != nullptr) {
+//                                std::cout << "yo";
+//                                int size = 30;
+//                                sf::CircleShape node;
+//                                node.setRadius(size);
+//                                node.setFillColor(sf::Color::Yellow);
+//                                node.setOrigin(0.0f, 0.0f);
+//                                sf::Font global_font;
+//                                sf::Text value;
+//                                global_font.loadFromFile("../Butler_Regular.otf");
+//                                value.setCharacterSize(size);
+//                                value.setFont(global_font);
+//                                value.setFillColor(sf::Color::Red);
+//                                node.setPosition(positional_nodes[i].coordinates.first, positional_nodes[i].coordinates.second);
+//                                std::string string_value = std::to_string(positional_nodes[i].value_->get_value());
+//                                value.setString(string_value);
+//                                value.setPosition(positional_nodes[i].coordinates.first, positional_nodes[i].coordinates.second);
+//                                window->draw(node);
+//                                window->draw(value);
+//                                window->display();
+//                            }
+//                        }
+//                    }
+
+
+            if (event.mouseButton.button == sf::Mouse::Left && deleteMode == true) {
                 std::pair<int, int> coord = std::make_pair(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
-                std::cout << coord.first << ", " << coord.second << "\n";
-                std::cout << positional_nodes[0].coordinates.first << ", " << positional_nodes[0].coordinates.second
-                          << "\n";
                 for (int i = 0; i < positional_nodes.size(); ++i) {
                     if (coord.first > positional_nodes[i].coordinates.first + 30 &&
                         coord.first < positional_nodes[i].coordinates.first + 82) {
                         if (coord.second > positional_nodes[i].coordinates.second + 1860 &&
                             coord.second < positional_nodes[i].coordinates.second + 1910) {
-                            std::cout << "yo" << '\n';
+                            int size = 30;
+                            sf::CircleShape node;
+                            node.setRadius(size);
+                            node.setFillColor(sf::Color::Yellow);
+                            node.setOrigin(0.0f, 0.0f);
+                            sf::Font global_font;
+                            sf::Text value;
+                            global_font.loadFromFile("../Butler_Regular.otf");
+                            value.setCharacterSize(size);
+                            value.setFont(global_font);
+                            value.setFillColor(sf::Color::Red);
+                            node.setPosition(positional_nodes[i].coordinates.first,
+                                             positional_nodes[i].coordinates.second);
+                            std::string string_value = std::to_string(positional_nodes[i].value_->get_value());
+                            value.setString(string_value);
+                            value.setPosition(positional_nodes[i].coordinates.first,
+                                              positional_nodes[i].coordinates.second);
+                            window->draw(node);
+                            window->draw(value);
+                            window->display();
                             if (positional_nodes[i].value_ != nullptr) {
                                 tree->delete_node(positional_nodes[i].value_->get_value());
+                                std::cout << "Delete Mode Toggled: OFF - Node has been removed" << "\n";
+                                positional_nodes.clear();
                                 window->clear();
                                 tree->pre_order_vector(splayed_tree, this->window, this->scale, positional_nodes);
                                 window->display();
+                                deleteMode = false;
                             }
                         }
                     }
                 }
             }
-                if (event.type == sf::Event::KeyPressed) {
-                    if (event.key.code == sf::Keyboard::T) {
-                        if (!this->deleteMode) {
-                            this->deleteMode = true;
-                            // TODO: DRAW THE FACT THAT DELETE MODE IS ON NEXT TO THE CURSOR
-                            // CHANGE LOGIC SO THAT ONLY DELETION IS ALLOWED
-                            std::cout << "Delete Mode Toggled: ON" << '\n';
-
-
-                        } else {
-                            this->deleteMode = false;
-                            // TODO: DRAW THE FACT THAT INSERT MODE IS ON NEXT TO THE CURSOR
-                            // CHANGE LOGIC SO THAT ONLY INSERTION IS ALLOWED
-                            std::cout << "Delete Mode Toggled: OFF" << '\n';
-                        }
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::T) {
+                    if (!this->deleteMode) {
+                        this->deleteMode = true;
+                        // TODO: DRAW THE FACT THAT DELETE MODE IS ON NEXT TO THE CURSOR
+                        // CHANGE LOGIC SO THAT ONLY DELETION IS ALLOWED
+                        std::cout << "Delete Mode Toggled: ON" << '\n';
                     }
+
+                } else {
+                    this->deleteMode = false;
+                    // TODO: DRAW THE FACT THAT INSERT MODE IS ON NEXT TO THE CURSOR
+                    // CHANGE LOGIC SO THAT ONLY INSERTION IS ALLOWED
+                    std::cout << "Delete Mode Toggled: OFF" << '\n';
                 }
-                if (event.type == sf::Event::KeyPressed) {
-                    if (event.key.code == sf::Keyboard::J && !this->deleteMode) {
-                        splayed_tree.clear();
-                        this->window->clear();
-                        this->counter = 0;
-                        this->level = 1;
-                        tree->pre_order_vector(splayed_tree, this->window, this->scale, positional_nodes);
+
+            }
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::J && !this->deleteMode) {
+                    splayed_tree.clear();
+                    this->window->clear();
+                    this->counter = 0;
+                    this->level = 1;
+                    tree->pre_order_vector(splayed_tree, this->window, this->scale, positional_nodes);
 
 
-                        this->window->display();
-                    }
+                    this->window->display();
                 }
             }
         }
     }
-
-
+}
 void Splay::update(){
 }
 
