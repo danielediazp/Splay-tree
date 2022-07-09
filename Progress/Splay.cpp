@@ -135,6 +135,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                                 tree->pre_order_vector(splayed_tree, this->window, this->scale, positional_nodes);
                                 window->display();
                                 deleteMode = false;
+                                break;
                             }
                         }
                     }
