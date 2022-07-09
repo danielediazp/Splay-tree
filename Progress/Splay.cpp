@@ -28,39 +28,22 @@ void Splay::run(std::vector<Node*> splayed_tree) {
     value.setCharacterSize(30);
     value.setFont(this->global_font);
     value.setFillColor(sf::Color::Red);
-    this->tree->insert(40);
-    this->tree->insert(50);
-    this->tree->insert(43);
-    this->tree->insert(45);
-    this->tree->insert(44);
-    this->tree->insert(47);
-    this->tree->insert(46);
-    this->tree->insert(30);
-    this->tree->insert(35);
-    this->tree->insert(41);
-    this->tree->insert(39);
-    this->tree->insert(41);
-    this->tree->insert(51);
-    this->tree->insert(20);
-    this->tree->insert(45);
-    this->tree->insert(25);
-    this->tree->insert(47);
-    this->tree->insert(46);
-    this->tree->insert(30);
-    this->tree->insert(35);
-    this->tree->insert(41);
-    this->tree->insert(39);
-    tree->pre_order_vector(splayed_tree, this->window, this->scale, positional_nodes);
-    std::cout << positional_nodes[0].value_ << "\n";
-//    for (int i = 0; i < splayed_tree.size(); ++i) {
-//        if (splayed_tree[i] == nullptr) {
-//            continue;
-//        }
-//        std::cout << splayed_tree[i]->get_value() << "\n";
-//    }
-
-//    tree->pre_order();
-//    std::cout << std::endl;
+//    this->tree->insert(46);
+//    this->tree->insert(30);
+//    this->tree->insert(35);
+//    this->tree->insert(41);
+//    this->tree->insert(39);
+//    this->tree->insert(41);
+//    this->tree->insert(51);
+//    this->tree->insert(20);
+//    this->tree->insert(45);
+//    this->tree->insert(25);
+//    this->tree->insert(47);
+//    this->tree->insert(46);
+//    this->tree->insert(30);
+//    this->tree->insert(35);
+//    this->tree->insert(41);
+//    this->tree->insert(39);
     while (this->window->isOpen()) {
         sf::Event event;
         while (this->window->pollEvent(event)) {
@@ -70,37 +53,10 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                 std::cout << "Application closed via input" << '\n';
                 this->window->close();
             }
-//                for (int i = 0; i < positional_nodes.size(); ++i) {
-//                    if (sf::Mouse::getPosition().x > positional_nodes[i].coordinates.first + 30 &&
-//                            sf::Mouse::getPosition().x < positional_nodes[i].coordinates.first + 82) {
-//                        if (sf::Mouse::getPosition().y > positional_nodes[i].coordinates.second + 1860 &&
-//                                sf::Mouse::getPosition().y < positional_nodes[i].coordinates.second + 1910) {
-//                            if (positional_nodes[i].value_ != nullptr) {
-//                                std::cout << "yo";
-//                                int size = 30;
-//                                sf::CircleShape node;
-//                                node.setRadius(size);
-//                                node.setFillColor(sf::Color::Yellow);
-//                                node.setOrigin(0.0f, 0.0f);
-//                                sf::Font global_font;
-//                                sf::Text value;
-//                                global_font.loadFromFile("../Butler_Regular.otf");
-//                                value.setCharacterSize(size);
-//                                value.setFont(global_font);
-//                                value.setFillColor(sf::Color::Red);
-//                                node.setPosition(positional_nodes[i].coordinates.first, positional_nodes[i].coordinates.second);
-//                                std::string string_value = std::to_string(positional_nodes[i].value_->get_value());
-//                                value.setString(string_value);
-//                                value.setPosition(positional_nodes[i].coordinates.first, positional_nodes[i].coordinates.second);
-//                                window->draw(node);
-//                                window->draw(value);
-//                                window->display();
-//                            }
-//                        }
-//                    }
 
 
             if (event.mouseButton.button == sf::Mouse::Left && deleteMode == true) {
+                tree->pre_order_vector(splayed_tree, this->window, this->scale, positional_nodes);
                 std::pair<int, int> coord = std::make_pair(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
                 for (int i = 0; i < positional_nodes.size(); ++i) {
                     if (coord.first > positional_nodes[i].coordinates.first + 30 &&

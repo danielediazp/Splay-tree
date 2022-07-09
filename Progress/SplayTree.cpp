@@ -304,8 +304,9 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
 
 // --------------- PUBLIC METHODS -----------------
 
-void SplayTree::insert(int key){
+void SplayTree::insert(int key, std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale, std::vector<positionalNode> &positional_nodes){
     this->root_ = this->insert(key, this->root_);
+    this->pre_order_vector(target_vector, window, scale, positional_nodes);
 }
 
 void SplayTree::inorder() {
@@ -347,5 +348,7 @@ void SplayTree::BFS(std::vector<Node *> &target_vector){
 }
 
 void SplayTree::pre_order_vector(std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale, std::vector<positionalNode> &positional_nodes) {
+    target_vector.clear();
+    positional_nodes.clear();
     this->pre_order_vector(this->root_, target_vector, (800 + (4 * scale))/2, 50, window, 'm', scale/3, positional_nodes);
 }

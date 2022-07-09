@@ -47,7 +47,7 @@ public:
     SplayTree(std::string file_name);
     ~SplayTree();
 
-    void insert(int key);
+    void insert(int key, std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale, std::vector<positionalNode> &positional_nodes);
     void splay_tree(int key);
     void delete_node(int key);
 
