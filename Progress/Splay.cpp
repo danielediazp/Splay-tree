@@ -20,6 +20,7 @@ Splay::Splay() {
 }
 
 void Splay::run(std::vector<Node*> splayed_tree) {
+    std::srand(std::time(nullptr));
     std::vector<positionalNode> positional_nodes;
     sf::Text value;
 
@@ -28,8 +29,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
     value.setCharacterSize(30);
     value.setFont(this->global_font);
     value.setFillColor(sf::Color::Red);
-//    this->tree->insert(46);
-//    this->tree->insert(30);
 //    this->tree->insert(35);
 //    this->tree->insert(41);
 //    this->tree->insert(39);
@@ -44,6 +43,19 @@ void Splay::run(std::vector<Node*> splayed_tree) {
 //    this->tree->insert(35);
 //    this->tree->insert(41);
 //    this->tree->insert(39);
+//    this->tree->insert(40, splayed_tree, window, scale, positional_nodes);
+//    this->tree->insert(50, splayed_tree, window, scale, positional_nodes);
+//    this->tree->insert(30, splayed_tree, window, scale, positional_nodes);
+//    this->tree->insert(60, splayed_tree, window, scale, positional_nodes);
+//    for (int i = 0; i < splayed_tree.size(); ++i) {
+//        if (splayed_tree[i] == nullptr) {
+//            continue;
+//        }
+//        std::cout << splayed_tree[i]->get_value() << "\n";
+//    }
+
+//    tree->pre_order();
+//    std::cout << std::endl;
     while (this->window->isOpen()) {
         sf::Event event;
         while (this->window->pollEvent(event)) {
@@ -55,7 +67,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
             }
 
             if (event.mouseButton.button == sf::Mouse::Left && deleteMode == true) {
-                tree->pre_order_vector(splayed_tree, this->window, this->scale, positional_nodes);
                 std::pair<int, int> coord = std::make_pair(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
                 for (int i = 0; i < positional_nodes.size(); ++i) {
                     if (coord.first > positional_nodes[i].coordinates.first + 30 &&

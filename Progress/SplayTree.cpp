@@ -304,8 +304,20 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
 
 // --------------- PUBLIC METHODS -----------------
 
+void SplayTree::force_delay(){
+    sf::Clock clock;
+    clock.restart();
+    sf::Time time1 = clock.getElapsedTime();
+    while (time1.asSeconds() != 2){
+        time1 = clock.getElapsedTime();
+    }
+    std::cout << "5 seconds elapsed" << '\n';
+    return;
+}
+
 void SplayTree::insert(int key, std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale, std::vector<positionalNode> &positional_nodes){
     this->root_ = this->insert(key, this->root_);
+    force_delay();
     this->pre_order_vector(target_vector, window, scale, positional_nodes);
 }
 

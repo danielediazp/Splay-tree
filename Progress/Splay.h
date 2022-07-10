@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include <stdlib.h>
 #include "SplayTree.h"
 #include "Node.h"
 
@@ -20,6 +21,7 @@ private:
     int counter = 0;
     sf::Font global_font;
     float scale;
+
     //void drawTree(Node * root, int x, int y);
 
 public:

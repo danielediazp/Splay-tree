@@ -53,7 +53,7 @@ public:
 
     int height();
     int get_root();
-
+    void force_delay();
     void pre_order();
     void post_order();
     void inorder();
@@ -61,7 +61,7 @@ public:
     void pre_order_vector(std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale, std::vector<positionalNode> &positional_nodes);
 
 
-    friend class Game;
+    friend class Splay;
 };
 
 
