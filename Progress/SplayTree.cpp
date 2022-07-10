@@ -282,20 +282,20 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
     if (root->left_ != nullptr) {
         sf::VertexArray left_p(sf::LinesStrip, 2);
         left_p[0].position = sf::Vector2f(x, y);
-        left_p[1].position = sf::Vector2f(x - 50 - scale, y + 50 + scale);
+        left_p[1].position = sf::Vector2f(x - 50 - scale * 2, y + 50 + scale * 2);
         window->draw(left_p);
     }
 
     if (root->right_ != nullptr) {
         sf::VertexArray right_p(sf::LinesStrip, 2);
         right_p[0].position = sf::Vector2f(x,y);
-        right_p[1].position = sf::Vector2f(x + 50 + scale, y + 50 + scale);
+        right_p[1].position = sf::Vector2f(x + 50 + scale * 2, y + 50 + scale * 2);
         window->draw(right_p);
     }
     window->draw(node);
     window->draw(value);
 
-    pre_order_vector(root->left_, target_vector, x - 50 - scale, y + 50 + scale, window, 'l', scale/1.2, positional_nodes);
+    pre_order_vector(root->left_, target_vector, x - 50 - scale, y + 50 + scale, window, 'l', scale, positional_nodes);
 
     pre_order_vector(root->right_, target_vector, x + 50 + scale, y + 50 + scale, window, 'r', scale/1.2, positional_nodes);
 }
