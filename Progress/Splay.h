@@ -26,6 +26,7 @@ private:
 
 public:
     Splay();
+
 //    void drawTree(Node * root);
 //    void PrintTree(std::vector<Node *> target_vector);
 //    bool is_right_child(int i, std::vector<Node *> &tree);

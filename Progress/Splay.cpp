@@ -11,7 +11,7 @@ TODO: Come up with some form of animation for deleting and inserting nodes (via 
  */
 
 Splay::Splay() {
-    this->scale = 500;
+    this->scale = 50;
     this->window = new sf::RenderWindow(sf::VideoMode(800 + (4 * scale), 800 + (2 * scale)), "Splay Tree", sf::Style::Close | sf::Style::Titlebar);
     this->window->setFramerateLimit(144);
     this->tree = new SplayTree();
@@ -57,6 +57,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
 //    tree->pre_order();
 //    std::cout << std::endl;
     while (this->window->isOpen()) {
+
         sf::Event event;
         while (this->window->pollEvent(event)) {
             if (event.type == sf::Event::Closed ||
@@ -64,6 +65,21 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                 std::cout << "//----------------------------//" << '\n';
                 std::cout << "Application closed via input" << '\n';
                 this->window->close();
+            }
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::I) {
+//                    std::cout << "Insert plz: " << "\n";
+//                    float temp;
+//                    std::cin >> temp;
+//                    window->clear();
+//                    this->tree->insert(temp, splayed_tree, window, scale, positional_nodes);
+//                    window->display();
+                    while (event.key.code != sf::Keyboard::S){
+                        window->clear();
+                        this->tree->insert(std::randint(), splayed_tree, window, scale, positional_nodes);
+                        window->display();
+                    }
+                }
             }
 
             if (event.mouseButton.button == sf::Mouse::Left && deleteMode == true) {
