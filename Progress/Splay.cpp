@@ -76,7 +76,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
 //                    window->display();
                     while (event.key.code != sf::Keyboard::S){
                         window->clear();
-                        this->tree->insert(std::randint(), splayed_tree, window, scale, positional_nodes);
+                        this->tree->insert(1 + (rand() % 200) , splayed_tree, window, scale, positional_nodes);
                         window->display();
                     }
                 }
