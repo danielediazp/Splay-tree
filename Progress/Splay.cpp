@@ -76,7 +76,10 @@ void Splay::run(std::vector<Node*> splayed_tree) {
 //                    window->display();
                     while (event.key.code != sf::Keyboard::S){
                         window->clear();
-                        this->tree->insert(1 + (rand() % 200) , splayed_tree, window, scale, positional_nodes);
+                        int temp = 1 + 1 + (rand() % 200);
+                        std::cout << "Inserting: " << temp << '\n';
+                        this->tree->insert(temp , splayed_tree, window, scale, positional_nodes);
+                        std::cout << temp << " has been inserted!" << '\n';
                         window->display();
                     }
                 }

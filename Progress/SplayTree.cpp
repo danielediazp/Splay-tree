@@ -309,7 +309,7 @@ void SplayTree::force_delay(){
     while (time1.asSeconds() != 2){
         time1 = clock.getElapsedTime();
     }
-    std::cout << "5 seconds elapsed" << '\n';
+//    std::cout << "5 seconds elapsed" << '\n';
     return;
 }
 
