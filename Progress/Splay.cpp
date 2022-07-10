@@ -29,33 +29,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
     value.setCharacterSize(30);
     value.setFont(this->global_font);
     value.setFillColor(sf::Color::Red);
-//    this->tree->insert(35);
-//    this->tree->insert(41);
-//    this->tree->insert(39);
-//    this->tree->insert(41);
-//    this->tree->insert(51);
-//    this->tree->insert(20);
-//    this->tree->insert(45);
-//    this->tree->insert(25);
-//    this->tree->insert(47);
-//    this->tree->insert(46);
-//    this->tree->insert(30);
-//    this->tree->insert(35);
-//    this->tree->insert(41);
-//    this->tree->insert(39);
-//    this->tree->insert(40, splayed_tree, window, scale, positional_nodes);
-//    this->tree->insert(50, splayed_tree, window, scale, positional_nodes);
-//    this->tree->insert(30, splayed_tree, window, scale, positional_nodes);
-//    this->tree->insert(60, splayed_tree, window, scale, positional_nodes);
-//    for (int i = 0; i < splayed_tree.size(); ++i) {
-//        if (splayed_tree[i] == nullptr) {
-//            continue;
-//        }
-//        std::cout << splayed_tree[i]->get_value() << "\n";
-//    }
-
-//    tree->pre_order();
-//    std::cout << std::endl;
     while (this->window->isOpen()) {
 
         sf::Event event;
@@ -163,7 +136,6 @@ void Splay::update(){
 }
 
 void Splay::render(){
-//    this->window->clear(sf::Color::Black);
     this->update();
     this->window->display();
 }

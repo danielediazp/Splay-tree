@@ -353,10 +353,6 @@ SplayTree::~SplayTree() {
     this->destroy(this->root_);
 }
 
-void SplayTree::BFS(std::vector<Node *> &target_vector){
-    this->BFS(this->root_, target_vector);
-}
-
 void SplayTree::pre_order_vector(std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale, std::vector<positionalNode> &positional_nodes) {
     this->pre_order_vector(this->root_, target_vector, (800 + (4 * scale))/2, 50, window, 'm', scale/3, positional_nodes);
 }

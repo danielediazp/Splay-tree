@@ -57,7 +57,6 @@ public:
     void pre_order();
     void post_order();
     void inorder();
-    void BFS(std::vector<Node *> &target_vector);
     void pre_order_vector(std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale, std::vector<positionalNode> &positional_nodes);
 
 
