@@ -54,7 +54,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     while (counter < 5){
                         window->clear();
                         int temp = 1 + 1 + (rand() % 200);
-
                         next_node(temp, window);
                         tree->force_delay();
                         window->display();
