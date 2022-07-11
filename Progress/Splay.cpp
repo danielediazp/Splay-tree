@@ -11,8 +11,10 @@ TODO: Come up with some form of animation for deleting and inserting nodes (via 
  */
 
 Splay::Splay() {
-    this->scale = 50;
-    this->window = new sf::RenderWindow(sf::VideoMode(800 + (4 * scale), 800 + (2 * scale)), "Splay Tree", sf::Style::Close | sf::Style::Titlebar);
+    this->scale = 500;
+    this->window_x = 800 + (4 * scale);
+    this->window_y = 800 + (2 * scale);
+    this->window = new sf::RenderWindow(sf::VideoMode(window_x, window_y), "Splay Tree", sf::Style::Close | sf::Style::Titlebar);
     this->window->setFramerateLimit(144);
     this->tree = new SplayTree();
     this->deleteMode = false;
@@ -23,7 +25,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
     std::srand(std::time(nullptr));
     std::vector<positionalNode> positional_nodes;
     sf::Text value;
-
+    float startSpot = (800 + (4 * scale))/2;
     ////TODO: Size universally
     int size = 30;
     value.setCharacterSize(30);
@@ -39,6 +41,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                 std::cout << "Application closed via input" << '\n';
                 this->window->close();
             }
+
             if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::I) {
 //                    std::cout << "Insert plz: " << "\n";
@@ -47,13 +50,18 @@ void Splay::run(std::vector<Node*> splayed_tree) {
 //                    window->clear();
 //                    this->tree->insert(temp, splayed_tree, window, scale, positional_nodes);
 //                    window->display();
-                    while (event.key.code != sf::Keyboard::S){
+                    int counter = 0;
+                    while (counter < 5){
                         window->clear();
                         int temp = 1 + 1 + (rand() % 200);
-                        std::cout << "Inserting: " << temp << '\n';
-                        this->tree->insert(temp , splayed_tree, window, scale, positional_nodes);
-                        std::cout << temp << " has been inserted!" << '\n';
+
+                        next_node(temp, window);
+                        tree->force_delay();
                         window->display();
+                        this->tree->insert(temp , splayed_tree, window, scale, positional_nodes, this->window_x/2);
+                        next_node(temp, window);
+                        window->display();
+                        counter += 1;
                     }
                 }
             }
@@ -90,7 +98,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                                 std::cout << "Delete Mode Toggled: OFF - Node has been removed" << "\n";
                                 positional_nodes.clear();
                                 window->clear();
-                                tree->pre_order_vector(splayed_tree, this->window, this->scale, positional_nodes);
+                                tree->pre_order_vector(splayed_tree, this->window, scale, positional_nodes, this->window_x/2);
                                 window->display();
                                 deleteMode = false;
                                 break;
@@ -121,9 +129,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                 if (event.key.code == sf::Keyboard::J && !this->deleteMode) {
                     splayed_tree.clear();
                     this->window->clear();
-                    this->counter = 0;
-                    this->level = 1;
-                    tree->pre_order_vector(splayed_tree, this->window, this->scale, positional_nodes);
+                    tree->pre_order_vector(splayed_tree, this->window, this->scale, positional_nodes, this->window_x/2);
 
 
                     this->window->display();
@@ -138,4 +144,33 @@ void Splay::update(){
 void Splay::render(){
     this->update();
     this->window->display();
+}
+
+void Splay::next_node(int val, sf::RenderWindow * window) {
+    int size = 30;
+    sf::CircleShape node;
+    node.setRadius(size);
+    node.setFillColor(sf::Color::White);
+    node.setOrigin(0.0f, 0.0f);
+    sf::Font global_font;
+    sf::Text value;
+    global_font.loadFromFile("../Butler_Regular.otf");
+    value.setCharacterSize(size);
+    value.setFont(global_font);
+    value.setFillColor(sf::Color::Red);
+
+    std::string string_value = ("Inserting Node:  ");
+    value.setString(string_value);
+    value.setPosition(50, 50);
+
+    node.setPosition(300, 45);
+
+    window->draw(node);
+    window->draw(value);
+
+    string_value = std::to_string(val);
+    value.setString(string_value);
+    value.setPosition(310, 55);
+    window->draw(value);
+
 }

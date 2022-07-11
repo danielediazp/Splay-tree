@@ -17,14 +17,15 @@ private:
     sf::RenderWindow *window;
     SplayTree *tree;
     bool deleteMode;
-    int level = 1;
-    int counter = 0;
     sf::Font global_font;
     float scale;
+    unsigned int window_x = 800 + (4 * scale);
+    unsigned int window_y = 800 + (2 * scale);
 
 public:
     Splay();
     void run(std::vector<Node *> splayed_tree);
+    void next_node(int val, sf::RenderWindow *window);
     void update();
     void render();
 

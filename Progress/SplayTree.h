@@ -47,7 +47,7 @@ public:
     SplayTree(std::string file_name);
     ~SplayTree();
 
-    void insert(int key, std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale, std::vector<positionalNode> &positional_nodes);
+    void insert(int key, std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale, std::vector<positionalNode> &positional_nodes, int start_x);
     void splay_tree(int key);
     void delete_node(int key);
 
@@ -57,7 +57,7 @@ public:
     void pre_order();
     void post_order();
     void inorder();
-    void pre_order_vector(std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale, std::vector<positionalNode> &positional_nodes);
+    void pre_order_vector(std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale, std::vector<positionalNode> &positional_nodes, int start_x);
 
 
     friend class Splay;
