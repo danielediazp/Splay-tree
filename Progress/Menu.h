@@ -24,6 +24,8 @@ public:
         return this->menu_selected;
     }
 
+    void run();
+
     ~Menu();
 
 };

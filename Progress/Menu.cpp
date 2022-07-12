@@ -65,3 +65,7 @@ void Menu::move_down() {
         main_menu[menu_selected].setFillColor(sf::Color::Blue);
     }
 }
+
+void Menu::run() {
+
+}
