@@ -48,7 +48,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     float temp;
                     std::cin >> temp;
                     next_node(temp, window);
-                    window->clear();
+                    window->display();
                     this->tree->insert(temp, splayed_tree, window, scale, positional_nodes, this->window_x/2);
                     window->display();
 

@@ -358,7 +358,7 @@ void SplayTree::force_delay(){
 
 void SplayTree::insert(int key, std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale, std::vector<positionalNode> &positional_nodes, int start_x){
     this->root_ = this->insert(key, this->root_);
-//    force_delay();
+    force_delay();
     this->pre_order_vector(target_vector, window, scale, positional_nodes, start_x);
 }
 
