@@ -106,23 +106,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                 }
             }
             if (event.type == sf::Event::KeyPressed) {
-                if (event.key.code == sf::Keyboard::T) {
-                    if (!this->deleteMode) {
-                        this->deleteMode = true;
-                        // TODO: DRAW THE FACT THAT DELETE MODE IS ON NEXT TO THE CURSOR
-                        // CHANGE LOGIC SO THAT ONLY DELETION IS ALLOWED
-                        std::cout << "Delete Mode Toggled: ON" << '\n';
-                    }
-
-                } else {
-                    this->deleteMode = false;
-                    // TODO: DRAW THE FACT THAT INSERT MODE IS ON NEXT TO THE CURSOR
-                    // CHANGE LOGIC SO THAT ONLY INSERTION IS ALLOWED
-                    std::cout << "Delete Mode Toggled: OFF" << '\n';
-                }
-
-            }
-            if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::J && !this->deleteMode) {
                     splayed_tree.clear();
                     this->window->clear();
@@ -135,13 +118,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
         }
     }
 }
-void Splay::update(){
-}
-
-void Splay::render(){
-    this->update();
-    this->window->display();
-}
 
 void Splay::next_node(int val, sf::RenderWindow * window) {
     int size = 30;
@@ -149,10 +125,12 @@ void Splay::next_node(int val, sf::RenderWindow * window) {
     node.setRadius(size);
     node.setFillColor(sf::Color::White);
     node.setOrigin(0.0f, 0.0f);
+    node.setOutlineThickness(5);
+    node.setOutlineColor(sf::Color::Red);
     sf::Text value;
     value.setCharacterSize(size);
     value.setFont(this->global_font);
-    value.setFillColor(sf::Color::Red);
+    value.setFillColor(sf::Color::Black);
 
     std::string string_value = ("Inserting Node:  ");
     value.setString(string_value);
@@ -166,6 +144,7 @@ void Splay::next_node(int val, sf::RenderWindow * window) {
     string_value = std::to_string(val);
     value.setString(string_value);
     value.setPosition(310, 55);
+
     window->draw(value);
 
 }
