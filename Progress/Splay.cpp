@@ -52,7 +52,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     this->tree->insert(temp, splayed_tree, window, scale, positional_nodes, this->window_x/2);
                     window->display();
 
-
                 }
             }
 
