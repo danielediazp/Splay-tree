@@ -6,6 +6,7 @@
 
 SplayTree::SplayTree() {
     this->root_ = nullptr;
+    this->global_font.loadFromFile("../coolvetica.otf");
 }
 
 // Overloaded constructor, accepts data to create root node
@@ -258,9 +259,8 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
     node.setOrigin(0.0f, 0.0f);
     sf::Font global_font;
     sf::Text value;
-    global_font.loadFromFile("../Butler_Regular.otf");
     value.setCharacterSize(size);
-    value.setFont(global_font);
+    value.setFont(this->global_font);
     value.setFillColor(sf::Color::Red);
 
     if (!root){
@@ -306,7 +306,7 @@ void SplayTree::force_delay(){
     sf::Clock clock;
     clock.restart();
     sf::Time time1 = clock.getElapsedTime();
-    while (time1.asSeconds() != 2){
+    while (time1.asSeconds() != 1){
         time1 = clock.getElapsedTime();
     }
 //    std::cout << "5 seconds elapsed" << '\n';
