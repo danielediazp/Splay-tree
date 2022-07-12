@@ -27,7 +27,7 @@ SplayTree::SplayTree(std::string file_name) {
                 this->root_ = new Node(data);
                 root_catcher = 1;
             }else{
-               root_ =  insert(data, root_);
+                root_ =  insert(data, root_);
             }
         }
     }
@@ -65,7 +65,7 @@ Node* SplayTree::insert(int data, Node* root) {
         root->left_ = nullptr;
     }
 
-    //Vise versa
+        //Vise versa
     else {
         insert_node->left_ = root;
         insert_node->right_ = root->right_;
@@ -269,7 +269,11 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
         positional_nodes.push_back(temp);
         return;
     }
-
+//    for (int i = 0; i < positional_nodes.size(); ++i) {
+//        if (positional_nodes[i].value_ == root) {
+//            return;
+//        }
+//    }
     target_vector.push_back(root);
     positionalNode temp = positionalNode(root, x - 30, y - 30);
     positional_nodes.push_back(temp);
@@ -279,25 +283,64 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
     value.setPosition(x - 17 , y - 20);
 
 
-    if (root->left_ != nullptr) {
-        sf::VertexArray left_p(sf::LinesStrip, 2);
-        left_p[0].position = sf::Vector2f(x, y);
-        left_p[1].position = sf::Vector2f(x - 50 - scale/1.2, y + 50 + scale/1.2);
-        window->draw(left_p);
-    }
 
-    if (root->right_ != nullptr) {
-        sf::VertexArray right_p(sf::LinesStrip, 2);
-        right_p[0].position = sf::Vector2f(x,y);
-        right_p[1].position = sf::Vector2f(x + 50 + scale/1.2, y + 50 + scale/1.2);
-        window->draw(right_p);
+    if (type == 'l') {
+        if (root->left_ != nullptr) {
+            sf::VertexArray left_p(sf::LinesStrip, 2);
+            left_p[0].position = sf::Vector2f(x, y);
+            left_p[1].position = sf::Vector2f(x - 50 - scale/1.2, y + 50 + scale/1.2);
+            window->draw(left_p);
+        }
+
+        if (root->right_ != nullptr) {
+            sf::VertexArray right_p(sf::LinesStrip, 2);
+            right_p[0].position = sf::Vector2f(x,y);
+            right_p[1].position = sf::Vector2f(x + 50 + scale/3, y + 50 + scale/3);
+            window->draw(right_p);
+        }
+    } else if (type == 'r') {
+        if (root->left_ != nullptr) {
+            sf::VertexArray left_p(sf::LinesStrip, 2);
+            left_p[0].position = sf::Vector2f(x, y);
+            left_p[1].position = sf::Vector2f(x - 50 - scale/3, y + 50 + scale/3);
+            window->draw(left_p);
+        }
+
+        if (root->right_ != nullptr) {
+            sf::VertexArray right_p(sf::LinesStrip, 2);
+            right_p[0].position = sf::Vector2f(x,y);
+            right_p[1].position = sf::Vector2f(x + 50 + scale/1.2, y + 50 + scale/1.2);
+            window->draw(right_p);
+        }
+    } else if (type == 'm') {
+        if (root->left_ != nullptr) {
+            sf::VertexArray left_p(sf::LinesStrip, 2);
+            left_p[0].position = sf::Vector2f(x, y);
+            left_p[1].position = sf::Vector2f(x - 50 - scale/1.2, y + 50 + scale/1.2);
+            window->draw(left_p);
+        }
+
+        if (root->right_ != nullptr) {
+            sf::VertexArray right_p(sf::LinesStrip, 2);
+            right_p[0].position = sf::Vector2f(x,y);
+            right_p[1].position = sf::Vector2f(x + 50 + scale/1.2, y + 50 + scale/1.2);
+            window->draw(right_p);
+        }
     }
     window->draw(node);
     window->draw(value);
 
-    pre_order_vector(root->left_, target_vector, x - 50 - scale/1.2, y + 50 + scale/1.2, window, 'l', scale/1.2, positional_nodes);
-
-    pre_order_vector(root->right_, target_vector, x + 50 + scale/1.2, y + 50 + scale/1.2, window, 'r', scale/1.2, positional_nodes);
+    if (type == 'l') {
+        pre_order_vector(root->left_, target_vector, x - 50 - scale/1.2, y + 50 + scale/1.2, window, 'l', scale, positional_nodes);
+        pre_order_vector(root->right_, target_vector, x + 50 + scale/3, y + 50 + scale/3, window, 'l', scale/3, positional_nodes);
+    }
+    else if (type == 'r') {
+        pre_order_vector(root->left_, target_vector, x - 50 - scale/3, y + 50 + scale/3, window, 'r', scale/3, positional_nodes);
+        pre_order_vector(root->right_, target_vector, x + 50 + scale/1.2, y + 50 + scale/1.2, window, 'r', scale, positional_nodes);
+    } else if (type == 'm') {
+        pre_order_vector(root->left_, target_vector, x - 50 - scale/1.2, y + 50 + scale/1.2, window, 'l', scale, positional_nodes);
+        pre_order_vector(root->right_, target_vector, x + 50 + scale/1.2, y + 50 + scale/1.2, window, 'r', scale, positional_nodes);
+    }
 }
 
 // --------------- PUBLIC METHODS -----------------
@@ -315,7 +358,7 @@ void SplayTree::force_delay(){
 
 void SplayTree::insert(int key, std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale, std::vector<positionalNode> &positional_nodes, int start_x){
     this->root_ = this->insert(key, this->root_);
-    force_delay();
+//    force_delay();
     this->pre_order_vector(target_vector, window, scale, positional_nodes, start_x);
 }
 
