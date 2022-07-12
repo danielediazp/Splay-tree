@@ -33,6 +33,7 @@ private:
     void level_order(Node *root, int l, std::vector<Node *> &target_vector);
     void pre_order_vector(Node* root, std::vector<Node*> &target_vector, int x, int y, sf::RenderWindow *window, char type, float scale, std::vector<positionalNode> &positional_nodes);
     void destroy(Node* root);
+    sf::Font global_font;
 
     void inorder(Node* root);
     void pre_order(Node* root);

@@ -18,7 +18,7 @@ Splay::Splay() {
     this->window->setFramerateLimit(144);
     this->tree = new SplayTree();
     this->deleteMode = false;
-    this->global_font.loadFromFile("../Butler_Regular.otf");
+    this->global_font.loadFromFile("../coolvetica.otf");
 }
 
 void Splay::run(std::vector<Node*> splayed_tree) {
@@ -68,11 +68,9 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                             node.setRadius(size);
                             node.setFillColor(sf::Color::Yellow);
                             node.setOrigin(0.0f, 0.0f);
-                            sf::Font global_font;
                             sf::Text value;
-                            global_font.loadFromFile("../Butler_Regular.otf");
                             value.setCharacterSize(size);
-                            value.setFont(global_font);
+                            value.setFont(this->global_font);
                             value.setFillColor(sf::Color::Red);
                             node.setPosition(positional_nodes[i].coordinates.first,
                                              positional_nodes[i].coordinates.second);
@@ -142,11 +140,9 @@ void Splay::next_node(int val, sf::RenderWindow * window) {
     node.setRadius(size);
     node.setFillColor(sf::Color::White);
     node.setOrigin(0.0f, 0.0f);
-    sf::Font global_font;
     sf::Text value;
-    global_font.loadFromFile("../Butler_Regular.otf");
     value.setCharacterSize(size);
-    value.setFont(global_font);
+    value.setFont(this->global_font);
     value.setFillColor(sf::Color::Red);
 
     std::string string_value = ("Inserting Node:  ");
