@@ -45,12 +45,13 @@ void Splay::run(std::vector<Node*> splayed_tree) {
             if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::I) {
                     window->clear();
-                    std::cout << "Insert plz: " << "\n";
-                    float temp;
-                    std::cin >> temp;
+//                    std::cout << "Insert plz: " << "\n";
+//                    float temp;
+//                    std::cin >> temp;
+                    int temp = 1 + (rand() % 200);
                     next_node(temp, window);
 //                    window->display();
-                    this->tree->insert(temp, splayed_tree, window, scale, positional_nodes, this->window_x/2);
+                    this->tree->insert(temp , splayed_tree, window, scale, positional_nodes, this->window_x/2);
                     window->display();
 
                 }

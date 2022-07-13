@@ -281,59 +281,92 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
         if (root->left_ != nullptr) {
             sf::VertexArray left_p(sf::LinesStrip, 2);
             left_p[0].position = sf::Vector2f(x, y);
-            left_p[1].position = sf::Vector2f(x - 50 - scale/1.2, y + 50 + scale/1.2);
+            left_p[1].position = sf::Vector2f(x - 50 - scale, y + scale);
             window->draw(left_p);
         }
 
         if (root->right_ != nullptr) {
             sf::VertexArray right_p(sf::LinesStrip, 2);
             right_p[0].position = sf::Vector2f(x,y);
-            right_p[1].position = sf::Vector2f(x + 50 + scale/3, y + 50 + scale/3);
+            right_p[1].position = sf::Vector2f(x + 50 + scale/3, y + scale/3);
             window->draw(right_p);
         }
     } else if (type == 'r') {
         if (root->left_ != nullptr) {
             sf::VertexArray left_p(sf::LinesStrip, 2);
             left_p[0].position = sf::Vector2f(x, y);
-            left_p[1].position = sf::Vector2f(x - 50 - scale/3, y + 50 + scale/3);
+            left_p[1].position = sf::Vector2f(x - 50 - scale/3, y + scale/3);
             window->draw(left_p);
         }
 
         if (root->right_ != nullptr) {
             sf::VertexArray right_p(sf::LinesStrip, 2);
             right_p[0].position = sf::Vector2f(x,y);
-            right_p[1].position = sf::Vector2f(x + 50 + scale/1.2, y + 50 + scale/1.2);
+            right_p[1].position = sf::Vector2f(x + 50 + scale, y + scale);
             window->draw(right_p);
         }
     } else if (type == 'm') {
         if (root->left_ != nullptr) {
             sf::VertexArray left_p(sf::LinesStrip, 2);
             left_p[0].position = sf::Vector2f(x, y);
-            left_p[1].position = sf::Vector2f(x - 50 - scale/1.2, y + 50 + scale/1.2);
+            left_p[1].position = sf::Vector2f(x - 50 - scale, y + scale);
             window->draw(left_p);
         }
 //
         if (root->right_ != nullptr) {
             sf::VertexArray right_p(sf::LinesStrip, 2);
             right_p[0].position = sf::Vector2f(x,y);
-            right_p[1].position = sf::Vector2f(x + 50 + scale/1.2, y + 50 + scale/1.2);
+            right_p[1].position = sf::Vector2f(x + 50 + scale, y + scale);
             window->draw(right_p);
         }
-   }
+   } else if (type == 'x') {
+        if (root->left_ != nullptr) {
+            sf::VertexArray left_p(sf::LinesStrip, 2);
+            left_p[0].position = sf::Vector2f(x, y);
+            left_p[1].position = sf::Vector2f(x - 50 - scale/3, y + scale/3);
+            window->draw(left_p);
+        }
+//
+        if (root->right_ != nullptr) {
+            sf::VertexArray right_p(sf::LinesStrip, 2);
+            right_p[0].position = sf::Vector2f(x,y);
+            right_p[1].position = sf::Vector2f(x + 50 + scale/3, y + scale/3);
+            window->draw(right_p);
+        }
+    } else if (type == 'y') {
+        if (root->left_ != nullptr) {
+            sf::VertexArray left_p(sf::LinesStrip, 2);
+            left_p[0].position = sf::Vector2f(x, y);
+            left_p[1].position = sf::Vector2f(x - 50 - scale/3, y + scale/3);
+            window->draw(left_p);
+        }
+//
+        if (root->right_ != nullptr) {
+            sf::VertexArray right_p(sf::LinesStrip, 2);
+            right_p[0].position = sf::Vector2f(x,y);
+            right_p[1].position = sf::Vector2f(x + 50 + scale/3, y + scale/3);
+            window->draw(right_p);
+        }
+    }
     window->draw(node);
     window->draw(value);
 
     if (type == 'l') {
-        pre_order_vector(root->left_, target_vector, x - 50 - scale, y + 50 + scale, window, 'l', scale, positional_nodes);
-        pre_order_vector(root->right_, target_vector, x + 50 + scale/3, y + 50 + scale/3, window, 'l', scale/3, positional_nodes);
+        pre_order_vector(root->left_, target_vector, x - 50 - scale, y + scale, window, 'l', scale, positional_nodes);
+        pre_order_vector(root->right_, target_vector, x + 50 + scale/3, y + scale/3, window, 'x', scale, positional_nodes);
     }
     else if (type == 'r') {
-        pre_order_vector(root->left_, target_vector, x - 50 - scale/3, y + 50 + scale/3, window, 'r', scale/3, positional_nodes);
-        pre_order_vector(root->right_, target_vector, x + 50 + scale, y + 50 + scale, window, 'r', scale, positional_nodes);
+        pre_order_vector(root->left_, target_vector, x - 50 - scale/3, y  + scale/3, window, 'y', scale, positional_nodes);
+        pre_order_vector(root->right_, target_vector, x + 50 + scale, y  + scale, window, 'r', scale, positional_nodes);
     } else if (type == 'm') {
-        pre_order_vector(root->left_, target_vector, x - 50 - scale, y + 50 + scale, window, 'l', scale, positional_nodes);
-        pre_order_vector(root->right_, target_vector, x + 50 + scale, y + 50 + scale, window, 'r', scale, positional_nodes);//
-
+        pre_order_vector(root->left_, target_vector, x - 50 - scale, y  + scale, window, 'l', scale, positional_nodes);
+        pre_order_vector(root->right_, target_vector, x + 50 + scale, y + scale, window, 'r', scale, positional_nodes);//
+    } else if (type == 'x') {
+        pre_order_vector(root->left_, target_vector, x - 50 - scale/3, y + scale/3, window, 'x', scale, positional_nodes);
+        pre_order_vector(root->right_, target_vector, x + 50 + scale/3, y + scale/3, window, 'x', scale, positional_nodes);
+    } else if (type == 'y') {
+        pre_order_vector(root->left_, target_vector, x - 50 - scale/3, y + scale/3, window, 'y', scale, positional_nodes);
+        pre_order_vector(root->right_, target_vector, x + 50 + scale/3, y + scale/3, window, 'y', scale, positional_nodes);
     }
 }
 
