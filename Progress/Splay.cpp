@@ -11,7 +11,7 @@ TODO: Come up with some form of animation for deleting and inserting nodes (via 
  */
 
 Splay::Splay() {
-    this->scale = 500;
+    this->scale = 300;
     this->window_x = 800 + (4 * scale);
     this->window_y = 800 + (2 * scale);
     this->window = new sf::RenderWindow(sf::VideoMode(window_x, window_y), "Splay Tree", sf::Style::Close | sf::Style::Titlebar);
@@ -44,11 +44,12 @@ void Splay::run(std::vector<Node*> splayed_tree) {
 
             if (event.type == sf::Event::KeyPressed) {
                 if (event.key.code == sf::Keyboard::I) {
+                    window->clear();
                     std::cout << "Insert plz: " << "\n";
                     float temp;
                     std::cin >> temp;
                     next_node(temp, window);
-                    window->display();
+//                    window->display();
                     this->tree->insert(temp, splayed_tree, window, scale, positional_nodes, this->window_x/2);
                     window->display();
 
@@ -100,8 +101,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     splayed_tree.clear();
                     this->window->clear();
                     tree->pre_order_vector(splayed_tree, this->window, this->scale, positional_nodes, this->window_x/2);
-
-
                     this->window->display();
                 }
             }
@@ -120,7 +119,7 @@ void Splay::next_node(int val, sf::RenderWindow * window) {
     sf::Text value;
     value.setCharacterSize(size);
     value.setFont(this->global_font);
-    value.setFillColor(sf::Color::Black);
+    value.setFillColor(sf::Color::Red);
 
     std::string string_value = ("Inserting Node:  ");
     value.setString(string_value);
@@ -136,5 +135,5 @@ void Splay::next_node(int val, sf::RenderWindow * window) {
     value.setPosition(310, 55);
 
     window->draw(value);
-
+//    window->display();
 }
