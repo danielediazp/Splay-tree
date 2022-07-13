@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "Splay.h"
 
 #ifndef FINAL_212_MENU_H
 #define FINAL_212_MENU_H
@@ -24,7 +25,7 @@ public:
         return this->menu_selected;
     }
 
-    void run();
+    void run(sf::RenderWindow &window);
 
     ~Menu();
 
