@@ -3,33 +3,36 @@
 Menu::Menu(float width, float height) {
     font.loadFromFile("../coolvetica.otf");
 
+    this->window_height_ = height;
+    this->window_width_ = width;
+
     //Play
     main_menu[0].setFont(font);
     main_menu[0].setFillColor(sf::Color::White);
     main_menu[0].setString("Play");
-    main_menu[0].setCharacterSize(70);
-    main_menu[0].setPosition(400,200);
+    main_menu[0].setCharacterSize(90);
+    main_menu[0].setPosition(this->window_width_/2,250);
 
     //How to use
     main_menu[1].setFont(font);
     main_menu[1].setFillColor(sf::Color::White);
     main_menu[1].setString("How to use?");
-    main_menu[1].setCharacterSize(70);
-    main_menu[1].setPosition(400,300);
+    main_menu[1].setCharacterSize(90);
+    main_menu[1].setPosition(this->window_width_/2,350);
 
     //About
     main_menu[2].setFont(font);
     main_menu[2].setFillColor(sf::Color::White);
     main_menu[2].setString("About");
-    main_menu[2].setCharacterSize(70);
-    main_menu[2].setPosition(400,400);
+    main_menu[2].setCharacterSize(90);
+    main_menu[2].setPosition(this->window_width_/2,450);
 
     //Exit
     main_menu[3].setFont(font);
     main_menu[3].setFillColor(sf::Color::White);
     main_menu[3].setString("Exit");
-    main_menu[3].setCharacterSize(70);
-    main_menu[3].setPosition(400,500);
+    main_menu[3].setCharacterSize(90);
+    main_menu[3].setPosition(this->window_width_/2,550);
 
     menu_selected = 0;
 }
@@ -51,7 +54,7 @@ void Menu::move_up() {
         if (menu_selected == -1){
             menu_selected = 2;
         }
-        main_menu[menu_selected].setFillColor(sf::Color::Blue);
+        main_menu[menu_selected].setFillColor(sf::Color::Green);
     }
 }
 
@@ -62,11 +65,25 @@ void Menu::move_down() {
         if (menu_selected == 4){
             menu_selected = 0;
         }
-        main_menu[menu_selected].setFillColor(sf::Color::Blue);
+        main_menu[menu_selected].setFillColor(sf::Color::Green);
     }
 }
 
 void Menu::run(sf::RenderWindow &window){
+
+    //set background
+    sf::RectangleShape background;
+    background.setSize(sf::Vector2f(this->window_width_,this->window_height_));
+    sf::Texture back_texture;
+    back_texture.loadFromFile("../Splay-tree/Progress/backgrounds/menu.jpg");
+    background.setTexture(&back_texture);
+
+    //set main menu background
+    sf::RectangleShape main_background;
+    main_background.setSize(sf::Vector2f(this->window_width_,this->window_height_));
+    sf::Texture main_texture;
+    main_texture.loadFromFile("../Splay-tree/Progress/backgrounds/main_menu.jpg");
+    main_background.setTexture(&main_texture);
 
     while (window.isOpen()) {
         sf::Event event;
@@ -84,9 +101,9 @@ void Menu::run(sf::RenderWindow &window){
                     break;
                 }
                 if (event.key.code == sf::Keyboard::Return) {
-                    sf::RenderWindow Play(sf::VideoMode(960, 720), "Splay-Tree");
-                    sf::RenderWindow OPTIONS(sf::VideoMode(960, 720), "HOW TO USE");
-                    sf::RenderWindow ABOUT(sf::VideoMode(960, 720), "ABOUT");
+                    sf::RenderWindow Play(sf::VideoMode(this->window_width_, this->window_height_), "Splay-Tree");
+                    sf::RenderWindow OPTIONS(sf::VideoMode(this->window_width_, this->window_height_), "HOW TO USE");
+                    sf::RenderWindow ABOUT(sf::VideoMode(this->window_width_, this->window_height_), "ABOUT");
 
                     int x = menu_pressed();
                     if (x == 0) {
@@ -113,6 +130,7 @@ void Menu::run(sf::RenderWindow &window){
                             }
                             Play.close();
                             OPTIONS.clear();
+                            OPTIONS.draw(background);
                             ABOUT.close();
                             OPTIONS.display();
                         }
@@ -133,6 +151,7 @@ void Menu::run(sf::RenderWindow &window){
                             Play.close();
                             OPTIONS.close();
                             ABOUT.clear();
+                            ABOUT.draw(background);
                             ABOUT.display();
                         }
                     }
@@ -144,6 +163,7 @@ void Menu::run(sf::RenderWindow &window){
             }
         }
         window.clear();
+        window.draw(main_background);
         draw(window);
         window.display();
     }

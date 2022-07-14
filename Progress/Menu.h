@@ -14,6 +14,8 @@ private:
     int menu_selected;
     sf::Font font;
     sf::Text main_menu[Max_main_menu];
+    int window_width_;
+    int window_height_;
 
 public:
     Menu (float width, float height);
