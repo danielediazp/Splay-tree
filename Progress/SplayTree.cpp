@@ -325,6 +325,7 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
         //pre_order_vector(root->right_, target_vector, x + 50 + scale * 2, y + scale/2, window, 'r', scale, positional_nodes);//
     //}
    }
+
     window->draw(node);
     window->draw(value);
 
