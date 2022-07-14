@@ -101,18 +101,16 @@ void Menu::run(sf::RenderWindow &window){
                     break;
                 }
                 if (event.key.code == sf::Keyboard::Return) {
-                    sf::RenderWindow Play(sf::VideoMode(this->window_width_, this->window_height_), "Splay-Tree");
                     sf::RenderWindow OPTIONS(sf::VideoMode(this->window_width_, this->window_height_), "HOW TO USE");
                     sf::RenderWindow ABOUT(sf::VideoMode(this->window_width_, this->window_height_), "ABOUT");
 
                     int x = menu_pressed();
                     if (x == 0) {
+                        OPTIONS.close();
+                        ABOUT.close();
                         Splay splay;
                         std::vector<Node *> splay_tree;
                         splay.run(splay_tree);
-
-                        OPTIONS.close();
-                        ABOUT.close();
                     }
 
                     if (x == 1) {
@@ -128,7 +126,6 @@ void Menu::run(sf::RenderWindow &window){
                                     }
                                 }
                             }
-                            Play.close();
                             OPTIONS.clear();
                             OPTIONS.draw(background);
                             ABOUT.close();
@@ -148,7 +145,6 @@ void Menu::run(sf::RenderWindow &window){
                                     }
                                 }
                             }
-                            Play.close();
                             OPTIONS.close();
                             ABOUT.clear();
                             ABOUT.draw(background);
