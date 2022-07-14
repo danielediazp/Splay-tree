@@ -11,7 +11,7 @@ TODO: Come up with some form of animation for deleting and inserting nodes (via 
  */
 
 Splay::Splay() {
-    this->scale = 300;
+    this->scale = 500;
     this->window_x = 800 + (4 * scale);
     this->window_y = 800 + (2 * scale);
     this->window = new sf::RenderWindow(sf::VideoMode(window_x, window_y), "Splay Tree", sf::Style::Close | sf::Style::Titlebar);
@@ -22,6 +22,11 @@ Splay::Splay() {
 }
 
 void Splay::run(std::vector<Node*> splayed_tree) {
+    sf::View view1;
+    view1.setSize(this->window_x, this->window_y);
+    view1.setCenter(this->window_x /2, this->window_y/2);
+    view1.setViewport(sf::FloatRect (0, 0, 1, 1));
+    window->setView(view1);
     std::srand(std::time(nullptr));
     std::vector<positionalNode> positional_nodes;
     sf::Text value;
@@ -53,9 +58,25 @@ void Splay::run(std::vector<Node*> splayed_tree) {
 //                    window->display();
                     this->tree->insert(temp , splayed_tree, window, scale, positional_nodes, this->window_x/2);
                     window->display();
-
+                } else if (event.key.code == sf::Keyboard::F){
+                    view1.setSize(this->window_x * 1.5 * scale, this->window_y * 1.5 * scale);
+                    view1.setViewport(sf::FloatRect (0.25, 0.25, 0.5, 0.5));
+                    this->scale *= 0.5;
+                    window->setView(view1);
+                } else if (event.key.code == sf::Keyboard::C){
+                    view1.setSize(this->window_x * 0.5 * scale, this->window_y * 0.5 * scale);
+                    view1.setViewport(sf::FloatRect (1.25, 1.25, 1.5, 1.5));
+                    this->scale *= 1.5;
+                    window->setView(view1);
+                }  else if (event.key.code == sf::Keyboard::J && !this->deleteMode) {
+//                    splayed_tree.clear();
+                    this->window->clear();
+                    tree->pre_order_vector(splayed_tree, this->window, this->scale, positional_nodes, this->window_x/2);
+                    this->window->display();
                 }
             }
+
+
 
             if (event.mouseButton.button == sf::Mouse::Left && deleteMode == true) {
                 std::pair<int, int> coord = std::make_pair(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
@@ -95,14 +116,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                             }
                         }
                     }
-                }
-            }
-            if (event.type == sf::Event::KeyPressed) {
-                if (event.key.code == sf::Keyboard::J && !this->deleteMode) {
-                    splayed_tree.clear();
-                    this->window->clear();
-                    tree->pre_order_vector(splayed_tree, this->window, this->scale, positional_nodes, this->window_x/2);
-                    this->window->display();
                 }
             }
         }

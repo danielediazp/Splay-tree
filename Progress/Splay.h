@@ -5,6 +5,7 @@
 #include <cmath>
 #include <string>
 #include <stdlib.h>
+#include <Event.hpp>
 #include "SplayTree.h"
 #include "Node.h"
 
