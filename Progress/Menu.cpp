@@ -8,7 +8,7 @@ Menu::Menu(float width, float height) {
 
     //Play
     main_menu[0].setFont(font);
-    main_menu[0].setFillColor(sf::Color::White);
+    main_menu[0].setFillColor(sf::Color::Green);
     main_menu[0].setString("Play");
     main_menu[0].setCharacterSize(90);
     main_menu[0].setPosition(this->window_width_/2,250);
