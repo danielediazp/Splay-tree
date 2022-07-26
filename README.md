@@ -4,7 +4,8 @@ CSC 212 Final Project
 
 By Cameron Castillo, Carl Kakisis, Daniel Diaz, and Vincent Zhuang.
 
-![splay-tree](https://user-images.githubusercontent.com/38219103/181115192-408beb8a-cc8c-49b1-bce6-b0b101403ca9.png)
+![SingRot](https://user-images.githubusercontent.com/38219103/181129292-36bab696-3b9b-425d-bdd2-02845df4b5c3.png)
+<sub>https://opendsa-server.cs.vt.edu/OpenDSA/Books/Everything/html/Splay.html</sub>
 
 This repository houses all of the necessary files for our implementation of the Splay Tree data structure, including a visualization using SFML.
 
