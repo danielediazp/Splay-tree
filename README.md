@@ -28,16 +28,13 @@ The easiest way to compile is to use the CMakeLists.txt file included in this re
 	- Line 2: Update project(xxxxx) to project(YOUR-PROJECT-DIRECTORY-NAME)
 	- Line 18: Update the first item in add_executable, xxxxx, to YOUR-PROJECT-DIRECTORY-NAME.
 	- Line 102: Update the first item in target_link_libraries, xxxxx, to YOUR-PROJECT-DIRECTORY-NAME
-4. Make sure that SFML is installed. The best way to install the library is using Homebrew, and executing "brew install sfml" through your terminal.
-	- There are SFML files in the Splay-tree/Progress/External folder. BE AWARE THAT THESE FILES WILL NOT COMPILE. Our implementation utilizes the include path directory "/usr/local/include" on MacOS for linking.
- 	- Manual SFML download: https://www.sfml-dev.org/download.php
-    	- If you install SFML in any location aside from the include path, update the CMake list target directories (Line 6)
+4. Because we have bundled the SFML library in this project, you should not need to manually install SFML. If you already have it installed, you will need to update the directory paths throughout the CMakeList (Lines 8-13, 19-96)
 
 5. Ensure that you have also downloaded the font file for the visualization, "coolvetica.otf"
 	- This file should be in your project directory, NOT the Splay-tree directory
     
 An example of what your project directory should look like is below:
 
-![Screen Shot 2022-07-26 at 5 17 01 PM](https://user-images.githubusercontent.com/38219103/181114877-2ede41fe-7941-4432-b483-92168d54c5dd.png)
+![Screen Shot 2022-07-26 at 6 48 50 PM](https://user-images.githubusercontent.com/38219103/181125365-cfbf4d9a-058c-4f4d-b2d4-93ec5a723763.png)
 
 The purpose of utilizing a CMakeList for this project was to avoid needing to manually compile. The project should be run using an automatic compile-and-run button in your IDE that accepts a CMakeList.txt file for linking.
