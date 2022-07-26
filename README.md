@@ -21,6 +21,10 @@ Dependencies:
 
 The easiest way to compile is to use the CMakeLists.txt file included in this repo. In these steps, YOUR-PROJECT-DIRECTORY-NAME should be replaced with the actual name of the project directory that will house the downloaded files. Steps for compiling are below:
 
+<details>
+  <summary><em>Click to view manual installation directions</em></summary>
+  
+
 1. Download the provided CMakeLists.txt file and coolvetica.otf file, as well as all files and directories inside of the Splay-tree directory
 2. Create a new project using your IDE of choice. This project was built primarily using JetBrains CLion.
 3. Move the CMakeLists.txt and coolvetica.otf files into your PROJECT DIRECTORY, not the Splay-tree directory
@@ -33,6 +37,7 @@ The easiest way to compile is to use the CMakeLists.txt file included in this re
 	- Line 102: Update the first item in target_link_libraries, YOUR-PROJECT-DIRECTORY-NAME to the name of your project directory
 6. Because we have bundled the SFML library in this project, you should not need to manually install SFML. If you already have it installed and would not like to use the bundled files, you will need to update the directory paths throughout the CMakeList (Lines 8-13, 19-96). We would not suggest this route.
     
+</details>    
 An example of what your project directory should look like is below:
 
 ![Screen Shot 2022-07-26 at 7 04 26 PM](https://user-images.githubusercontent.com/38219103/181127007-27c0183a-3aa4-421f-a8d0-3f5a407d157e.png)
