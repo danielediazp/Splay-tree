@@ -1,9 +1,9 @@
 #include "Splay.h"
-
+#include <sstream>
 Splay::Splay() {
     this->scale = 500;
-    this->window_x = 800 + (4 * scale);
-    this->window_y = 800 + (2 * scale);
+    this->window_x = 800 + (2 * scale);
+    this->window_y = 800 + (1 * scale);
     this->window = new sf::RenderWindow(sf::VideoMode(window_x, window_y), "Splay Tree", sf::Style::Close | sf::Style::Titlebar);
     this->window->setFramerateLimit(144);
     this->tree = new SplayTree();
@@ -58,18 +58,16 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                 }
                 if (event.key.code == sf::Keyboard::I) {
                     window->clear();
-//                    std::cout << "Insert plz: " << "\n";
-//                    float temp;
-//                    std::cin >> temp;
-//                    std::cout << "Enter Node to be Inserted: " << "\n";
-//                    std::cin >> temp;
-                    int temp = 1 + (rand() % 200);
-                    next_node(temp, window, false);
-//                    window->display();
-
-                    this->tree->insert(temp , splayed_tree, window, scale, positional_nodes, this->window_x/2);
-                    std::cout << positional_nodes[0].coordinates.first << "\n";
-                    window->display();
+                    std::cout << "Insert Numbers to be inserted: " << "\n";
+                    std::string nums;
+                    std::getline(std::cin, nums);
+                    std::istringstream str(nums);
+                    std::string temp;
+                    while (str >> temp) {
+                        next_node(stoi(temp), window, false);
+                        this->tree->insert(stoi(temp), splayed_tree, window, scale, positional_nodes, this->window_x / 2);
+                        window->display();
+                    }
                 } else if (event.key.code == sf::Keyboard::N){
 
                     view.zoom(.99f);
@@ -79,10 +77,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     window->display();
                     window->setView(view);
 
-//                    view1.setSize(this->window_x, this->window_y);
-//                    view1.setViewport(sf::FloatRect (0.25, 0.25, 0.5, 0.5));
-////                    this->scale *= 0.5;
-//                    window->setView(view1);
                 }else if (event.key.code == sf::Keyboard::M){
 
                     view.zoom(1.01f);
@@ -92,9 +86,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     window->display();
                     window->setView(view);
 
-//                    view1.setSize(this->window_x * 0.5 * scale, this->window_y * 0.5 * scale);
-//                    view1.setViewport(sf::FloatRect (1.25, 1.25, 1.5, 1.5));
-////                    this->scale *= 1.5;
                 } else if (event.key.code == sf::Keyboard::Down){
 
                     view.move(0.f, 30.f);
@@ -103,10 +94,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     this->tree->pre_order_vector(splayed_tree, window, scale, positional_nodes, this->window_x/2);
                     window->display();
                     window->setView(view);
-
-//                    view1.setSize(this->window_x * 0.5 * scale, this->window_y * 0.5 * scale);
-//                    view1.setViewport(sf::FloatRect (1.25, 1.25, 1.5, 1.5));
-////                    this->scale *= 1.5;
 
                 } else if (event.key.code == sf::Keyboard::Up){
 
@@ -117,10 +104,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     window->display();
                     window->setView(view);
 
-//                    view1.setSize(this->window_x * 0.5 * scale, this->window_y * 0.5 * scale);
-//                    view1.setViewport(sf::FloatRect (1.25, 1.25, 1.5, 1.5));
-////                    this->scale *= 1.5;
-
                 }else if (event.key.code == sf::Keyboard::Left){
 
                     view.move(-30.f, 0.f);
@@ -130,10 +113,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     window->display();
                     window->setView(view);
 
-//                    view1.setSize(this->window_x * 0.5 * scale, this->window_y * 0.5 * scale);
-//                    view1.setViewport(sf::FloatRect (1.25, 1.25, 1.5, 1.5));
-////                    this->scale *= 1.5;
-
                 } else if (event.key.code == sf::Keyboard::Right) {
 
                     view.move(30.f, 0.f);
@@ -142,10 +121,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     this->tree->pre_order_vector(splayed_tree, window, scale, positional_nodes, this->window_x/2);
                     window->display();
                     window->setView(view);
-
-//                    view1.setSize(this->window_x * 0.5 * scale, this->window_y * 0.5 * scale);
-//                    view1.setViewport(sf::FloatRect (1.25, 1.25, 1.5, 1.5));
-////                    this->scale *= 1.5;
 
                 }  else if (event.key.code == sf::Keyboard::J && !this->deleteMode) {
                     splayed_tree.clear();
@@ -157,19 +132,13 @@ void Splay::run(std::vector<Node*> splayed_tree) {
 
                 }
             }
-//            std::cout << sf::Mouse::getPosition().x << "\n";
             if (event.mouseButton.button == sf::Mouse::Left && deleteMode == true) {
-                std::cout << "CLICKED! ";
-                for (int i = 0; i < positional_nodes.size(); ++i) {
-                    std::cout << positional_nodes[i].coordinates.first << "\n";
-                    std::cout << positional_nodes[i].coordinates.second << '\n';
-                }
                 std::pair<int, int> coord = std::make_pair(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
                 for (int i = 0; i < positional_nodes.size(); ++i) {
-                    if (coord.first > positional_nodes[i].coordinates.first + 30 &&
-                        coord.first < positional_nodes[i].coordinates.first + 82) {
-                        if (coord.second > positional_nodes[i].coordinates.second + 1860 &&
-                            coord.second < positional_nodes[i].coordinates.second + 1910) {
+                    if (coord.first > positional_nodes[i].coordinates.first + 530 &&
+                        coord.first < positional_nodes[i].coordinates.first + 630) {
+                        if (coord.second > positional_nodes[i].coordinates.second + 1960 &&
+                            coord.second < positional_nodes[i].coordinates.second + 2020) {
                             if (positional_nodes[i].value_ != nullptr) {
                                 tree->delete_node(positional_nodes[i].value_->get_value());
                                 std::cout << "Delete Mode Toggled: OFF - Node has been removed" << "\n";
