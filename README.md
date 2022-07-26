@@ -28,12 +28,12 @@ The easiest way to compile is to use the CMakeLists.txt file included in this re
 	- Line 2: Update the parameter of project(YOUR-PROJECT-DIRECTORY-NAME) to the name of your project directory
 	- Line 18: Update the first item in add_executable, YOUR-PROJECT-DIRECTORY-NAME to the name of your project directory
 	- Line 102: Update the first item in target_link_libraries, YOUR-PROJECT-DIRECTORY-NAME to the name of your project directory
-4. Because we have bundled the SFML library in this project, you should not need to manually install SFML. If you already have it installed and would not like to use the bundled files, you will need to update the directory paths throughout the CMakeList (Lines 8-13, 19-96). I would not suggest this route.
+4. Because we have bundled the SFML library in this project, you should not need to manually install SFML. If you already have it installed and would not like to use the bundled files, you will need to update the directory paths throughout the CMakeList (Lines 8-13, 19-96). We would not suggest this route.
 
 5. The CMakeLists.txt file and coolvetica.otf font file should be in your PROJECT DIRECTORY, NOT in the Splay-tree directory.
     
 An example of what your project directory should look like is below:
 
-![Screen Shot 2022-07-26 at 6 48 50 PM](https://user-images.githubusercontent.com/38219103/181125365-cfbf4d9a-058c-4f4d-b2d4-93ec5a723763.png)
+![Screen Shot 2022-07-26 at 7 04 26 PM](https://user-images.githubusercontent.com/38219103/181127007-27c0183a-3aa4-421f-a8d0-3f5a407d157e.png)
 
 The purpose of utilizing a CMakeList for this project was to avoid needing to manually compile. The project should be run using an automatic compile-and-run button in your IDE that accepts a CMakeList.txt file for linking.
