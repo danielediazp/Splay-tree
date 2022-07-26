@@ -59,7 +59,7 @@ public:
     void post_order();
     void inorder();
     void pre_order_vector(std::vector<Node *> &target_vector, sf::RenderWindow *window, float scale, std::vector<positionalNode> &positional_nodes, int start_x);
-    void search(Node* root, int target, int x, int y, std::vector<positionalNode> &positional_nodes, sf::RenderWindow *window);
+    void search(Node* root, int target, int x, int y, std::vector<positionalNode> &positional_nodes, sf::RenderWindow *window, float scale, char type, int depth, std::vector<Node*> &target_vector, float window_x);
 
     friend class Splay;
 };

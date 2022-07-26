@@ -251,7 +251,7 @@ Node* SplayTree::delete_node(int data, Node *root) {
     }
 }
 
-void SplayTree::search(Node* root, int target, int x, int y, std::vector<positionalNode> &positional_nodes, sf::RenderWindow *window) {
+void SplayTree::search(Node* root, int target, int x, int y, std::vector<positionalNode> &positional_nodes, sf::RenderWindow *window, float scale, char type, int depth, std::vector<Node*> &target_vector, float window_x) {
     int size = 30;
     sf::CircleShape node;
     node.setRadius(size);
@@ -263,7 +263,8 @@ void SplayTree::search(Node* root, int target, int x, int y, std::vector<positio
     value.setCharacterSize(size);
     value.setFont(this->global_font);
     value.setFillColor(sf::Color::Red);
-
+    std::string temp = std::to_string(root->value_);
+    value.setString(temp);
 
     //    std::string string_value = std::to_string(root->value_);
     //    value.setString(string_value);
@@ -274,28 +275,43 @@ void SplayTree::search(Node* root, int target, int x, int y, std::vector<positio
         return;
     }
 
-    for (int i = 0; i < positional_nodes.size(); ++i) {
-        std::cout << positional_nodes[i].value_->get_value() << "\n";
-        if (positional_nodes[i].value_->get_value() == root->value_) {
-            x = positional_nodes[i].coordinates.first;
-            y = positional_nodes[i].coordinates.second;
-            break;
-        }
-    }
-    node.setPosition(x, y);
-    value.setPosition(x + 13, y + 10);
+    node.setPosition(x - 30, y - 30);
+    value.setPosition(x - 17, y - 20);
+
+//    this->pre_order_vector(this->root_, target_vector, window_x, 50, window, 'm', scale/2, positional_nodes, 0);
     window->draw(node);
     window->draw(value);
     window->display();
-    if (target > root->value_) {
-        search(root->right_, target, x, y, positional_nodes, window);
-    } else if (target < root->value_) {
-        search(root->left_, target, x, y, positional_nodes, window);
+    force_delay();
+    if (type == 'r') {
+        if (target > root->value_) {
+            search(root->right_, target, x + 50 + scale, y + scale + depth, positional_nodes, window, scale, 'r',depth + 50, target_vector, window_x);
+        } else if (target < root->value_) {
+            search(root->left_, target, x + 50 + scale/8, y + scale + depth, positional_nodes, window, scale, 'x',depth + 50, target_vector, window_x);
+        }
+    } if (type == 'l') {
+        if (target > root->value_) {
+            search(root->right_, target, x + 50 + scale/8, y + scale + depth, positional_nodes, window, scale, 'x',depth + 50, target_vector, window_x);
+        } else if (target < root->value_) {
+            search(root->left_, target, x + 50 + scale, y + scale + depth, positional_nodes, window, scale, 'l',depth + 50, target_vector, window_x);
+        }
+    } if (type == 'x') {
+        if (target > root->value_) {
+            search(root->right_, target, (x + 50 + scale/3), (y + scale/3 + depth), positional_nodes, window, scale/2, 'x',depth + 50, target_vector, window_x);
+        } else if (target < root->value_) {
+            search(root->left_, target, (x - 50 - scale/3), (y + scale/3 + depth), positional_nodes, window, scale/2, 'x',depth + 50, target_vector, window_x);
+        }
     } else {
+        if (target > root->value_) {
+            search(root->right_, target, x + 50 + scale, y + scale + depth, positional_nodes, window, scale, 'r',depth + 50, target_vector, window_x);
+        } else if (target < root->value_) {
+            search(root->left_, target, x + 50 + scale, y + scale + depth, positional_nodes, window, scale, 'l',depth + 50, target_vector, window_x);
+        }
+    }
+    if (target == root->value_) {
         std::cout << "Node found!" << "\n";
         return;
     }
-    return;
 }
 
 
@@ -379,12 +395,6 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
             window->draw(right_p);
         }
     }
-    //pre_order_vector(root->left_, target_vector, (x - 50 - scale)/3, (y + scale)/3, window, 'x', scale, positional_nodes, depth + scale/2);
-    //        pre_order_vector(root->right_, target_vector, (x + 50 - scale/3), (y + scale)/3, window, 'x', scale, positional_nodes, depth + scale/2);//
-    //    }
-
-
-
 
     window->draw(node);
     window->draw(value);

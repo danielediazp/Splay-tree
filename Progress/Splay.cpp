@@ -56,7 +56,11 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     float temp;
                     std::cin >> temp;
                     window->clear();
-                    this->tree->search(tree->root_, temp, 0, 0, positional_nodes, window);
+                    this->tree->pre_order_vector(splayed_tree, window, scale, positional_nodes, this->window_x/2);
+                    this->tree->search(tree->root_, temp, this->window_x/2, 50, positional_nodes, window, scale/2, 'm', 0, splayed_tree, window_x/2);
+                    window->display();
+                    window->clear();
+
                     this->tree->splay_tree(temp);
                     this->tree->pre_order_vector(splayed_tree, window, scale, positional_nodes, this->window_x/2);
                     window->display();
