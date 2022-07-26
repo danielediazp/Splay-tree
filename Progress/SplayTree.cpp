@@ -151,7 +151,7 @@ Node* SplayTree::splay_tree(int data, Node* root) {
 }
 
 int SplayTree::height(Node *root) {
-    // Edge case when the tree is empty
+    // Base case when the tree is empty, or the current node is a nullptr
     if (!root){
         return -1;
     }

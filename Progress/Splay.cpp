@@ -1,15 +1,5 @@
 #include "Splay.h"
 
-
-/*
-TODO: Render nodes correctly in terms of ancestry and position (i.e., right children should be to the right of a node, etc.) (HARD)
-TODO: Write code to create new nodes using the SplayTree methods on user input (MEDIUM)
-TODO: Write function to delete nodes by clicking on them (bounds checking/input handling) (VERY HARD)
-TODO: Write function to insert nodes in valid empty spaces (bounds checking/input handling) (VERY HARD)
-     4a, 5a. Create a key-press toggle for insert and delete modes (EASY)
-TODO: Come up with some form of animation for deleting and inserting nodes (via built-in SFML functions) (EXTREMELY HARD)
- */
-
 Splay::Splay() {
     this->scale = 500;
     this->window_x = 800 + (4 * scale);
