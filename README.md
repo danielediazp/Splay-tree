@@ -20,17 +20,17 @@ Dependencies:
 
 The easiest way to compile is to use the CMakeLists.txt file included in this repo. In these steps, YOUR-PROJECT-DIRECTORY-NAME should be replaced with the actual name of the project directory that will house the downloaded files. Steps for compiling are below:
 
-1. Download download the provided CMakeLists.txt file and coolvetica.otf file, as well as all files and directories inside of the Splay-tree/Progress directory
+1. Download the provided CMakeLists.txt file and coolvetica.otf file, as well as all files and directories inside of the Splay-tree directory
 2. Create a new project using your IDE of choice. This project was built primarily using JetBrains CLion.
-3. UPDATE YOUR CMAKELIST PROJECT TARGETS:
+3. Move the CMakeLists.txt and coolvetica.otf files into your PROJECT DIRECTORY, not the Splay-tree directory
+4. Move the parent directory, Splay-tree, containing all of the needed files, into your project directory
+5. UPDATE YOUR CMAKELIST PROJECT TARGETS:
 	- Line 1: Update the cmake_minimum_required field to your version of CMake.
     	- This project was built using both v3.22 and 3.21. It should not have a significant bearing on compilation.
 	- Line 2: Update the parameter of project(YOUR-PROJECT-DIRECTORY-NAME) to the name of your project directory
 	- Line 18: Update the first item in add_executable, YOUR-PROJECT-DIRECTORY-NAME to the name of your project directory
 	- Line 102: Update the first item in target_link_libraries, YOUR-PROJECT-DIRECTORY-NAME to the name of your project directory
-4. Because we have bundled the SFML library in this project, you should not need to manually install SFML. If you already have it installed and would not like to use the bundled files, you will need to update the directory paths throughout the CMakeList (Lines 8-13, 19-96). We would not suggest this route.
-
-5. The CMakeLists.txt file and coolvetica.otf font file should be in your PROJECT DIRECTORY, NOT in the Splay-tree directory.
+6. Because we have bundled the SFML library in this project, you should not need to manually install SFML. If you already have it installed and would not like to use the bundled files, you will need to update the directory paths throughout the CMakeList (Lines 8-13, 19-96). We would not suggest this route.
     
 An example of what your project directory should look like is below:
 
