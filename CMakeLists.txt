@@ -1,9 +1,8 @@
 cmake_minimum_required(VERSION 3.22)
-project(-----XXXXX-----)
+project(YOUR-PROJECT-DIRECTORY-NAME)
 
 set(CMAKE_CXX_STANDARD 11)
 
-include_directories(/usr/local/include)
 include_directories(Splay-tree/Progress)
 include_directories(Splay-tree/Progress/External)
 include_directories(Splay-tree/Progress/External/include)
@@ -15,7 +14,7 @@ include_directories(Splay-tree/Progress/External/include/SFML/Window)
 find_package(SFML 2.5 COMPONENTS system window graphics REQUIRED)
 include_directories(${SFML_INCLUDE_DIRS})
 
-add_executable(-----XXXXX-----
+add_executable(YOUR-PROJECT-DIRECTORY-NAME
         Splay-tree/Progress/External/include/SFML/Graphics/BlendMode.hpp
         Splay-tree/Progress/External/include/SFML/Graphics/CircleShape.hpp
         Splay-tree/Progress/External/include/SFML/Graphics/Color.hpp
@@ -99,4 +98,4 @@ add_executable(-----XXXXX-----
         Splay-tree/Progress/Menu.cpp
         Splay-tree/Progress/SplayTree.cpp)
 
-target_link_libraries(-----XXXXX----- sfml-system sfml-window sfml-graphics)
+target_link_libraries(YOUR-PROJECT-DIRECTORY-NAME sfml-system sfml-window sfml-graphics)
