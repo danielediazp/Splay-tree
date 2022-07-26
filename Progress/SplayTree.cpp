@@ -287,28 +287,28 @@ void SplayTree::search(Node* root, int target, int x, int y, std::vector<positio
         if (target > root->value_) {
             search(root->right_, target, x + 50 + scale, y + scale + depth, positional_nodes, window, scale, 'r',depth + 50, target_vector, window_x);
         } else if (target < root->value_) {
-            search(root->left_, target, x + 50 + scale/8, y + scale + depth, positional_nodes, window, scale, 'x',depth + 50, target_vector, window_x);
+            search(root->left_, target, x - 50 - scale/8, y + scale + depth, positional_nodes, window, scale, 'x',depth + 50, target_vector, window_x);
         }
-    } if (type == 'l') {
+    } else if (type == 'l') {
         if (target > root->value_) {
             search(root->right_, target, x + 50 + scale/8, y + scale + depth, positional_nodes, window, scale, 'x',depth + 50, target_vector, window_x);
         } else if (target < root->value_) {
-            search(root->left_, target, x + 50 + scale, y + scale + depth, positional_nodes, window, scale, 'l',depth + 50, target_vector, window_x);
+            search(root->left_, target, x - 50 - scale, y + scale + depth, positional_nodes, window, scale, 'l',depth + 50, target_vector, window_x);
         }
-    } if (type == 'x') {
+    } else if (type == 'x') {
         if (target > root->value_) {
             search(root->right_, target, (x + 50 + scale/3), (y + scale/3 + depth), positional_nodes, window, scale/2, 'x',depth + 50, target_vector, window_x);
         } else if (target < root->value_) {
             search(root->left_, target, (x - 50 - scale/3), (y + scale/3 + depth), positional_nodes, window, scale/2, 'x',depth + 50, target_vector, window_x);
         }
-    } else {
+    } else if (type == 'm') {
         if (target > root->value_) {
             search(root->right_, target, x + 50 + scale, y + scale + depth, positional_nodes, window, scale, 'r',depth + 50, target_vector, window_x);
         } else if (target < root->value_) {
-            search(root->left_, target, x + 50 + scale, y + scale + depth, positional_nodes, window, scale, 'l',depth + 50, target_vector, window_x);
+            search(root->left_, target, x - 50 - scale, y + scale + depth, positional_nodes, window, scale, 'l',depth + 50, target_vector, window_x);
         }
     }
-    if (target == root->value_) {
+    else {
         std::cout << "Node found!" << "\n";
         return;
     }

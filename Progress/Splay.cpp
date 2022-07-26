@@ -76,6 +76,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     int temp = 1 + (rand() % 200);
                     next_node(temp, window, false);
 //                    window->display();
+
                     this->tree->insert(temp , splayed_tree, window, scale, positional_nodes, this->window_x/2);
                     std::cout << positional_nodes[0].coordinates.first << "\n";
                     window->display();
@@ -179,25 +180,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                         coord.first < positional_nodes[i].coordinates.first + 82) {
                         if (coord.second > positional_nodes[i].coordinates.second + 1860 &&
                             coord.second < positional_nodes[i].coordinates.second + 1910) {
-                            std::cout << "Node here!";
-                            int size = 30;
-                            sf::CircleShape node;
-                            node.setRadius(size);
-                            node.setFillColor(sf::Color::Yellow);
-                            node.setOrigin(0.0f, 0.0f);
-                            sf::Text value;
-                            value.setCharacterSize(size);
-                            value.setFont(this->global_font);
-                            value.setFillColor(sf::Color::Red);
-                            node.setPosition(positional_nodes[i].coordinates.first,
-                                             positional_nodes[i].coordinates.second);
-                            std::string string_value = std::to_string(positional_nodes[i].value_->get_value());
-                            value.setString(string_value);
-                            value.setPosition(positional_nodes[i].coordinates.first,
-                                              positional_nodes[i].coordinates.second);
-                            window->draw(node);
-                            window->draw(value);
-                            window->display();
                             if (positional_nodes[i].value_ != nullptr) {
                                 tree->delete_node(positional_nodes[i].value_->get_value());
                                 std::cout << "Delete Mode Toggled: OFF - Node has been removed" << "\n";
@@ -208,7 +190,6 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                                 window->display();
                                 deleteMode = false;
                                 break;
-
                             }
                         }
                     }
