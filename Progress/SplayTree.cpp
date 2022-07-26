@@ -251,6 +251,54 @@ Node* SplayTree::delete_node(int data, Node *root) {
     }
 }
 
+void SplayTree::search(Node* root, int target, int x, int y, std::vector<positionalNode> &positional_nodes, sf::RenderWindow *window) {
+    int size = 30;
+    sf::CircleShape node;
+    node.setRadius(size);
+    node.setFillColor(sf::Color::White);
+    node.setOrigin(0.0f, 0.0f);
+    node.setOutlineThickness(5);
+    node.setOutlineColor(sf::Color::Red);
+    sf::Text value;
+    value.setCharacterSize(size);
+    value.setFont(this->global_font);
+    value.setFillColor(sf::Color::Red);
+
+
+    //    std::string string_value = std::to_string(root->value_);
+    //    value.setString(string_value);
+    //    value.setPosition(x - 17 , y - 20);
+
+    if (!root) {
+        std::cout << "Node not found " << "\n";
+        return;
+    }
+
+    for (int i = 0; i < positional_nodes.size(); ++i) {
+        std::cout << positional_nodes[i].value_->get_value() << "\n";
+        if (positional_nodes[i].value_->get_value() == root->value_) {
+            x = positional_nodes[i].coordinates.first;
+            y = positional_nodes[i].coordinates.second;
+            break;
+        }
+    }
+    node.setPosition(x, y);
+    value.setPosition(x + 13, y + 10);
+    window->draw(node);
+    window->draw(value);
+    window->display();
+    if (target > root->value_) {
+        search(root->right_, target, x, y, positional_nodes, window);
+    } else if (target < root->value_) {
+        search(root->left_, target, x, y, positional_nodes, window);
+    } else {
+        std::cout << "Node found!" << "\n";
+        return;
+    }
+    return;
+}
+
+
 void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, int x, int y, sf::RenderWindow *window, char type, float scale, std::vector<positionalNode> &positional_nodes, int depth) {
     int size = 30;
     sf::CircleShape node;
