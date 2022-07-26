@@ -25,10 +25,10 @@ The easiest way to compile is to use the CMakeLists.txt file included in this re
 3. UPDATE YOUR CMAKELIST PROJECT TARGETS:
 	- Line 1: Update the cmake_minimum_required field to your version of CMake.
     	- This project was built using both v3.22 and 3.21. It should not have a significant bearing on compilation.
-	- Line 2: Update project(xxxxx) to project(YOUR-PROJECT-DIRECTORY-NAME)
-	- Line 18: Update the first item in add_executable, xxxxx, to YOUR-PROJECT-DIRECTORY-NAME.
-	- Line 102: Update the first item in target_link_libraries, xxxxx, to YOUR-PROJECT-DIRECTORY-NAME
-4. Because we have bundled the SFML library in this project, you should not need to manually install SFML. If you already have it installed, you will need to update the directory paths throughout the CMakeList (Lines 8-13, 19-96)
+	- Line 2: Update the parameter of project(YOUR-PROJECT-DIRECTORY-NAME) to the name of your project directory
+	- Line 18: Update the first item in add_executable, YOUR-PROJECT-DIRECTORY-NAME to the name of your project directory
+	- Line 102: Update the first item in target_link_libraries, YOUR-PROJECT-DIRECTORY-NAME to the name of your project directory
+4. Because we have bundled the SFML library in this project, you should not need to manually install SFML. If you already have it installed and would not like to use the bundled files, you will need to update the directory paths throughout the CMakeList (Lines 8-13, 19-96). I would not suggest this route.
 
 5. Ensure that you have also downloaded the font file for the visualization, "coolvetica.otf"
 	- This file should be in your project directory, NOT the Splay-tree directory
