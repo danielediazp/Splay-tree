@@ -34,7 +34,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
     int size = 30;
     value.setCharacterSize(30);
     value.setFont(this->global_font);
-    value.setFillColor(sf::Color::Red);
+    value.setFillColor(sf::Color::Green);
     while (this->window->isOpen()) {
 
         sf::Event event;
@@ -207,11 +207,11 @@ void Splay::next_node(int val, sf::RenderWindow * window, bool type) {
     node.setFillColor(sf::Color::White);
     node.setOrigin(0.0f, 0.0f);
     node.setOutlineThickness(5);
-    node.setOutlineColor(sf::Color::Red);
+    node.setOutlineColor(sf::Color::Green);
     sf::Text value;
     value.setCharacterSize(size);
     value.setFont(this->global_font);
-    value.setFillColor(sf::Color::Red);
+    value.setFillColor(sf::Color::Green);
 
     std::string string_value = ("Inserting Node:  ");
     if (type) {

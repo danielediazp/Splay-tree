@@ -71,11 +71,18 @@ void Menu::move_down() {
 
 void Menu::run(sf::RenderWindow &window){
 
-    //set background
+    //set About background
+    sf::RectangleShape about_background;
+    about_background.setSize(sf::Vector2f(this->window_width_,this->window_height_));
+    sf::Texture about_window_texture;
+    about_window_texture.loadFromFile("../Splay-tree/Progress/backgrounds/aboutbg.jpg");
+    about_background.setTexture(&about_window_texture);
+
+    //set How to background
     sf::RectangleShape background;
     background.setSize(sf::Vector2f(this->window_width_,this->window_height_));
     sf::Texture back_texture;
-    back_texture.loadFromFile("../Splay-tree/Progress/backgrounds/menu.jpg");
+    back_texture.loadFromFile("../Splay-tree/Progress/backgrounds/howtobg.jpg");
     background.setTexture(&back_texture);
 
     //set main menu background
@@ -147,7 +154,7 @@ void Menu::run(sf::RenderWindow &window){
                             }
                             OPTIONS.close();
                             ABOUT.clear();
-                            ABOUT.draw(background);
+                            ABOUT.draw(about_background);
                             ABOUT.display();
                         }
                     }

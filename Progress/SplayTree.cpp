@@ -324,7 +324,7 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
     sf::Text value;
     value.setCharacterSize(size);
     value.setFont(this->global_font);
-    value.setFillColor(sf::Color::Red);
+    value.setFillColor(sf::Color::Green);
 
     if (!root){
         target_vector.push_back(nullptr);
