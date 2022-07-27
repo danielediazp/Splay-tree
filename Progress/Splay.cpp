@@ -12,16 +12,11 @@ Splay::Splay() {
 }
 
 void Splay::run(std::vector<Node*> splayed_tree) {
-    const float zoom = 1.02f;
     sf::View view(sf::Vector2f(window_x/2,window_y/2), sf::Vector2f(window_x, window_y));
-
 
     std::srand(std::time(nullptr));
     std::vector<positionalNode> positional_nodes;
     sf::Text value;
-    float startSpot = (800 + (4 * scale))/2;
-    ////TODO: Size universally
-    int size = 30;
     value.setCharacterSize(30);
     value.setFont(this->global_font);
     value.setFillColor(sf::Color::Green);
@@ -70,7 +65,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                         window->display();
                     }
                 } else if (event.key.code == sf::Keyboard::N){
-
+                    // Zoom In key event
                     view.zoom(.99f);
                     window->clear();
                     next_node(tree->root_->get_value(), window, false);
@@ -78,8 +73,8 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     window->display();
                     window->setView(view);
 
-                }else if (event.key.code == sf::Keyboard::M){
-
+                } else if (event.key.code == sf::Keyboard::M){
+                    // Zoom Out key event
                     view.zoom(1.01f);
                     window->clear();
                     next_node(tree->root_->get_value(), window, false);
@@ -88,7 +83,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     window->setView(view);
 
                 } else if (event.key.code == sf::Keyboard::Down){
-
+                    // Scroll screen down
                     view.move(0.f, 30.f);
                     window->clear();
                     next_node(tree->root_->get_value(), window, false);
@@ -97,7 +92,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     window->setView(view);
 
                 } else if (event.key.code == sf::Keyboard::Up){
-
+                    // Scroll screen up
                     view.move(0.f, -30.f);
                     window->clear();
                     next_node(tree->root_->get_value(), window, false);
@@ -106,7 +101,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     window->setView(view);
 
                 }else if (event.key.code == sf::Keyboard::Left){
-
+                    // Scroll screen left
                     view.move(-30.f, 0.f);
                     window->clear();
                     next_node(tree->root_->get_value(), window, false);
@@ -115,7 +110,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     window->setView(view);
 
                 } else if (event.key.code == sf::Keyboard::Right) {
-
+                    // Scroll screen right
                     view.move(30.f, 0.f);
                     window->clear();
                     next_node(tree->root_->get_value(), window, false);
@@ -124,6 +119,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     window->setView(view);
 
                 }  else if (event.key.code == sf::Keyboard::J && !this->deleteMode) {
+                    // Allows for deleting until toggled off
                     splayed_tree.clear();
                     this->window->clear();
                     tree->pre_order_vector(splayed_tree, this->window, this->scale, positional_nodes, this->window_x/2);
@@ -193,5 +189,4 @@ void Splay::next_node(int val, sf::RenderWindow * window, bool type) {
     if (!type) {
         window->draw(value);
     }
-
 }

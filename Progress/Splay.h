@@ -27,8 +27,6 @@ public:
     Splay();
     void run(std::vector<Node *> splayed_tree);
     void next_node(int val, sf::RenderWindow *window, bool type);
-    void update();
-    void render();
 
     friend class SplayTree;
 };

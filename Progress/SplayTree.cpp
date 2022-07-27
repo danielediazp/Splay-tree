@@ -2,8 +2,6 @@
 #include "Node.h"
 #include "Splay.h"
 // Default constructor
-
-
 SplayTree::SplayTree() {
     this->root_ = nullptr;
     this->global_font.loadFromFile("../coolvetica.otf");
@@ -32,9 +30,6 @@ SplayTree::SplayTree(std::string file_name) {
         }
     }
 }
-
-
-// --------------- PRIVATE METHODS -----------------
 
 Node* SplayTree::insert(int data, Node* root) {
     // Case when the root node does not exist
@@ -225,7 +220,6 @@ void SplayTree::level_order(Node *root, int l, std::vector<Node *> &target_vecto
 }
 
 Node* SplayTree::delete_node(int data, Node *root) {
-
     if (!root) {
         return nullptr;
     }
@@ -266,19 +260,9 @@ void SplayTree::search(Node* root, int target, int x, int y, std::vector<positio
     std::string temp = std::to_string(root->value_);
     value.setString(temp);
 
-    //    std::string string_value = std::to_string(root->value_);
-    //    value.setString(string_value);
-    //    value.setPosition(x - 17 , y - 20);
-
-    if (!root) {
-        std::cout << "Node not found " << "\n";
-        return;
-    }
-
     node.setPosition(x - 30, y - 30);
     value.setPosition(x - 17, y - 20);
 
-//    this->pre_order_vector(this->root_, target_vector, window_x, 50, window, 'm', scale/2, positional_nodes, 0);
     window->draw(node);
     window->draw(value);
     window->display();
@@ -372,7 +356,7 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
             left_p[1].position = sf::Vector2f(x - 50 - scale/3, y + scale/3 + depth);
             window->draw(left_p);
         }
-//
+
         if (root->right_ != nullptr) {
             sf::VertexArray right_p(sf::LinesStrip, 2);
             right_p[0].position = sf::Vector2f(x,y);
@@ -387,7 +371,7 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
             left_p[1].position = sf::Vector2f(x - 50 - scale, y + scale + depth);
             window->draw(left_p);
         }
-//
+
         if (root->right_ != nullptr) {
             sf::VertexArray right_p(sf::LinesStrip, 2);
             right_p[0].position = sf::Vector2f(x,y);
@@ -417,7 +401,6 @@ void SplayTree::pre_order_vector(Node* root, std::vector<Node*> &target_vector, 
 
 }
 
-// --------------- PUBLIC METHODS -----------------
 
 void SplayTree::force_delay(){
     sf::Clock clock;
@@ -426,7 +409,6 @@ void SplayTree::force_delay(){
     while (time1.asSeconds() != 1){
         time1 = clock.getElapsedTime();
     }
-//    std::cout << "5 seconds elapsed" << '\n';
     return;
 }
 
