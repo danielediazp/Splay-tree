@@ -1,8 +1,7 @@
 ## Splay-Tree
 CSC 212 Final Project
 
-
-			Cameron Castillo, Carl Kakisis, Daniel Diaz, and Vincent Zhuang
+Cameron Castillo, Carl Kakisis, Daniel Diaz, and Vincent Zhuang
 
 ![SingRot](https://user-images.githubusercontent.com/38219103/181129292-36bab696-3b9b-425d-bdd2-02845df4b5c3.png)
 <sub>https://opendsa-server.cs.vt.edu/OpenDSA/Books/Everything/html/Splay.html</sub>
