@@ -1,0 +1,101 @@
+cmake_minimum_required(VERSION 3.22)
+project(YOUR-PROJECT-DIRECTORY-NAME)
+
+set(CMAKE_CXX_STANDARD 11)
+
+include_directories(Splay-tree/Progress)
+include_directories(Splay-tree/Progress/External)
+include_directories(Splay-tree/Progress/External/include)
+include_directories(Splay-tree/Progress/External/include/SFML)
+include_directories(Splay-tree/Progress/External/include/SFML/Graphics)
+include_directories(Splay-tree/Progress/External/include/SFML/System)
+include_directories(Splay-tree/Progress/External/include/SFML/Window)
+
+find_package(SFML 2.5 COMPONENTS system window graphics REQUIRED)
+include_directories(${SFML_INCLUDE_DIRS})
+
+add_executable(YOUR-PROJECT-DIRECTORY-NAME
+        Splay-tree/Progress/External/include/SFML/Graphics/BlendMode.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/CircleShape.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/Color.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/ConvexShape.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/Drawable.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/Export.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/Font.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/Glsl.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/Glsl.inl
+        Splay-tree/Progress/External/include/SFML/Graphics/Glyph.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/Image.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/PrimitiveType.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/Rect.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/Rect.inl
+        Splay-tree/Progress/External/include/SFML/Graphics/RectangleShape.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/RenderStates.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/RenderTarget.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/RenderTexture.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/RenderWindow.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/Shader.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/Shape.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/Sprite.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/Text.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/Texture.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/Transform.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/Transformable.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/Vertex.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/VertexArray.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/VertexBuffer.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics/View.hpp
+        Splay-tree/Progress/External/include/SFML/System/Clock.hpp
+        Splay-tree/Progress/External/include/SFML/System/Err.hpp
+        Splay-tree/Progress/External/include/SFML/System/Export.hpp
+        Splay-tree/Progress/External/include/SFML/System/FileInputStream.hpp
+        Splay-tree/Progress/External/include/SFML/System/InputStream.hpp
+        Splay-tree/Progress/External/include/SFML/System/Lock.hpp
+        Splay-tree/Progress/External/include/SFML/System/MemoryInputStream.hpp
+        Splay-tree/Progress/External/include/SFML/System/Mutex.hpp
+        Splay-tree/Progress/External/include/SFML/System/NativeActivity.hpp
+        Splay-tree/Progress/External/include/SFML/System/NonCopyable.hpp
+        Splay-tree/Progress/External/include/SFML/System/Sleep.hpp
+        Splay-tree/Progress/External/include/SFML/System/String.hpp
+        Splay-tree/Progress/External/include/SFML/System/String.inl
+        Splay-tree/Progress/External/include/SFML/System/Thread.hpp
+        Splay-tree/Progress/External/include/SFML/System/Thread.inl
+        Splay-tree/Progress/External/include/SFML/System/ThreadLocal.hpp
+        Splay-tree/Progress/External/include/SFML/System/ThreadLocalPtr.hpp
+        Splay-tree/Progress/External/include/SFML/System/ThreadLocalPtr.inl
+        Splay-tree/Progress/External/include/SFML/System/Time.hpp
+        Splay-tree/Progress/External/include/SFML/System/Utf.hpp
+        Splay-tree/Progress/External/include/SFML/System/Utf.inl
+        Splay-tree/Progress/External/include/SFML/System/Vector2.hpp
+        Splay-tree/Progress/External/include/SFML/System/Vector2.inl
+        Splay-tree/Progress/External/include/SFML/System/Vector3.hpp
+        Splay-tree/Progress/External/include/SFML/System/Vector3.inl
+        Splay-tree/Progress/External/include/SFML/Window/Clipboard.hpp
+        Splay-tree/Progress/External/include/SFML/Window/Context.hpp
+        Splay-tree/Progress/External/include/SFML/Window/ContextSettings.hpp
+        Splay-tree/Progress/External/include/SFML/Window/Cursor.hpp
+        Splay-tree/Progress/External/include/SFML/Window/Event.hpp
+        Splay-tree/Progress/External/include/SFML/Window/Export.hpp
+        Splay-tree/Progress/External/include/SFML/Window/GlResource.hpp
+        Splay-tree/Progress/External/include/SFML/Window/Joystick.hpp
+        Splay-tree/Progress/External/include/SFML/Window/Keyboard.hpp
+        Splay-tree/Progress/External/include/SFML/Window/Mouse.hpp
+        Splay-tree/Progress/External/include/SFML/Window/Sensor.hpp
+        Splay-tree/Progress/External/include/SFML/Window/Touch.hpp
+        Splay-tree/Progress/External/include/SFML/Window/VideoMode.hpp
+        Splay-tree/Progress/External/include/SFML/Window/Window.hpp
+        Splay-tree/Progress/External/include/SFML/Window/WindowHandle.hpp
+        Splay-tree/Progress/External/include/SFML/Window/WindowStyle.hpp
+        Splay-tree/Progress/External/include/SFML/Config.hpp
+        Splay-tree/Progress/External/include/SFML/GpuPreference.hpp
+        Splay-tree/Progress/External/include/SFML/Graphics.hpp
+        Splay-tree/Progress/External/include/SFML/Main.hpp
+        Splay-tree/Progress/External/include/SFML/OpenGL.hpp
+        Splay-tree/Progress/External/include/SFML/System.hpp
+        Splay-tree/Progress/External/include/SFML/Window.hpp
+        Splay-tree/Progress/main.cpp
+        Splay-tree/Progress/Splay.cpp
+        Splay-tree/Progress/Menu.cpp
+        Splay-tree/Progress/SplayTree.cpp)
+
+target_link_libraries(YOUR-PROJECT-DIRECTORY-NAME sfml-system sfml-window sfml-graphics)
