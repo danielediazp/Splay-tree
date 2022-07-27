@@ -64,6 +64,7 @@ void Splay::run(std::vector<Node*> splayed_tree) {
                     std::istringstream str(nums);
                     std::string temp;
                     while (str >> temp) {
+                        window->clear();
                         next_node(stoi(temp), window, false);
                         this->tree->insert(stoi(temp), splayed_tree, window, scale, positional_nodes, this->window_x / 2);
                         window->display();
@@ -193,5 +194,4 @@ void Splay::next_node(int val, sf::RenderWindow * window, bool type) {
         window->draw(value);
     }
 
-//    window->display();
 }
